@@ -711,181 +711,341 @@ export default function CapturedPremium() {
       </section>
 
       {/* --- سكشن صور التطبيق مع إطار iPhone - إصلاح الظهور المتقطع --- */}
-      <section id="app" className="py-40 px-6 bg-white relative overflow-hidden">
-        <div className="absolute top-20 left-[-5%] w-[400px] h-[400px] bg-blue-100 rounded-full blur-[100px] opacity-30" />
-        <div className="absolute bottom-20 right-[-5%] w-[350px] h-[350px] bg-purple-100 rounded-full blur-[90px] opacity-30" />
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="reveal-up text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-black uppercase tracking-wider mb-6">
-              <Smartphone size={16} />
-              {isRTL ? 'تطبيق الموبايل' : 'Mobile Application'}
-            </div>
-            <h2 className="text-5xl md:text-6xl font-black mb-6 text-slate-900">
-              {isRTL ? 'تجربة تطبيق ميدانية سلسة' : 'Smooth Field App Experience'}
-            </h2>
-            <p className="text-slate-500 text-xl font-medium max-w-3xl mx-auto leading-relaxed">
-              {isRTL
-                ? 'واجهة تطبيق بسيطة وسريعة لموظفي الميدان لرفع التوثيق في ثوانٍ معدودة'
-                : 'A simple, fast mobile app for field teams to capture proof in seconds'}
-            </p>
+      {/* --- App Section - محسّن --- */}
+<section id="app" className="py-32 px-6 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+  {/* خلفية ديكورية محسّنة */}
+  <div className="absolute inset-0">
+    <div className="absolute top-20 left-[-8%] w-[500px] h-[500px] bg-gradient-to-br from-blue-200 to-blue-100 rounded-full blur-[120px] opacity-40 animate-pulse" style={{ animationDuration: '4s' }} />
+    <div className="absolute bottom-20 right-[-8%] w-[450px] h-[450px] bg-gradient-to-br from-purple-200 to-purple-100 rounded-full blur-[110px] opacity-40 animate-pulse" style={{ animationDuration: '5s' }} />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-full blur-[100px] opacity-20" />
+  </div>
+  
+  <div className="max-w-7xl mx-auto relative z-10">
+    {/* العنوان الرئيسي */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="text-center mb-24"
+    >
+      <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 text-blue-700 text-xs font-black uppercase tracking-wider mb-8 shadow-sm">
+        <Smartphone size={18} className="animate-pulse" />
+        {isRTL ? 'تطبيق الموبايل' : 'Mobile Application'}
+      </div>
+      <h2 className="text-5xl md:text-7xl font-black mb-6 text-slate-900 tracking-tight">
+        {isRTL ? 'تجربة تطبيق ميدانية' : 'Smooth Field App'}
+        <br />
+        <span className="text-gradient">{isRTL ? 'سلسة وذكية' : 'Experience'}</span>
+      </h2>
+      <p className="text-slate-500 text-xl font-medium max-w-3xl mx-auto leading-relaxed">
+        {isRTL
+          ? 'واجهة تطبيق بسيطة وسريعة لموظفي الميدان لرفع التوثيق في ثوانٍ معدودة'
+          : 'A simple, fast mobile app for field teams to capture proof in seconds'}
+      </p>
+    </motion.div>
+
+    <div className="space-y-40">
+      {/* الميزة الأولى */}
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className={`${isRTL ? 'lg:order-2' : ''} space-y-8`}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-sm font-bold shadow-sm">
+            <PackageCheck size={18} />
+            {isRTL ? 'الميزة #1' : 'Feature #1'}
           </div>
+          
+          <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1]">
+            {isRTL ? 'عرض وإنشاء الطلبات' : 'View & Create Orders'}
+            <br />
+            <span className="text-emerald-600">{isRTL ? 'بسهولة تامة' : 'Easily'}</span>
+          </h3>
+          
+          <p className="text-lg text-slate-600 leading-relaxed font-medium">
+            {isRTL
+              ? 'يمكن للموظفين الميدانيين عرض جميع الطلبات المخصصة لهم وإنشاء طلبات جديدة بكل سهولة. واجهة بديهية تعرض تفاصيل كل طلب من حالة، موقع، ووقت التسليم المتوقع.'
+              : 'Field employees can view all assigned orders and create new ones with ease. An intuitive interface displays each order\'s status, location, and expected delivery time.'}
+          </p>
 
-          <div className="space-y-32">
-            {/* صورة التطبيق الأولى مع إطار iPhone */}
-            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
-              <div className={`${isRTL ? 'lg:order-2' : ''} space-y-8`}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-bold">
-                  <PackageCheck size={18} />
-                  {isRTL ? 'الميزة #1' : 'Feature #1'}
+          <ul className="space-y-5">
+            {[
+              {
+                icon: <CheckCircle2 size={22} className="text-emerald-600" />,
+                text: isRTL ? 'عرض قائمة الطلبات المخصصة' : 'View assigned order list',
+                badge: isRTL ? 'فوري' : 'Instant'
+              },
+              {
+                icon: <CheckCircle2 size={22} className="text-emerald-600" />,
+                text: isRTL ? 'إنشاء طلب جديد بنقرة واحدة' : 'Create new order with one tap',
+                badge: isRTL ? 'سريع' : 'Fast'
+              },
+              {
+                icon: <CheckCircle2 size={22} className="text-emerald-600" />,
+                text: isRTL ? 'تفاصيل شاملة لكل طلب' : 'Comprehensive details for each order',
+                badge: isRTL ? 'كامل' : 'Complete'
+              },
+            ].map((item, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex items-center gap-4 text-slate-700 font-bold bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-slate-100 hover:border-emerald-200 transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors flex-shrink-0">
+                  {item.icon}
                 </div>
-                
-                <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                  {isRTL ? 'عرض وإنشاء الطلبات بسهولة' : 'View & Create Orders Easily'}
-                </h3>
-                
-                <p className="text-lg text-slate-600 leading-relaxed font-medium">
-                  {isRTL
-                    ? 'يمكن للموظفين الميدانيين عرض جميع الطلبات المخصصة لهم وإنشاء طلبات جديدة بكل سهولة. واجهة بديهية تعرض تفاصيل كل طلب من حالة، موقع، ووقت التسليم المتوقع.'
-                    : 'Field employees can view all assigned orders and create new ones with ease. An intuitive interface displays each order\'s status, location, and expected delivery time.'}
-                </p>
+                <span className="flex-1">{item.text}</span>
+                <span className="text-xs font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">
+                  {item.badge}
+                </span>
+              </motion.li>
+            ))}
+          </ul>
 
-                <ul className="space-y-5">
-                  {[
-                    {
-                      icon: <CheckCircle2 size={20} className="text-emerald-600" />,
-                      text: isRTL ? 'عرض قائمة الطلبات المخصصة' : 'View assigned order list',
-                    },
-                    {
-                      icon: <CheckCircle2 size={20} className="text-emerald-600" />,
-                      text: isRTL ? 'إنشاء طلب جديد بنقرة واحدة' : 'Create new order with one tap',
-                    },
-                    {
-                      icon: <CheckCircle2 size={20} className="text-emerald-600" />,
-                      text: isRTL ? 'تفاصيل شاملة لكل طلب' : 'Comprehensive details for each order',
-                    },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-slate-700 font-bold">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
-                        {item.icon}
-                      </div>
-                      <span>{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-black text-lg hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-xl shadow-emerald-600/30 hover:shadow-2xl hover:shadow-emerald-600/40"
+          >
+            {isRTL ? 'اكتشف المزيد' : 'Discover More'}
+            <ArrowRight size={22} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
+          </motion.button>
+        </motion.div>
 
-                <button className="group inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-2xl font-black text-lg hover:bg-slate-900 transition-all shadow-lg shadow-blue-600/20 hover:-translate-y-1">
-                  {isRTL ? 'اكتشف المزيد' : 'Discover More'}
-                  <ArrowRight size={20} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
-                </button>
-              </div>
-
-              <div className={`${isRTL ? 'lg:order-1' : ''}`}>
-                <div className="relative">
-                  {/* إطار iPhone */}
-                  <div className="iphone-frame">
-                    <div className="power-button" />
-                    <div className="volume-button" />
-                    <div className="volume-button down" />
-                    
-                    <div className="iphone-screen">
-                      <img
-                        src="/public/images/app-1.jpeg"
-                        alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* بادج ديكور */}
-                  <div className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl px-5 py-3 border border-slate-100">
-                    <div className="flex items-center gap-2 text-sm font-black text-slate-900">
-                      <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-                      {isRTL ? 'نشط الآن' : 'Live Now'}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* صورة التطبيق الثانية مع إطار iPhone */}
-            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-sm font-bold">
-                  <Activity size={18} />
-                  {isRTL ? 'الميزة #2' : 'Feature #2'}
-                </div>
-                
-                <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                  {isRTL ? 'متابعة وتتبع الطلبات لحظياً' : 'Real-Time Order Tracking'}
-                </h3>
-                
-                <p className="text-lg text-slate-600 leading-relaxed font-medium">
-                  {isRTL
-                    ? 'تتبع حالة كل طلب من البداية حتى التسليم. يتم تحديث الحالة تلقائياً مع كل خطوة، مع إمكانية إضافة ملاحظات وصور التوثيق المباشرة من موقع العمل.'
-                    : 'Track each order status from start to delivery. Status updates automatically with every step, with the ability to add notes and live documentation photos from the work site.'}
-                </p>
-
-                <ul className="space-y-5">
-                  {[
-                    {
-                      icon: <CheckCircle2 size={20} className="text-purple-600" />,
-                      text: isRTL ? 'تحديثات فورية لحالة الطلب' : 'Instant order status updates',
-                    },
-                    {
-                      icon: <CheckCircle2 size={20} className="text-purple-600" />,
-                      text: isRTL ? 'إضافة صور توثيقية مباشرة' : 'Add live documentation photos',
-                    },
-                    {
-                      icon: <CheckCircle2 size={20} className="text-purple-600" />,
-                      text: isRTL ? 'ختم الموقع الجغرافي تلقائياً' : 'Auto GPS location stamp',
-                    },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-slate-700 font-bold">
-                      <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center">
-                        {item.icon}
-                      </div>
-                      <span>{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button className="group inline-flex items-center gap-3 px-8 py-4 bg-purple-600 text-white rounded-2xl font-black text-lg hover:bg-slate-900 transition-all shadow-lg shadow-purple-600/20 hover:-translate-y-1">
-                  {isRTL ? 'جرّب الآن' : 'Try Now'}
-                  <ArrowRight size={20} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
-                </button>
-              </div>
-
-              <div>
-                <div className="relative">
-                  {/* إطار iPhone */}
-                  <div className="iphone-frame">
-                    <div className="power-button" />
-                    <div className="volume-button" />
-                    <div className="volume-button down" />
-                    
-                    <div className="iphone-screen">
-                      <img
-                        src="/public/images/app-2.jpeg"
-                        alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* بادج ديكور */}
-                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-5 py-3 border border-slate-100">
-                    <div className="flex items-center gap-2 text-sm font-black text-slate-900">
-                      <MapPin size={16} className="text-purple-600" />
-                      {isRTL ? 'موقع دقيق' : 'Precise Location'}
-                    </div>
-                  </div>
-                </div>
+        <motion.div
+          initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className={`${isRTL ? 'lg:order-1' : ''}`}
+        >
+          <div className="relative">
+            {/* إطار iPhone محسّن */}
+            <div className="iphone-frame mx-auto hover:scale-105 transition-transform duration-500">
+              <div className="power-button" />
+              <div className="volume-button" />
+              <div className="volume-button down" />
+              
+              <div className="iphone-screen">
+                <img
+                  src="/public/images/app-1.jpeg"
+                  alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
+            
+            {/* بادج ديكور محسّن */}
+            <motion.div
+              initial={{ scale: 0, rotate: -10 }}
+              whileInView={{ scale: 1, rotate: -3 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, type: 'spring' }}
+              className={`absolute -top-8 ${isRTL ? '-left-8' : '-right-8'} bg-white rounded-2xl shadow-2xl px-6 py-4 border border-slate-100 backdrop-blur-sm`}
+            >
+              <div className="flex items-center gap-3 text-sm font-black text-slate-900">
+                <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/50" />
+                {isRTL ? 'نشط الآن' : 'Live Now'}
+              </div>
+            </motion.div>
+
+            {/* دوائر ديكورية */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-emerald-100/30 to-blue-100/30 rounded-full blur-3xl" />
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </div>
+
+      {/* الميزة الثانية */}
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="space-y-8"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200/70 text-purple-700 text-sm font-bold shadow-sm">
+            <Activity size={18} />
+            {isRTL ? 'الميزة #2' : 'Feature #2'}
+          </div>
+          
+          <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1]">
+            {isRTL ? 'متابعة وتتبع الطلبات' : 'Real-Time Order'}
+            <br />
+            <span className="text-purple-600">{isRTL ? 'لحظياً' : 'Tracking'}</span>
+          </h3>
+          
+          <p className="text-lg text-slate-600 leading-relaxed font-medium">
+            {isRTL
+              ? 'تتبع حالة كل طلب من البداية حتى التسليم. يتم تحديث الحالة تلقائياً مع كل خطوة، مع إمكانية إضافة ملاحظات وصور التوثيق المباشرة من موقع العمل.'
+              : 'Track each order status from start to delivery. Status updates automatically with every step, with the ability to add notes and live documentation photos from the work site.'}
+          </p>
+
+          <ul className="space-y-5">
+            {[
+              {
+                icon: <CheckCircle2 size={22} className="text-purple-600" />,
+                text: isRTL ? 'تحديثات فورية لحالة الطلب' : 'Instant order status updates',
+                badge: isRTL ? 'تلقائي' : 'Auto'
+              },
+              {
+                icon: <CheckCircle2 size={22} className="text-purple-600" />,
+                text: isRTL ? 'إضافة صور توثيقية مباشرة' : 'Add live documentation photos',
+                badge: isRTL ? 'مباشر' : 'Live'
+              },
+              {
+                icon: <CheckCircle2 size={22} className="text-purple-600" />,
+                text: isRTL ? 'ختم الموقع الجغرافي تلقائياً' : 'Auto GPS location stamp',
+                badge: isRTL ? 'دقيق' : 'Precise'
+              },
+            ].map((item, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex items-center gap-4 text-slate-700 font-bold bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-slate-100 hover:border-purple-200 transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center group-hover:bg-purple-100 transition-colors flex-shrink-0">
+                  {item.icon}
+                </div>
+                <span className="flex-1">{item.text}</span>
+                <span className="text-xs font-black px-3 py-1 rounded-full bg-purple-100 text-purple-700">
+                  {item.badge}
+                </span>
+              </motion.li>
+            ))}
+          </ul>
+
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-2xl font-black text-lg hover:from-purple-700 hover:to-purple-800 transition-all shadow-xl shadow-purple-600/30 hover:shadow-2xl hover:shadow-purple-600/40"
+          >
+            {isRTL ? 'جرّب الآن' : 'Try Now'}
+            <ArrowRight size={22} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
+          </motion.button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="relative">
+            {/* إطار iPhone محسّن */}
+            <div className="iphone-frame mx-auto hover:scale-105 transition-transform duration-500">
+              <div className="power-button" />
+              <div className="volume-button" />
+              <div className="volume-button down" />
+              
+              <div className="iphone-screen">
+                <img
+                  src="/public/images/app-2.jpeg"
+                  alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            
+            {/* بادج ديكور محسّن */}
+            <motion.div
+              initial={{ scale: 0, rotate: 10 }}
+              whileInView={{ scale: 1, rotate: 3 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, type: 'spring' }}
+              className={`absolute -bottom-8 ${isRTL ? '-right-8' : '-left-8'} bg-white rounded-2xl shadow-2xl px-6 py-4 border border-slate-100 backdrop-blur-sm`}
+            >
+              <div className="flex items-center gap-3 text-sm font-black text-slate-900">
+                <MapPin size={18} className="text-purple-600" />
+                {isRTL ? 'موقع دقيق' : 'Precise Location'}
+              </div>
+            </motion.div>
+
+            {/* دوائر ديكورية */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-purple-100/30 to-pink-100/30 rounded-full blur-3xl" />
+          </div>
+        </motion.div>
+      </div>
+    </div>
+
+   {/* CTA Section - بسيط ونظيف */}
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mt-32 relative"
+>
+  <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[3rem] p-12 md:p-16 overflow-hidden">
+    {/* خلفية بسيطة */}
+    <div className="absolute inset-0 opacity-5">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
+    </div>
+    
+    <div className="relative z-10 text-center max-w-4xl mx-auto">
+      {/* الأيقونة */}
+      <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-8">
+        <Smartphone size={32} className="text-white" />
+      </div>
+
+      {/* العنوان */}
+      <h3 className="text-4xl md:text-5xl font-black text-white mb-6">
+        {isRTL ? 'جاهز للبدء؟' : 'Ready to Get Started?'}
+      </h3>
+      
+      {/* الوصف */}
+      <p className="text-slate-300 text-lg font-medium mb-10 leading-relaxed">
+        {isRTL
+          ? 'حمّل التطبيق الآن وابدأ في توثيق عملياتك الميدانية بدقة GPS حقيقية'
+          : 'Download the app now and start documenting your field operations with real GPS accuracy'}
+      </p>
+
+      {/* أزرار التحميل */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+        <button className="inline-flex items-center gap-4 px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold text-base hover:bg-slate-100 transition-all shadow-lg w-full sm:w-auto">
+          <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <div className="text-left">
+            <div className="text-[10px] font-medium text-slate-500 uppercase">
+              {isRTL ? 'حمّل من' : 'Download on'}
+            </div>
+            <div className="text-base font-black">App Store</div>
+          </div>
+        </button>
+
+        <button className="inline-flex items-center gap-4 px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold text-base hover:bg-slate-100 transition-all shadow-lg w-full sm:w-auto">
+          <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
+          </svg>
+          <div className="text-left">
+            <div className="text-[10px] font-medium text-slate-500 uppercase">
+              {isRTL ? 'متوفر على' : 'Get it on'}
+            </div>
+            <div className="text-base font-black">Google Play</div>
+          </div>
+        </button>
+      </div>
+
+    
+    </div>
+  </div>
+</motion.div>
+
+  </div>
+</section>
+
 
       {/* --- سكشن صور اللوحة - إصلاح الظهور المتقطع --- */}
       <section id="dashboard" className="py-40 px-6 bg-slate-50 relative overflow-hidden">
@@ -1065,104 +1225,205 @@ export default function CapturedPremium() {
       </section>
 
       {/* --- Pricing --- */}
-      <section id="pricing" className="py-40 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <h2 className="text-5xl font-black mb-6">
-              {isRTL ? 'خطط مرنة لكل الأحجام' : 'Flexible Plans'}
-            </h2>
-            <div className="h-1.5 w-24 bg-blue-600 mx-auto rounded-full" />
+     {/* --- Pricing - عربي/إنجليزي --- */}
+{/* --- Pricing Section - محسّن --- */}
+<section id="pricing" className="py-32 px-6 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+  {/* خلفية ديكورية */}
+  <div className="absolute inset-0 opacity-30">
+    <div className="absolute top-20 right-[-10%] w-[500px] h-[500px] bg-blue-100 rounded-full blur-[120px]" />
+    <div className="absolute bottom-20 left-[-10%] w-[400px] h-[400px] bg-purple-100 rounded-full blur-[100px]" />
+  </div>
+
+  <div className="max-w-7xl mx-auto relative z-10">
+    {/* العنوان */}
+    <div className="text-center mb-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-xs font-black uppercase tracking-wider mb-6"
+      >
+        <Sparkles size={14} />
+        {isRTL ? 'باقات مرنة' : 'Flexible Plans'}
+      </motion.div>
+      
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900"
+      >
+        {isRTL ? 'خطط بسيطة وشفافة' : 'Simple, Transparent Pricing'}
+      </motion.h2>
+      
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-slate-500 font-medium text-lg"
+      >
+        {isRTL ? 'اختر الباقة التي تناسب حجم أعمالك' : 'Choose the plan that fits your business size'}
+      </motion.p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-8 items-stretch">
+      {/* Standard Plan */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-white/80 backdrop-blur-sm p-10 rounded-[3rem] border-2 border-slate-200 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-300 group flex flex-col"
+      >
+        <div className="mb-8">
+          <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors">
+            <Layers size={24} className="text-slate-600 group-hover:text-blue-600 transition-colors" />
           </div>
-
-          <div className="grid md:grid-cols-3 gap-10 items-stretch">
-            <div className="reveal-up bg-[#F8FAFC] p-12 rounded-[4rem] border border-slate-200 hover:border-blue-600 transition-all flex flex-col">
-              <span className="text-xs font-black text-slate-400 uppercase tracking-widest mb-10 block">
-                Standard
-              </span>
-              <div className="mb-10">
-                <span className="text-6xl font-black text-slate-900">299</span>
-                <span className="text-slate-400 font-bold ml-2">SAR / Mo</span>
-              </div>
-              <ul className="space-y-5 mb-12 flex-grow">
-                {['1 Branch', '5 Users', 'Basic Analytics', 'Cloud Storage 5GB'].map(
-                  (t, i) => (
-                    <li
-                      key={i}
-                      className="flex gap-3 items-center text-slate-600 font-bold"
-                    >
-                      <CheckCircle2 size={18} className="text-blue-600" /> {t}
-                    </li>
-                  ),
-                )}
-              </ul>
-              <button className="w-full py-5 rounded-2xl font-black border-2 border-slate-200 hover:bg-slate-900 hover:text-white transition-all">
-                Select Plan
-              </button>
-            </div>
-
-            <div className="reveal-up bg-white p-12 rounded-[4.5rem] border-2 border-blue-600 shadow-2xl scale-105 relative flex flex-col">
-              <div className="absolute top-8 right-8 bg-blue-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase">
-                Most Popular
-              </div>
-              <span className="text-xs font-black text-blue-600 uppercase tracking-widest mb-10 block">
-                Professional
-              </span>
-              <div className="mb-10">
-                <span className="text-6xl font-black text-slate-900">699</span>
-                <span className="text-slate-400 font-bold ml-2">SAR / Mo</span>
-              </div>
-              <ul className="space-y-5 mb-12 flex-grow">
-                {[
-                  '10 Branches',
-                  '20 Users',
-                  'Advanced Dashboard',
-                  'PDF Export Support',
-                  'Cloud Storage 50GB',
-                ].map((t, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 items-center text-slate-700 font-bold"
-                  >
-                    <CheckCircle2 size={18} className="text-blue-600" /> {t}
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black hover:bg-slate-900 transition-all shadow-xl shadow-blue-600/20">
-                Get Started
-              </button>
-            </div>
-
-            <div className="reveal-up bg-[#F8FAFC] p-12 rounded-[4rem] border border-slate-200 hover:border-blue-600 transition-all flex flex-col">
-              <span className="text-xs font-black text-slate-400 uppercase tracking-widest mb-10 block">
-                Enterprise
-              </span>
-              <div className="mb-10">
-                <span className="text-6xl font-black text-slate-900">1499</span>
-                <span className="text-slate-400 font-bold ml-2">SAR / Mo</span>
-              </div>
-              <ul className="space-y-5 mb-12 flex-grow">
-                {[
-                  'Unlimited Branches',
-                  'Unlimited Users',
-                  'Full White-label',
-                  'Dedicated Support',
-                  'API Access',
-                ].map((t, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-3 items-center text-slate-600 font-bold"
-                  >
-                    <CheckCircle2 size={18} className="text-blue-600" /> {t}
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full py-5 rounded-2xl font-black border-2 border-slate-200 hover:bg-slate-900 hover:text-white transition-all">
-                Contact Sales
-              </button>
+          <h3 className="text-xl font-black text-slate-900 mb-4">
+            {isRTL ? 'الأساسية' : 'Standard'}
+          </h3>
+          <div className="flex items-baseline gap-2">
+            <span className="text-5xl font-black text-slate-900">299</span>
+            <div className="flex flex-col">
+              <span className="text-slate-400 font-bold text-sm">{isRTL ? 'ر.س' : 'SAR'}</span>
+              <span className="text-slate-400 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
         </div>
-      </section>
+        
+        <ul className="space-y-4 mb-10 flex-grow">
+          {[
+            { ar: 'فرع واحد', en: '1 Branch', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: '5 مستخدمين', en: '5 Users', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'تحليلات أساسية', en: 'Basic Analytics', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'مساحة تخزين 5 جيجا', en: 'Cloud Storage 5GB', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+          ].map((item, i) => (
+            <li key={i} className="flex gap-3 items-start text-slate-600 text-sm font-semibold">
+              {item.icon}
+              <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
+            </li>
+          ))}
+        </ul>
+        
+        <button className="w-full py-4 rounded-2xl font-black text-base border-2 border-slate-200 bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm hover:shadow-lg">
+          {isRTL ? 'ابدأ الآن' : 'Get Started'}
+        </button>
+      </motion.div>
+
+      {/* Professional Plan - المميزة */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-10 rounded-[3rem] shadow-2xl shadow-blue-900/30 relative scale-105 border-2 border-blue-500/20 flex flex-col"
+      >
+        {/* Badge */}
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+          {isRTL ? '⭐ الأكثر طلباً' : '⭐ Most Popular'}
+        </div>
+        
+        {/* خلفية ديكورية داخلية */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
+        
+        <div className="mb-8 relative z-10">
+          <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-4 border border-blue-500/30">
+            <Zap size={24} className="text-blue-400" />
+          </div>
+          <h3 className="text-xl font-black text-blue-400 mb-4">
+            {isRTL ? 'الاحترافية' : 'Professional'}
+          </h3>
+          <div className="flex items-baseline gap-2">
+            <span className="text-5xl font-black text-white">699</span>
+            <div className="flex flex-col">
+              <span className="text-slate-500 font-bold text-sm">{isRTL ? 'ر.س' : 'SAR'}</span>
+              <span className="text-slate-500 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
+            </div>
+          </div>
+        </div>
+
+        <ul className="space-y-4 mb-10 flex-grow relative z-10">
+          {[
+            { ar: '10 فروع', en: '10 Branches', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
+            { ar: '20 مستخدم', en: '20 Users', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
+            { ar: 'لوحة تحكم متقدمة', en: 'Advanced Dashboard', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
+            { ar: 'تصدير تقارير PDF', en: 'PDF Export', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
+            { ar: 'مساحة تخزين 50 جيجا', en: 'Cloud Storage 50GB', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
+          ].map((item, i) => (
+            <li key={i} className="flex gap-3 items-start text-slate-300 text-sm font-semibold">
+              {item.icon}
+              <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
+            </li>
+          ))}
+        </ul>
+
+        <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-base hover:from-blue-500 hover:to-indigo-500 transition-all shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 relative z-10">
+          {isRTL ? 'ابدأ تجربة مجانية' : 'Start Free Trial'}
+        </button>
+      </motion.div>
+
+      {/* Enterprise Plan */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="bg-white/80 backdrop-blur-sm p-10 rounded-[3rem] border-2 border-slate-200 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-100/50 transition-all duration-300 group flex flex-col"
+      >
+        <div className="mb-8">
+          <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-50 transition-colors">
+            <Database size={24} className="text-slate-600 group-hover:text-purple-600 transition-colors" />
+          </div>
+          <h3 className="text-xl font-black text-slate-900 mb-4">
+            {isRTL ? 'المؤسسات' : 'Enterprise'}
+          </h3>
+          <div className="flex items-baseline gap-2">
+            <span className="text-5xl font-black text-slate-900">1499</span>
+            <div className="flex flex-col">
+              <span className="text-slate-400 font-bold text-sm">{isRTL ? 'ر.س' : 'SAR'}</span>
+              <span className="text-slate-400 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
+            </div>
+          </div>
+        </div>
+
+        <ul className="space-y-4 mb-10 flex-grow">
+          {[
+            { ar: 'فروع غير محدودة', en: 'Unlimited Branches', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'مستخدمين غير محدودين', en: 'Unlimited Users', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'دعم فني مخصص 24/7', en: 'Dedicated Support 24/7', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'وصول كامل للـ API', en: 'Full API Access', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+          ].map((item, i) => (
+            <li key={i} className="flex gap-3 items-start text-slate-600 text-sm font-semibold">
+              {item.icon}
+              <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
+            </li>
+          ))}
+        </ul>
+
+        <button className="w-full py-4 rounded-2xl font-black text-base border-2 border-slate-200 bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm hover:shadow-lg">
+          {isRTL ? 'تواصل معنا' : 'Contact Sales'}
+        </button>
+      </motion.div>
+    </div>
+
+    {/* ملاحظة إضافية */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="text-center mt-16"
+    >
+      
+    </motion.div>
+  </div>
+</section>
+
+
 
       {/* --- FAQ --- */}
       <section className="py-40 px-6 max-w-4xl mx-auto">
@@ -1256,56 +1517,139 @@ export default function CapturedPremium() {
           ))}
         </div>
       </section>
+      
 
       {/* --- Footer - خط أكبر --- */}
-     <footer
+   {/* --- Footer المحسّن --- */}
+ {/* --- Footer المحسّن والمختصر --- */}
+ 
+<footer
   id="contact"
-  className="bg-slate-900 text-white py-40 px-6 relative overflow-hidden"
+  className="bg-slate-900 text-white py-24 px-6 relative overflow-hidden"
 >
+  {/* خلفية ديكورية */}
+  <div className="absolute inset-0 opacity-5">
+    <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
+    <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
+  </div>
+
   <div className="max-w-7xl mx-auto relative z-10">
-    <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
+    <div className="grid lg:grid-cols-2 gap-16 items-start">
+      {/* القسم الأيسر - العنوان والدعوة للعمل */}
       <div>
-        <h2 className="text-5xl font-black mb-12 leading-[0.85] tracking-tighter">
+        <h2 className="text-4xl lg:text-5xl font-black mb-8 leading-[0.95] tracking-tighter">
           {isRTL ? 'ابدأ التحول الرقمي اليوم' : 'Start Your Digital Journey Today'}
         </h2>
-        <div className="flex flex-wrap gap-6">
-          <a
-            href="mailto:info@ilogic.com.sa"
-            className="flex items-center gap-6 bg-white/5 p-10 rounded-[3rem] border border-white/10 hover:bg-blue-600 transition-all group"
-          >
-            <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 group-hover:bg-white group-hover:text-blue-600 transition-all">
-              <Mail size={28} />
-            </div>
-            <div>
-              <div className="text-xs font-black uppercase text-slate-400 group-hover:text-blue-100 mb-2">
-                Email
-              </div>
-              <div className="text-lg font-bold">info@ilogic.com.sa</div>
-            </div>
-          </a>
-        </div>
+        <p className="text-slate-400 text-lg font-medium mb-8 leading-relaxed">
+          {isRTL 
+            ? 'انضم إلى مئات الشركات التي تثق في CapTured لتوثيق عملياتها الميدانية'
+            : 'Join hundreds of companies trusting CapTured for their field operations documentation'}
+        </p>
+        <button className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-black text-base hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 hover:-translate-y-1 flex items-center gap-3">
+          {isRTL ? 'احجز عرضاً تجريبياً' : 'Book a Demo'}
+          <ArrowRight size={18} className={isRTL ? 'rotate-180' : ''} />
+        </button>
       </div>
 
-      <div className="bg-white/5 p-14 rounded-[4.5rem] border border-white/10 backdrop-blur-xl">
-        <div className="text-2xl font-black text-white mb-10 flex items-center gap-4">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <Zap size={18} fill="white" />
+      {/* القسم الأيمن - معلومات الاتصال */}
+      <div className="bg-white/5 p-8 rounded-[3rem] border border-white/10 backdrop-blur-xl">
+        {/* اللوجو */}
+        <div className="flex items-center gap-3 mb-8 pb-6 border-b border-white/10">
+          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30">
+            <Zap size={20} fill="white" />
           </div>
-          CapTured
+          <span className="text-2xl font-black">CapTured</span>
         </div>
-        <div className="space-y-5 text-slate-400 font-bold text-base mb-14">
-          <p>
-            {isRTL
-              ? 'الرياض – المملكة العربية السعودية'
-              : 'Riyadh – Saudi Arabia'}
-          </p>
-          <p dir="ltr">+966 55 898 6036</p>
+
+        {/* معلومات الاتصال */}
+        <div className="space-y-5 mb-8">
+          {/* البريد الإلكتروني */}
+          <a
+            href="mailto:info@ilogic.com.sa"
+            className={`flex items-center gap-3 group ${isRTL ? 'hover:-translate-x-2' : 'hover:translate-x-2'} transition-transform`}
+          >
+            <div className="w-11 h-11 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all flex-shrink-0">
+              <Mail size={18} />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase text-slate-500 mb-0.5">
+                {isRTL ? 'البريد الإلكتروني' : 'Email'}
+              </div>
+              <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                info@ilogic.com.sa
+              </div>
+            </div>
+          </a>
+
+          {/* الهاتف */}
+          <a
+            href="tel:+966558986036"
+            className={`flex items-center gap-3 group ${isRTL ? 'hover:-translate-x-2' : 'hover:translate-x-2'} transition-transform`}
+          >
+            <div className="w-11 h-11 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-all flex-shrink-0">
+              <Phone size={18} />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase text-slate-500 mb-0.5">
+                {isRTL ? 'الهاتف' : 'Phone'}
+              </div>
+              <div className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors" dir="ltr">
+                +966 55 898 6036
+              </div>
+            </div>
+          </a>
+
+          {/* الموقع */}
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 flex-shrink-0">
+              <MapPin size={18} />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase text-slate-500 mb-0.5">
+                {isRTL ? 'الموقع' : 'Location'}
+              </div>
+              <div className="text-sm font-bold text-white">
+                {isRTL ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia'}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="pt-10 border-t border-white/5 flex justify-between items-center text-xs font-black uppercase tracking-[0.4em] text-slate-500">
-          <span>© 2026 iLogic Solutions</span>
-          <div className="flex gap-5">
-            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 transition-colors cursor-pointer" />
-            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 transition-colors cursor-pointer" />
+
+        {/* السوشيال ميديا والحقوق */}
+        <div className="pt-6 border-t border-white/10">
+          <div className="flex justify-between items-center flex-wrap gap-4">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+              © 2026 iLogic Solutions
+            </span>
+            <div className="flex gap-2.5">
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-blue-600 transition-all flex items-center justify-center group"
+                aria-label="Twitter"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-blue-600 transition-all flex items-center justify-center group"
+                aria-label="LinkedIn"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-blue-600 transition-all flex items-center justify-center group"
+                aria-label="Facebook"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
