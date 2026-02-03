@@ -34,17 +34,12 @@ export default function CapturedPremium() {
 
   // مراقبة التمرير
   useEffect(() => {
-  const moveCursor = (e: MouseEvent) => {
-    if (!cursorRef.current) return;
-    cursorRef.current.style.transform =
-      `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-  };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  window.addEventListener('mousemove', moveCursor, { passive: true });
-  return () => window.removeEventListener('mousemove', moveCursor);
-}, []);
-
-  // GSAP Animations المحسّنة
+  // GSAP Animations المُصلحة - إصلاح مشكلة الظهور المتقطع
   useGSAP(() => {
     const moveCursor = (e: MouseEvent) => {
       gsap.to(cursorRef.current, {
@@ -57,27 +52,43 @@ export default function CapturedPremium() {
     window.addEventListener('mousemove', moveCursor);
 
     // Hero animations مع تثبيت الظهور
-    
+    gsap.from('.hero-content > *', {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'expo.out',
+    });
 
-    // Reveal animations مع once: true
+    // Reveal animations المُصلحة - حل مشكلة الظهور المتقطع
     const revealElements = gsap.utils.toArray('.reveal-up');
     revealElements.forEach((el: any) => {
-      gsap.from(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none', // تثبيت الأنميشن بعد التشغيل
-          once: true, // تشغيل مرة واحدة فقط
+      gsap.fromTo(
+        el,
+        {
+          y: 80,
+          opacity: 0,
         },
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-      });
+        {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: 'top 70%',
+            toggleActions: 'play none none none',
+            once: true,
+            markers: false,
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          clearProps: 'all', // مهم جداً لإزالة الأنميشن بعد الانتهاء
+        }
+      );
     });
 
     return () => window.removeEventListener('mousemove', moveCursor);
-  }, { scope: mainRef });
+  }, { scope: mainRef, dependencies: [] });
 
   // Slider API
   useEffect(() => {
@@ -146,40 +157,40 @@ export default function CapturedPremium() {
         .iphone-frame {
           position: relative;
           width: 100%;
-          max-width: 320px;
+          max-width: 340px;
           margin: 0 auto;
-          padding: 16px 12px;
+          padding: 18px 14px;
           background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-          border-radius: 48px;
+          border-radius: 52px;
           box-shadow: 
-            0 0 0 2px rgba(255,255,255,0.1),
-            0 30px 60px -15px rgba(0,0,0,0.5),
-            inset 0 0 0 1px rgba(255,255,255,0.05);
+            0 0 0 3px rgba(255,255,255,0.12),
+            0 35px 70px -18px rgba(0,0,0,0.6),
+            inset 0 0 0 1px rgba(255,255,255,0.06);
         }
         
         .iphone-frame::before {
           content: '';
           position: absolute;
-          top: 8px;
+          top: 10px;
           left: 50%;
           transform: translateX(-50%);
-          width: 120px;
-          height: 28px;
+          width: 130px;
+          height: 32px;
           background: #1a1a1a;
-          border-radius: 0 0 20px 20px;
+          border-radius: 0 0 22px 22px;
           z-index: 10;
         }
         
         .iphone-frame::after {
           content: '';
           position: absolute;
-          top: 14px;
+          top: 16px;
           left: 50%;
           transform: translateX(-50%);
-          width: 80px;
-          height: 6px;
+          width: 90px;
+          height: 7px;
           background: #333;
-          border-radius: 10px;
+          border-radius: 12px;
           z-index: 11;
         }
         
@@ -187,7 +198,7 @@ export default function CapturedPremium() {
           position: relative;
           width: 100%;
           height: 100%;
-          border-radius: 36px;
+          border-radius: 40px;
           overflow: hidden;
           background: #000;
           z-index: 5;
@@ -195,26 +206,26 @@ export default function CapturedPremium() {
         
         .iphone-frame .power-button {
           position: absolute;
-          right: -3px;
-          top: 120px;
-          width: 3px;
-          height: 60px;
+          right: -4px;
+          top: 130px;
+          width: 4px;
+          height: 70px;
           background: linear-gradient(90deg, #2d2d2d, #1a1a1a);
-          border-radius: 0 2px 2px 0;
+          border-radius: 0 3px 3px 0;
         }
         
         .iphone-frame .volume-button {
           position: absolute;
-          left: -3px;
-          top: 100px;
-          width: 3px;
-          height: 35px;
+          left: -4px;
+          top: 110px;
+          width: 4px;
+          height: 40px;
           background: linear-gradient(90deg, #1a1a1a, #2d2d2d);
-          border-radius: 2px 0 0 2px;
+          border-radius: 3px 0 0 3px;
         }
         
         .iphone-frame .volume-button.down {
-          top: 145px;
+          top: 160px;
         }
       `}</style>
 
@@ -368,10 +379,10 @@ export default function CapturedPremium() {
       </nav>
       <div className="py-5" />
 
-      {/* --- HERO SLIDER --- */}
+      {/* --- HERO SLIDER - خط أكبر --- */}
       <section
         id="home"
-        className="relative min-h-[85vh] md:h-screen flex items-center justify-center overflow-hidden bg-white"
+        className="relative min-h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-white"
       >
         {/* خلفية السلايدر المحسّنة */}
         <div className="absolute inset-0 z-0">
@@ -403,147 +414,148 @@ export default function CapturedPremium() {
           <div className="absolute bottom-20 left-[-10%] w-[400px] h-[400px] bg-purple-100 rounded-full blur-[100px] opacity-25" />
         </div>
 
-        {/* محتوى Hero */}
-        <div className="relative z-10 container mx-auto px-6 py-24">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* النص */}
-            <div className="hero-content space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-sm font-bold"
-              >
-                <Sparkles size={18} />
-                {isRTL ? 'الحل الأذكى للتوثيق الميداني' : 'Smartest Field Documentation Solution'}
-              </motion.div>
+        {/* محتوى Hero - خط أكبر */}
+       <div className="relative z-10 container mx-auto px-6 py-24">
+  <div className="grid lg:grid-cols-2 gap-16 items-center">
+    {/* النص - خط مصغر */}
+    <div className="hero-content space-y-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="inline-flex items-center gap-3 px-6 py-3 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-sm font-bold"
+      >
+        <Sparkles size={18} />
+        {isRTL ? 'الحل الأذكى للتوثيق الميداني' : 'Smartest Field Documentation Solution'}
+      </motion.div>
 
-              <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
-                {isRTL ? (
-                  <>
-                    وثّق عملياتك
-                    <br />
-                    <span className="text-gradient">بدقة GPS حقيقية</span>
-                  </>
-                ) : (
-                  <>
-                    Document Operations
-                    <br />
-                    <span className="text-gradient">With Real GPS Accuracy</span>
-                  </>
-                )}
-              </h1>
+      <h1 className="text-4xl lg:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
+        {isRTL ? (
+          <>
+            وثّق عملياتك
+            <br />
+            <span className="text-gradient">بدقة GPS حقيقية</span>
+          </>
+        ) : (
+          <>
+            Document Operations
+            <br />
+            <span className="text-gradient">With Real GPS Accuracy</span>
+          </>
+        )}
+      </h1>
 
-              <p className="text-xl text-slate-600 leading-relaxed font-medium max-w-xl">
-                {isRTL
-                  ? 'منصة متكاملة لتوثيق العمليات الميدانية بالصور الحية والمواقع الجغرافية الدقيقة مع حماية متقدمة ضد التلاعب والتزييف.'
-                  : 'Complete platform for documenting field operations with live photos and precise GPS locations with advanced anti-tampering protection.'}
-              </p>
+      <p className="text-lg text-slate-600 leading-relaxed font-medium max-w-xl">
+        {isRTL
+          ? 'منصة متكاملة لتوثيق العمليات الميدانية بالصور الحية والمواقع الجغرافية الدقيقة مع حماية متقدمة ضد التلاعب والتزييف.'
+          : 'Complete platform for documenting field operations with live photos and precise GPS locations with advanced anti-tampering protection.'}
+      </p>
 
-              <div className="flex flex-col sm:flex-row gap-5">
-                <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-lg hover:shadow-2xl hover:shadow-blue-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
-                  {isRTL ? 'ابدأ الآن مجاناً' : 'Start Free Trial'}
-                  <ArrowRight size={22} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
-                </button>
-                <button className="px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 rounded-2xl font-black text-lg hover:border-blue-600 hover:text-blue-600 transition-all flex items-center justify-center gap-3">
-                  <Camera size={22} />
-                  {isRTL ? 'شاهد العرض' : 'Watch Demo'}
-                </button>
-              </div>
+      <div className="flex flex-col sm:flex-row gap-6">
+        <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-base hover:shadow-2xl hover:shadow-blue-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
+          {isRTL ? 'ابدأ الآن مجاناً' : 'Start Free Trial'}
+          <ArrowRight size={20} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
+        </button>
+        <button className="px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 rounded-2xl font-black text-base hover:border-blue-600 hover:text-blue-600 transition-all flex items-center justify-center gap-3">
+          <Camera size={20} />
+          {isRTL ? 'شاهد العرض' : 'Watch Demo'}
+        </button>
+      </div>
 
-              <div className="flex flex-wrap items-center gap-8 pt-6">
-                {[
-                  { icon: <ShieldCheck size={24} />, text: isRTL ? 'حماية متقدمة' : 'Advanced Protection' },
-                  { icon: <MapPin size={24} />, text: isRTL ? 'GPS دقيق' : 'Precise GPS' },
-                  { icon: <Lock size={24} />, text: isRTL ? 'بيانات مشفّرة' : 'Encrypted Data' },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-blue-600">
-                      {item.icon}
-                    </div>
-                    <span className="font-bold text-slate-700">{item.text}</span>
-                  </div>
-                ))}
-              </div>
+      <div className="flex flex-wrap items-center gap-10 pt-8">
+        {[
+          { icon: <ShieldCheck size={24} />, text: isRTL ? 'حماية متقدمة' : 'Advanced Protection' },
+          { icon: <MapPin size={24} />, text: isRTL ? 'GPS دقيق' : 'Precise GPS' },
+          { icon: <Lock size={24} />, text: isRTL ? 'بيانات مشفّرة' : 'Encrypted Data' },
+        ].map((item, i) => (
+          <div key={i} className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-blue-600">
+              {item.icon}
             </div>
-
-            {/* صورة السلايدر */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="relative"
-            >
-              {hasSlides && (
-                <div className="relative">
-                  {/* السلايدر */}
-                  <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-slate-100 to-slate-200 p-8 shadow-2xl">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={currentSlide}
-                        src={slides[currentSlide].image}
-                        alt={`Slide ${currentSlide + 1}`}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-full rounded-[2rem] shadow-xl"
-                      />
-                    </AnimatePresence>
-
-                    {/* أزرار التنقل */}
-                    {slides.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevSlide}
-                          className={`absolute ${isRTL ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all hover:scale-110`}
-                          aria-label="Previous slide"
-                        >
-                          <ChevronLeft size={24} />
-                        </button>
-                        <button
-                          onClick={nextSlide}
-                          className={`absolute ${isRTL ? 'left-4' : 'right-4'} top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all hover:scale-110`}
-                          aria-label="Next slide"
-                        >
-                          <ChevronRight size={24} />
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  {/* نقاط التنقل */}
-                  {slides.length > 1 && (
-                    <div className="flex justify-center gap-3 mt-8">
-                      {slides.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => goToSlide(index)}
-                          aria-label={`Go to slide ${index + 1}`}
-                          className={`transition-all duration-300 rounded-full ${
-                            index === currentSlide 
-                              ? 'w-10 h-3 bg-blue-600' 
-                              : 'w-3 h-3 bg-slate-300 hover:bg-slate-400'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  )}
-
-                  {/* بادج ديكور */}
-                  <motion.div
-                    initial={{ scale: 0, rotate: -20 }}
-                    animate={{ scale: 1, rotate: -5 }}
-                    transition={{ delay: 0.8, type: 'spring' }}
-                    className="absolute -top-6 -right-6 bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl font-black text-sm"
-                  >
-                    {isRTL ? '✨ تحديث جديد' : '✨ New Update'}
-                  </motion.div>
-                </div>
-              )}
-            </motion.div>
+            <span className="font-bold text-slate-700 text-base">{item.text}</span>
           </div>
+        ))}
+      </div>
+    </div>
+
+    {/* صورة السلايدر */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.4, duration: 0.8 }}
+      className="relative"
+    >
+      {hasSlides && (
+        <div className="relative">
+          {/* السلايدر */}
+          <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-slate-100 to-slate-200 p-8 shadow-2xl">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentSlide}
+                src={slides[currentSlide].image}
+                alt={`Slide ${currentSlide + 1}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="w-full rounded-[2rem] shadow-xl"
+              />
+            </AnimatePresence>
+
+            {/* أزرار التنقل */}
+            {slides.length > 1 && (
+              <>
+                <button
+                  onClick={prevSlide}
+                  className={`absolute ${isRTL ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all hover:scale-110`}
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className={`absolute ${isRTL ? 'left-4' : 'right-4'} top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all hover:scale-110`}
+                  aria-label="Next slide"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* نقاط التنقل */}
+          {slides.length > 1 && (
+            <div className="flex justify-center gap-3 mt-8">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentSlide 
+                      ? 'w-10 h-3 bg-blue-600' 
+                      : 'w-3 h-3 bg-slate-300 hover:bg-slate-400'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* بادج ديكور */}
+          <motion.div
+            initial={{ scale: 0, rotate: -20 }}
+            animate={{ scale: 1, rotate: -5 }}
+            transition={{ delay: 0.8, type: 'spring' }}
+            className="absolute -top-6 -right-6 bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl font-black text-xs"
+          >
+            {isRTL ? '✨ تحديث جديد' : '✨ New Update'}
+          </motion.div>
         </div>
+      )}
+    </motion.div>
+  </div>
+</div>
+
       </section>
 
       {/* --- Problem & Solution --- */}
@@ -574,7 +586,7 @@ export default function CapturedPremium() {
                 ].map((txt, i) => (
                   <li
                     key={i}
-                    className="flex gap-4 items-center text-slate-500 font-bold"
+                    className="flex gap-4 items-center text-slate-500 font-bold text-lg"
                   >
                     <div className="w-2 h-2 rounded-full bg-red-400" /> {txt}
                   </li>
@@ -605,7 +617,7 @@ export default function CapturedPremium() {
                     ? 'محرك بحث ذكي للوصول لأي سجل في ثوانٍ.'
                     : 'Smart search to find records in seconds.',
                 ].map((txt, i) => (
-                  <li key={i} className="flex gap-4 items-center font-bold">
+                  <li key={i} className="flex gap-4 items-center font-bold text-lg">
                     <div className="w-2 h-2 rounded-full bg-blue-200" /> {txt}
                   </li>
                 ))}
@@ -698,7 +710,7 @@ export default function CapturedPremium() {
         </div>
       </section>
 
-      {/* --- سكشن صور التطبيق مع إطار iPhone --- */}
+      {/* --- سكشن صور التطبيق مع إطار iPhone - إصلاح الظهور المتقطع --- */}
       <section id="app" className="py-40 px-6 bg-white relative overflow-hidden">
         <div className="absolute top-20 left-[-5%] w-[400px] h-[400px] bg-blue-100 rounded-full blur-[100px] opacity-30" />
         <div className="absolute bottom-20 right-[-5%] w-[350px] h-[350px] bg-purple-100 rounded-full blur-[90px] opacity-30" />
@@ -721,13 +733,7 @@ export default function CapturedPremium() {
 
           <div className="space-y-32">
             {/* صورة التطبيق الأولى مع إطار iPhone */}
-            <motion.div
-              className="reveal-up grid lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
+            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
               <div className={`${isRTL ? 'lg:order-2' : ''} space-y-8`}>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-bold">
                   <PackageCheck size={18} />
@@ -775,11 +781,7 @@ export default function CapturedPremium() {
               </div>
 
               <div className={`${isRTL ? 'lg:order-1' : ''}`}>
-                <motion.div
-                  className="relative"
-                  whileHover={{ y: -12, rotate: -2 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                >
+                <div className="relative">
                   {/* إطار iPhone */}
                   <div className="iphone-frame">
                     <div className="power-button" />
@@ -796,30 +798,18 @@ export default function CapturedPremium() {
                   </div>
                   
                   {/* بادج ديكور */}
-                  <motion.div
-                    className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl px-5 py-3 border border-slate-100"
-                    initial={{ scale: 0, rotate: -15 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, type: 'spring' }}
-                  >
+                  <div className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl px-5 py-3 border border-slate-100">
                     <div className="flex items-center gap-2 text-sm font-black text-slate-900">
                       <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
                       {isRTL ? 'نشط الآن' : 'Live Now'}
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* صورة التطبيق الثانية مع إطار iPhone */}
-            <motion.div
-              className="reveal-up grid lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
+            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-sm font-bold">
                   <Activity size={18} />
@@ -867,11 +857,7 @@ export default function CapturedPremium() {
               </div>
 
               <div>
-                <motion.div
-                  className="relative"
-                  whileHover={{ y: -12, rotate: 2 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                >
+                <div className="relative">
                   {/* إطار iPhone */}
                   <div className="iphone-frame">
                     <div className="power-button" />
@@ -888,26 +874,20 @@ export default function CapturedPremium() {
                   </div>
                   
                   {/* بادج ديكور */}
-                  <motion.div
-                    className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-5 py-3 border border-slate-100"
-                    initial={{ scale: 0, rotate: 15 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, type: 'spring' }}
-                  >
+                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-5 py-3 border border-slate-100">
                     <div className="flex items-center gap-2 text-sm font-black text-slate-900">
                       <MapPin size={16} className="text-purple-600" />
                       {isRTL ? 'موقع دقيق' : 'Precise Location'}
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* --- سكشن صور اللوحة (2 صور مع أوصاف) --- */}
+      {/* --- سكشن صور اللوحة - إصلاح الظهور المتقطع --- */}
       <section id="dashboard" className="py-40 px-6 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-10 right-[-8%] w-[450px] h-[450px] bg-blue-100 rounded-full blur-[120px] opacity-30" />
         <div className="absolute bottom-10 left-[-8%] w-[400px] h-[400px] bg-emerald-100 rounded-full blur-[110px] opacity-30" />
@@ -930,19 +910,9 @@ export default function CapturedPremium() {
 
           <div className="space-y-32">
             {/* صورة اللوحة الأولى */}
-            <motion.div
-              className="reveal-up grid lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
+            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <motion.div
-                  className="relative group"
-                  whileHover={{ y: -15, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 180, damping: 18 }}
-                >
+                <div className="relative group">
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
@@ -953,19 +923,13 @@ export default function CapturedPremium() {
                     </div>
                   </div>
 
-                  <motion.div
-                    className="absolute -top-6 -right-6 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl shadow-2xl px-6 py-3 text-white"
-                    initial={{ scale: 0, rotate: -15 }}
-                    whileInView={{ scale: 1, rotate: -5 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, type: 'spring' }}
-                  >
+                  <div className="absolute -top-6 -right-6 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl shadow-2xl px-6 py-3 text-white">
                     <div className="flex items-center gap-2 text-sm font-black">
                       <TrendingUp size={18} />
                       {isRTL ? '+24.5%' : '+24.5%'}
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-8">
@@ -1019,16 +983,10 @@ export default function CapturedPremium() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* صورة اللوحة الثانية */}
-            <motion.div
-              className="reveal-up grid lg:grid-cols-2 gap-12 items-center"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
+            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
               <div className={`${isRTL ? 'lg:order-2' : ''} space-y-8`}>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-bold">
                   <PieChart size={18} />
@@ -1082,11 +1040,7 @@ export default function CapturedPremium() {
               </div>
 
               <div className={`${isRTL ? 'lg:order-1' : ''}`}>
-                <motion.div
-                  className="relative group"
-                  whileHover={{ y: -15, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 180, damping: 18 }}
-                >
+                <div className="relative group">
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
@@ -1097,21 +1051,15 @@ export default function CapturedPremium() {
                     </div>
                   </div>
 
-                  <motion.div
-                    className="absolute -bottom-6 -left-6 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl shadow-2xl px-6 py-3 text-white"
-                    initial={{ scale: 0, rotate: 15 }}
-                    whileInView={{ scale: 1, rotate: 5 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, type: 'spring' }}
-                  >
+                  <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl shadow-2xl px-6 py-3 text-white">
                     <div className="flex items-center gap-2 text-sm font-black">
                       <CheckCircle2 size={18} />
                       {isRTL ? '89% إنجاز' : '89% Complete'}
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1309,61 +1257,62 @@ export default function CapturedPremium() {
         </div>
       </section>
 
-      {/* --- Footer --- */}
-      <footer
-        id="contact"
-        className="bg-slate-900 text-white py-40 px-6 relative overflow-hidden"
-      >
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
+      {/* --- Footer - خط أكبر --- */}
+     <footer
+  id="contact"
+  className="bg-slate-900 text-white py-40 px-6 relative overflow-hidden"
+>
+  <div className="max-w-7xl mx-auto relative z-10">
+    <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
+      <div>
+        <h2 className="text-5xl font-black mb-12 leading-[0.85] tracking-tighter">
+          {isRTL ? 'ابدأ التحول الرقمي اليوم' : 'Start Your Digital Journey Today'}
+        </h2>
+        <div className="flex flex-wrap gap-6">
+          <a
+            href="mailto:info@ilogic.com.sa"
+            className="flex items-center gap-6 bg-white/5 p-10 rounded-[3rem] border border-white/10 hover:bg-blue-600 transition-all group"
+          >
+            <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 group-hover:bg-white group-hover:text-blue-600 transition-all">
+              <Mail size={28} />
+            </div>
             <div>
-              <h2 className="text-7xl font-black mb-10 leading-[0.9] tracking-tighter">
-                {isRTL ? 'ابدأ التحول الرقمي اليوم' : 'Start Your Digital Journey Today'}
-              </h2>
-              <div className="flex flex-wrap gap-6">
-                <a
-                  href="mailto:info@ilogic.com.sa"
-                  className="flex items-center gap-6 bg-white/5 p-8 rounded-[2.5rem] border border-white/10 hover:bg-blue-600 transition-all group"
-                >
-                  <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 group-hover:bg-white group-hover:text-blue-600 transition-all">
-                    <Mail size={30} />
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-black uppercase text-slate-400 group-hover:text-blue-100 mb-1">
-                      Email
-                    </div>
-                    <div className="text-xl font-bold">info@ilogic.com.sa</div>
-                  </div>
-                </a>
+              <div className="text-xs font-black uppercase text-slate-400 group-hover:text-blue-100 mb-2">
+                Email
               </div>
+              <div className="text-lg font-bold">info@ilogic.com.sa</div>
             </div>
+          </a>
+        </div>
+      </div>
 
-            <div className="bg-white/5 p-12 rounded-[4rem] border border-white/10 backdrop-blur-xl">
-              <div className="text-3xl font-black text-white mb-8 flex items-center gap-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <Zap size={18} fill="white" />
-                </div>
-                CapTured
-              </div>
-              <div className="space-y-4 text-slate-400 font-bold mb-12">
-                <p>
-                  {isRTL
-                    ? 'الرياض – المملكة العربية السعودية'
-                    : 'Riyadh – Saudi Arabia'}
-                </p>
-                <p dir="ltr">+966 55 898 6036</p>
-              </div>
-              <div className="pt-8 border-t border-white/5 flex justify-between items-center text-[10px] font-black uppercase tracking-[0.4em] text-slate-500">
-                <span>© 2026 iLogic Solutions</span>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-white/10 hover:bg-blue-600 transition-colors cursor-pointer" />
-                  <div className="w-8 h-8 rounded-full bg-white/10 hover:bg-blue-600 transition-colors cursor-pointer" />
-                </div>
-              </div>
-            </div>
+      <div className="bg-white/5 p-14 rounded-[4.5rem] border border-white/10 backdrop-blur-xl">
+        <div className="text-2xl font-black text-white mb-10 flex items-center gap-4">
+          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <Zap size={18} fill="white" />
+          </div>
+          CapTured
+        </div>
+        <div className="space-y-5 text-slate-400 font-bold text-base mb-14">
+          <p>
+            {isRTL
+              ? 'الرياض – المملكة العربية السعودية'
+              : 'Riyadh – Saudi Arabia'}
+          </p>
+          <p dir="ltr">+966 55 898 6036</p>
+        </div>
+        <div className="pt-10 border-t border-white/5 flex justify-between items-center text-xs font-black uppercase tracking-[0.4em] text-slate-500">
+          <span>© 2026 iLogic Solutions</span>
+          <div className="flex gap-5">
+            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 transition-colors cursor-pointer" />
+            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-blue-600 transition-colors cursor-pointer" />
           </div>
         </div>
-      </footer>
+      </div>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 }
