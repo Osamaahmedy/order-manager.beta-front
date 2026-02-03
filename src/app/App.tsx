@@ -10,7 +10,15 @@ import {
   ShieldCheck, ArrowRight, Mail, Phone, 
   ChevronRight, Camera, Search, FileDown, 
   LayoutDashboard, Layers, Database, Lock, ArrowUpRight, Zap, Sparkles, Plus,
-  PackageCheck, TrendingUp, PieChart, Activity, ChevronLeft
+  PackageCheck, TrendingUp, PieChart, Activity, ChevronLeft,
+  CloudUpload,
+  Barcode,
+  UserCheck,
+  Truck,
+  Utensils,
+  ShoppingBag,
+  Package,
+  Boxes
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -559,156 +567,321 @@ export default function CapturedPremium() {
       </section>
 
       {/* --- Problem & Solution --- */}
-      <section id="problem" className="py-40 px-6 relative bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
-            <div className="reveal-up p-12 rounded-[3.5rem] bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mb-10">
-                <XCircle size={30} />
-              </div>
-              <h2 className="text-4xl font-black mb-8">
-                {isRTL ? 'المخاطر الحالية' : 'Current Risks'}
-              </h2>
-              <ul className="space-y-6">
-                {[
-                  isRTL
-                    ? 'الاعتماد على صور قديمة من الاستوديو.'
-                    : 'Reliance on old gallery photos.',
-                  isRTL
-                    ? 'عدم دقة إحداثيات المواقع عند التوثيق.'
-                    : 'Inaccurate location coordinates.',
-                  isRTL
-                    ? 'ضياع البيانات أو التلاعب بها يدوياً.'
-                    : 'Loss of data or manual tampering.',
-                  isRTL
-                    ? 'صعوبة استرجاع السجلات القديمة بسرعة.'
-                    : 'Difficulty retrieving old records quickly.',
-                ].map((txt, i) => (
-                  <li
-                    key={i}
-                    className="flex gap-4 items-center text-slate-500 font-bold text-lg"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-red-400" /> {txt}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="reveal-up p-12 rounded-[3.5rem] bg-blue-600 text-white shadow-2xl shadow-blue-600/20 relative overflow-hidden">
-              <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-10 border border-white/20">
-                <CheckCircle2 size={30} />
-              </div>
-              <h2 className="text-4xl font-black mb-8">
-                {isRTL ? 'حلول CapTured' : 'CapTured Solutions'}
-              </h2>
-              <ul className="space-y-6 relative z-10">
-                {[
-                  isRTL
-                    ? 'التصوير الحي الحصري يمنع الغش.'
-                    : 'Exclusive live capture prevents fraud.',
-                  isRTL
-                    ? 'ربط تلقائي بالوقت وموقع GPS الحقيقي.'
-                    : 'Auto-link to real time & GPS location.',
-                  isRTL
-                    ? 'سجلات مشفرة لا تقبل الحذف أو التعديل.'
-                    : 'Encrypted records cannot be edited.',
-                  isRTL
-                    ? 'محرك بحث ذكي للوصول لأي سجل في ثوانٍ.'
-                    : 'Smart search to find records in seconds.',
-                ].map((txt, i) => (
-                  <li key={i} className="flex gap-4 items-center font-bold text-lg">
-                    <div className="w-2 h-2 rounded-full bg-blue-200" /> {txt}
-                  </li>
-                ))}
-              </ul>
-            </div>
+     <section id="problem-solution" className="py-40 px-6 relative bg-white">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* قسم المشكلة - The Problem */}
+        <div className="reveal-up p-12 rounded-[3.5rem] bg-slate-50 border border-slate-100 hover:shadow-2xl transition-all duration-500">
+          <div className="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mb-10">
+            <XCircle size={30} />
           </div>
+          <h2 className="text-4xl font-black mb-8 text-slate-900">
+            {isRTL ? 'المشكلة' : 'The Problem'}
+          </h2>
+          <ul className="space-y-6">
+            {[
+              {
+                ar: 'عدم وجود توثيق رسمي موحّد لكل عملية تسليم.',
+                en: 'Lack of unified official documentation for deliveries.'
+              },
+              {
+                ar: 'إمكانية إرسال صور قديمة بدل التصوير المباشر.',
+                en: 'Risk of using old photos instead of live capture.'
+              },
+              {
+                ar: 'اختلاف البيانات بين الفروع والإدارة الرئيسية.',
+                en: 'Data discrepancy between branches and management.'
+              },
+              {
+                ar: 'صعوبة البحث اليدوي عند كثرة العمليات.',
+                en: 'Difficulty searching records as operations scale.'
+              },
+              {
+                ar: 'استهلاك مساحة التخزين بملفات غير منظمة.',
+                en: 'Wasted storage due to disorganized large files.'
+              }
+            ].map((item, i) => (
+              <li key={i} className="flex gap-4 items-start text-slate-500 font-bold text-lg">
+                <div className="w-2 h-2 rounded-full bg-red-400 mt-3 shrink-0" /> 
+                <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
 
+        {/* قسم الحل - The Solution */}
+        <div className="reveal-up p-12 rounded-[3.5rem] bg-blue-600 text-white shadow-2xl shadow-blue-600/20 relative overflow-hidden">
+          <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+          <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-10 border border-white/20">
+            <CheckCircle2 size={30} />
+          </div>
+          <h2 className="text-4xl font-black mb-8">
+            {isRTL ? 'الحل مع CapTured' : 'The CapTured Solution'}
+          </h2>
+          <ul className="space-y-6 relative z-10">
+            {[
+              {
+                ar: 'توثيق إلزامي لكل عملية تسليم ببيانات دقيقة.',
+                en: 'Mandatory documentation with precise data.'
+              },
+              {
+                ar: 'دعم رفع صور وفيديوهات متعددة بجودة عالية.',
+                en: 'High-quality multi-photo and video support.'
+              },
+              {
+                ar: 'علامة مائية تلقائية تشمل الوقت والموقع GPS.',
+                en: 'Auto-watermark including time and GPS location.'
+              },
+              {
+                ar: 'سجلات غير قابلة للتعديل لضمان النزاهة.',
+                en: 'Tamper-proof records ensuring integrity.'
+              },
+              {
+                ar: 'لوحة تحكم ذكية للإدارة والبحث والتصدير.',
+                en: 'Smart dashboard for management and exporting.'
+              }
+            ].map((item, i) => (
+              <li key={i} className="flex gap-4 items-start font-bold text-lg">
+                <div className="w-2 h-2 rounded-full bg-blue-200 mt-3 shrink-0" /> 
+                <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+      
+<section id="how-it-works" className="py-32 px-6 bg-white">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-20">
+      <h2 className="text-4xl lg:text-5xl font-black mb-6 text-slate-900">
+        {isRTL ? 'كيف يعمل CapTured؟' : 'How CapTured Works?'}
+      </h2>
+      <p className="text-slate-500 font-bold italic">
+        {isRTL ? 'خطوات بسيطة لتوثيق احترافي' : 'Simple steps for professional documentation'}
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+      {[
+        {
+          step: "01",
+          ar: "تسجيل الدخول",
+          en: "Login",
+          desc_ar: "الدخول بحساب المستخدم المرتبط بفرعه",
+          desc_en: "Log in with the account linked to your branch",
+          icon: <UserCheck className="text-blue-600" />
+        },
+        {
+          step: "02",
+          ar: "إدخال الطلب",
+          en: "Enter Order",
+          desc_ar: "إدخال رقم الطلب أو مسحه بالباركود",
+          desc_en: "Enter order number or scan barcode",
+          icon: <Barcode className="text-blue-600" />
+        },
+        {
+          step: "03",
+          ar: "التوثيق الذكي",
+          en: "Smart Capture",
+          desc_ar: "النظام يحدد الموقع، الوقت، والتصوير المباشر",
+          desc_en: "System auto-detects GPS, Time, and captures photo/video",
+          icon: <Camera className="text-blue-600" />
+        },
+        {
+          step: "04",
+          ar: "الاعتماد والرفع",
+          en: "Submit & Sync",
+          desc_ar: "مراجعة سريعة ثم رفع السجل بشكل رسمي",
+          desc_en: "Quick review then official upload to cloud",
+          icon: <CloudUpload className="text-blue-600" />
+        }
+      ].map((item, idx) => (
+        <div key={idx} className="relative p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 hover:bg-white hover:shadow-xl transition-all group">
+          <span className="text-6xl font-black text-blue-600/10 absolute top-4 right-6 group-hover:text-blue-600/20 transition-colors">
+            {item.step}
+          </span>
+          <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 relative z-10">
+            {item.icon}
+          </div>
+          <h4 className="text-xl font-black mb-3 text-slate-900">
+            {isRTL ? item.ar : item.en}
+          </h4>
+          <p className="text-slate-500 text-sm font-semibold leading-relaxed">
+            {isRTL ? item.desc_ar : item.desc_en}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<section id="full-features" className="py-32 px-6 bg-slate-900 text-white overflow-hidden">
+  <div className="max-w-7xl mx-auto">
+    <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 className="text-4xl lg:text-5xl font-black mb-8 leading-tight">
+          {isRTL ? 'مميزات تقنية متكاملة' : 'Integrated Technical Features'}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            { ar: 'توثيق كامل للعملية', en: 'Full Process Logs' },
+            { ar: 'ربط مع تطبيقات التوصيل', en: 'Delivery App Integration' },
+            { ar: 'علامة مائية (Watermark)', en: 'Automatic Watermarking' },
+            { ar: 'منع التعديل نهائياً', en: 'Tamper-proof Records' },
+            { ar: 'ميديا عالية الجودة', en: 'High-Res Media' },
+            { ar: 'تحديد الموقع GPS', en: 'Auto GPS Tagging' }
+          ].map((feat, i) => (
+            <div key={i} className="flex gap-3 items-center">
+              <div className="w-2 h-2 bg-blue-500 rounded-full" />
+              <span className="font-bold text-slate-300">{isRTL ? feat.ar : feat.en}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="bg-white/5 backdrop-blur-lg p-8 rounded-[3rem] border border-white/10">
+        <h4 className="text-2xl font-black mb-6 text-blue-400">
+          {isRTL ? 'محرك البحث المتقدم' : 'Advanced Search Engine'}
+        </h4>
+        <div className="space-y-4">
+          <div className="p-4 bg-white/5 rounded-2xl border border-white/5 flex justify-between items-center text-sm">
+            <span className="text-slate-400">{isRTL ? 'البحث بواسطة:' : 'Search by:'}</span>
+            <span className="text-blue-300 font-black">{isRTL ? 'رقم الطلب / التاريخ / المستخدم' : 'Order ID / Date / User'}</span>
+          </div>
+          <p className="text-slate-400 text-sm leading-relaxed italic">
+            {isRTL 
+              ? '* يتيح لك النظام استعراض الصور وتكبيرها بدقة عالية وتصديرها كملفات  رسمية.' 
+              : '* View high-res photos with zoom capabilities and export them as official  files.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="sectors" className="py-32 px-6 bg-[#F8FAFC]">
+  <div className="max-w-7xl mx-auto text-center">
+    <h2 className="text-4xl font-black mb-16 text-slate-900">
+      {isRTL ? 'القطاعات المناسبة' : 'Ideal Sectors'}
+    </h2>
+    
+    <div className="flex flex-wrap justify-center gap-6">
+      {[
+        { ar: 'الخدمات اللوجستية', en: 'Logistics Services', icon: <Truck size={20} /> },
+        { ar: 'المطاعم والكافيهات', en: 'Restaurants & Cafes', icon: <Utensils size={20} /> },
+        { ar: 'السوبرماركت والمتاجر', en: 'Retail & Supermarkets', icon: <ShoppingBag size={20} /> },
+        { ar: 'شركات التوزيع', en: 'Distribution Companies', icon: <Package size={20} /> },
+        { ar: 'خدمات التوريد', en: 'Supply Chain', icon: <Boxes size={20} /> }
+      ].map((sector, i) => (
+        <div key={i} className="flex items-center gap-4 px-8 py-5 bg-white border border-slate-200 rounded-full hover:border-blue-500 hover:shadow-lg transition-all cursor-default group">
+          <div className="text-blue-600 group-hover:scale-110 transition-transform">{sector.icon}</div>
+          <span className="font-black text-slate-700">{isRTL ? sector.ar : sector.en}</span>
+        </div>
+      ))}
+    </div>
+    
+    <p className="mt-12 text-slate-400 font-bold max-w-2xl mx-auto">
+      {isRTL 
+        ? 'CapTured مصمم ليناسب أي نشاط يحتاج إثبات تسليم رسمي ومؤرشف.' 
+        : 'CapTured is designed to fit any business requiring official delivery proof and archiving.'}
+    </p>
+  </div>
+</section>
       {/* --- Features --- */}
       <section id="features" className="py-40 px-6 bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto">
-          <div className="reveal-up text-center mb-24">
-            <h2 className="text-5xl font-black mb-6 text-slate-900">
-              {isRTL ? 'أدوات احترافية لإدارة فريقك' : 'Professional Management Tools'}
-            </h2>
-            <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-sm">
-              Engineered for Reliability
-            </p>
-          </div>
+    <div className="max-w-7xl mx-auto">
+      <div className="reveal-up text-center mb-24">
+        <h2 className="text-5xl font-black mb-6 text-slate-900">
+          {isRTL ? 'تقارير ذكية لاتخاذ القرار' : 'Smart Reporting for Decision Making'}
+        </h2>
+        <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-sm">
+          {isRTL ? 'بيانات دقيقة لمتابعة أداء فريقك' : 'Accurate Data to Track Team Performance'}
+        </p>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-[300px]">
-            <div className="reveal-up md:col-span-2 bg-white border border-slate-100 rounded-[3rem] p-12 relative overflow-hidden group hover:shadow-xl transition-all">
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
-                    <MapPin size={24} />
-                  </div>
-                  <h4 className="text-3xl font-black mb-4">
-                    {isRTL ? 'تتبع المواقع الذكي' : 'Smart GPS Tracking'}
-                  </h4>
-                  <p className="text-slate-500 font-bold max-w-sm leading-relaxed">
-                    {isRTL
-                      ? 'نظام حماية متطور يرفض تطبيقات المواقع الوهمية (Mock GPS) لضمان المصداقية.'
-                      : 'Advanced protection system rejecting fake location apps to ensure credibility.'}
-                  </p>
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-[300px]">
+        {/* Dashboard Card */}
+        <div className="reveal-up md:col-span-2 bg-white border border-slate-100 rounded-[3rem] p-12 relative overflow-hidden group hover:shadow-xl transition-all">
+          <div className="relative z-10 flex flex-col h-full justify-between">
+            <div>
+              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                <LayoutDashboard size={24} />
               </div>
-              <MapPin
-                size={200}
-                className="absolute -right-10 -bottom-10 text-blue-500/5 group-hover:text-blue-500/10 transition-colors duration-700"
-              />
-            </div>
-
-            <div className="reveal-up bg-slate-900 rounded-[3rem] p-10 text-white flex flex-col justify-center items-center text-center shadow-2xl">
-              <div className="mb-8 p-6 bg-white/10 rounded-[2rem] border border-white/10">
-                <Lock size={48} className="text-blue-400" />
-              </div>
-              <h4 className="text-2xl font-black mb-4">
-                {isRTL ? 'بيانات غير قابلة للتغيير' : 'Immutable Data'}
+              <h4 className="text-3xl font-black mb-4">
+                {isRTL ? 'لوحة تحكم تفاعلية (Dashboard)' : 'Interactive Dashboard'}
               </h4>
-              <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                {isRTL
-                  ? 'بمجرد الرفع، تصبح البيانات مستنداً رسمياً لا يمكن لأي مستخدم التلاعب به.'
-                  : 'Once uploaded, data becomes an official record that cannot be tampered with.'}
-              </p>
-            </div>
-
-            <div className="reveal-up bg-white border border-slate-100 rounded-[3rem] p-10 flex flex-col justify-center group hover:border-blue-500 transition-all">
-              <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-600/30">
-                <Search size={28} />
-              </div>
-              <h4 className="text-2xl font-black mb-4">
-                {isRTL ? 'أرشفة ذكية' : 'Smart Archiving'}
-              </h4>
-              <p className="text-slate-500 font-bold text-sm leading-relaxed">
-                {isRTL
-                  ? 'ابحث عن العمليات حسب الموظف، الفرع، أو التاريخ بلمحة بصر.'
-                  : 'Search operations by employee, branch, or date instantly.'}
-              </p>
-            </div>
-
-            <div className="reveal-up md:col-span-2 bg-gradient-to-br from-blue-600 to-blue-800 rounded-[3rem] p-12 text-white flex items-center justify-between overflow-hidden relative group">
-              <div className="relative z-10 max-w-md">
-                <h4 className="text-3xl font-black mb-6">
-                  {isRTL ? 'تقارير PDF احترافية' : 'Pro PDF Reports'}
-                </h4>
-                <p className="text-blue-100 font-bold text-lg leading-relaxed">
-                  {isRTL
-                    ? 'استخرج تقارير جاهزة للطباعة والاعتماد بضغطة زر واحدة تشمل كافة تفاصيل العملية.'
-                    : 'Export print-ready reports including all operation details with one click.'}
-                </p>
-              </div>
-              <FileDown
-                size={180}
-                className="absolute -right-10 opacity-10 group-hover:scale-110 transition-transform duration-1000"
-              />
+              <ul className="text-slate-500 font-bold space-y-2 leading-relaxed">
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                  {isRTL ? 'متابعة عدد الطلبات الموثقة يومياً' : 'Track daily documented orders'}
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                  {isRTL ? 'تحليل النشاط حسب كل فرع' : 'Analyze activity per branch'}
+                </li>
+              </ul>
             </div>
           </div>
+          <LayoutDashboard
+            size={200}
+            className="absolute -right-10 -bottom-10 text-blue-500/5 group-hover:text-blue-500/10 transition-colors duration-700"
+          />
         </div>
-      </section>
+
+        {/* Immutable Data Card */}
+        <div className="reveal-up bg-slate-900 rounded-[3rem] p-10 text-white flex flex-col justify-center items-center text-center shadow-2xl relative overflow-hidden">
+          <div className="mb-8 p-6 bg-white/10 rounded-[2rem] border border-white/10">
+            <Lock size={48} className="text-blue-400" />
+          </div>
+          <h4 className="text-2xl font-black mb-4">
+            {isRTL ? 'موثوقية النتيجة' : 'Verification Integrity'}
+          </h4>
+          <p className="text-slate-400 text-sm font-medium leading-relaxed">
+            {isRTL
+              ? 'تشمل النتائج: صورة الطلب، خريطة الموقع، والوقت بدقة متناهية.'
+              : 'Results include: Order photo, GPS map, and precise timestamp.'}
+          </p>
+        </div>
+
+        {/* Search & Filter Card */}
+        <div className="reveal-up bg-white border border-slate-100 rounded-[3rem] p-10 flex flex-col justify-center group hover:border-blue-500 transition-all">
+          <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-600/30">
+            <Search size={28} />
+          </div>
+          <h4 className="text-2xl font-black mb-4">
+            {isRTL ? 'فلترة متقدمة' : 'Advanced Filtering'}
+          </h4>
+          <p className="text-slate-500 font-bold text-sm leading-relaxed">
+            {isRTL
+              ? 'ابحث في السجلات حسب التاريخ، الفرع، أو المستخدم بلمحة بصر.'
+              : 'Filter records by date, branch, or user in the blink of an eye.'}
+          </p>
+        </div>
+
+        {/* Export Card */}
+        <div className="reveal-up md:col-span-2 bg-gradient-to-br from-blue-600 to-blue-800 rounded-[3rem] p-12 text-white flex items-center justify-between overflow-hidden relative group">
+          <div className="relative z-10 max-w-md">
+            <h4 className="text-3xl font-black mb-6">
+              {isRTL ? 'تصدير التقارير الذكي' : 'Smart Report Export'}
+            </h4>
+            <p className="text-blue-100 font-bold text-lg leading-relaxed mb-4">
+              {isRTL
+                ? 'استخرج تقاريرك بصيغ متعددة جاهزة للاعتماد.'
+                : 'Export your reports in multiple ready-to-use formats.'}
+            </p>
+            <div className="flex gap-3">
+              <span className="px-4 py-1 bg-white/20 rounded-lg text-sm font-black italic">EXCEL</span>
+              <span className="px-4 py-1 bg-white/20 rounded-lg text-sm font-black italic">WORD</span>
+            </div>
+          </div>
+          <FileDown
+            size={180}
+            className="absolute -right-10 opacity-10 group-hover:scale-110 transition-transform duration-1000"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
       {/* --- سكشن صور التطبيق مع إطار iPhone - إصلاح الظهور المتقطع --- */}
       {/* --- App Section - محسّن --- */}
@@ -835,7 +1008,7 @@ export default function CapturedPremium() {
               
               <div className="iphone-screen">
                 <img
-                  src="/public/images/app-1.jpeg"
+                  src="/public/images/app-1.webp"
                   alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
                   className="w-full h-full object-cover"
                 />
@@ -950,7 +1123,7 @@ export default function CapturedPremium() {
               
               <div className="iphone-screen">
                 <img
-                  src="/public/images/app-2.jpeg"
+                  src="/public/images/app-2.webp"
                   alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
                   className="w-full h-full object-cover"
                 />
@@ -1076,7 +1249,7 @@ export default function CapturedPremium() {
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
-                        src="/public/images/dashboard-1.png"
+                        src="/public/images/dashboard-1.webp"
                         alt={isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
                         className="w-full rounded-[2rem] shadow-xl"
                       />
@@ -1204,7 +1377,7 @@ export default function CapturedPremium() {
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
-                        src="/public/images/dashboard-2.png"
+                        src="/public/images/dashboard-2.webp"
                         alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
                         className="w-full rounded-[2rem] shadow-xl"
                       />
@@ -1265,12 +1438,12 @@ export default function CapturedPremium() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-slate-500 font-medium text-lg"
       >
-        {isRTL ? 'اختر الباقة التي تناسب حجم أعمالك' : 'Choose the plan that fits your business size'}
+        {isRTL ? 'اختر الباقة التي تناسب حجم أعمالك مع خصومات على الدفع السنوي' : 'Choose the plan that fits your business with annual payment discounts'}
       </motion.p>
     </div>
 
     <div className="grid md:grid-cols-3 gap-8 items-stretch">
-      {/* Standard Plan */}
+      {/* Starter Plan */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -1283,7 +1456,7 @@ export default function CapturedPremium() {
             <Layers size={24} className="text-slate-600 group-hover:text-blue-600 transition-colors" />
           </div>
           <h3 className="text-xl font-black text-slate-900 mb-4">
-            {isRTL ? 'الأساسية' : 'Standard'}
+            {isRTL ? 'الأساسية (Starter)' : 'Starter'}
           </h3>
           <div className="flex items-baseline gap-2">
             <span className="text-5xl font-black text-slate-900">299</span>
@@ -1292,17 +1465,22 @@ export default function CapturedPremium() {
               <span className="text-slate-400 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
+          <p className="text-emerald-600 text-xs font-bold mt-2">
+            {isRTL ? 'أو 2,990 ر.س / سنوياً (خصم شهرين)' : 'Or 2,990 SAR / Year (2 Months Off)'}
+          </p>
         </div>
         
         <ul className="space-y-4 mb-10 flex-grow">
           {[
-            { ar: 'فرع واحد', en: '1 Branch', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
-            { ar: '5 مستخدمين', en: '5 Users', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
-            { ar: 'تحليلات أساسية', en: 'Basic Analytics', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
-            { ar: 'مساحة تخزين 5 جيجا', en: 'Cloud Storage 5GB', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'توثيق الصور + الموقع + الوقت', en: 'Photo + GPS + Time Stamps' },
+            { ar: 'لوحة تحكم أساسية', en: 'Basic Dashboard' },
+            { ar: 'بحث بسيط (رقم طلب / تاريخ)', en: 'Simple Search (ID/Date)' },
+            { ar: 'حتى 3 مستخدمين', en: 'Up to 3 Users' },
+            { ar: 'فرع واحد فقط', en: '1 Branch' },
+            { ar: 'تخزين 10GB', en: '10GB Storage' },
           ].map((item, i) => (
             <li key={i} className="flex gap-3 items-start text-slate-600 text-sm font-semibold">
-              {item.icon}
+              <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
               <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
@@ -1313,7 +1491,7 @@ export default function CapturedPremium() {
         </button>
       </motion.div>
 
-      {/* Professional Plan - المميزة */}
+      {/* Business Plan - الأكثر مبيعاً */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -1321,21 +1499,16 @@ export default function CapturedPremium() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-10 rounded-[3rem] shadow-2xl shadow-blue-900/30 relative scale-105 border-2 border-blue-500/20 flex flex-col"
       >
-        {/* Badge */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
           {isRTL ? '⭐ الأكثر طلباً' : '⭐ Most Popular'}
         </div>
-        
-        {/* خلفية ديكورية داخلية */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl" />
         
         <div className="mb-8 relative z-10">
           <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-4 border border-blue-500/30">
             <Zap size={24} className="text-blue-400" />
           </div>
           <h3 className="text-xl font-black text-blue-400 mb-4">
-            {isRTL ? 'الاحترافية' : 'Professional'}
+            {isRTL ? 'الأعمال (Business)' : 'Business'}
           </h3>
           <div className="flex items-baseline gap-2">
             <span className="text-5xl font-black text-white">699</span>
@@ -1344,18 +1517,22 @@ export default function CapturedPremium() {
               <span className="text-slate-500 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
+          <p className="text-blue-400 text-xs font-bold mt-2">
+            {isRTL ? 'أو 6,990 ر.س / سنوياً (خصم شهرين)' : 'Or 6,990 SAR / Year (2 Months Off)'}
+          </p>
         </div>
 
         <ul className="space-y-4 mb-10 flex-grow relative z-10">
           {[
-            { ar: '10 فروع', en: '10 Branches', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
-            { ar: '20 مستخدم', en: '20 Users', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
-            { ar: 'لوحة تحكم متقدمة', en: 'Advanced Dashboard', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
-            { ar: 'تصدير تقارير PDF', en: 'PDF Export', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
-            { ar: 'مساحة تخزين 50 جيجا', en: 'Cloud Storage 50GB', icon: <CheckCircle2 size={18} className="text-blue-400" /> },
+            { ar: 'كل مميزات الباقة الأساسية +', en: 'All Starter features +' },
+            { ar: 'بحث متقدم + فلترة كاملة', en: 'Advanced Search & Filtering' },
+            { ar: 'تقارير  احترافية', en: 'Professional  Reports' },
+            { ar: 'التحكم بالحقول الإلزامية والميديا', en: 'Custom Mandatory Fields & Media' },
+            { ar: 'حتى 15 مستخدم و 5 فروع', en: 'Up to 15 Users & 5 Branches' },
+            { ar: 'تخزين 50GB', en: '50GB Storage' },
           ].map((item, i) => (
             <li key={i} className="flex gap-3 items-start text-slate-300 text-sm font-semibold">
-              {item.icon}
+              <CheckCircle2 size={18} className="text-blue-400 shrink-0" />
               <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
@@ -1379,7 +1556,7 @@ export default function CapturedPremium() {
             <Database size={24} className="text-slate-600 group-hover:text-purple-600 transition-colors" />
           </div>
           <h3 className="text-xl font-black text-slate-900 mb-4">
-            {isRTL ? 'المؤسسات' : 'Enterprise'}
+            {isRTL ? 'المؤسسات (Enterprise)' : 'Enterprise'}
           </h3>
           <div className="flex items-baseline gap-2">
             <span className="text-5xl font-black text-slate-900">1499</span>
@@ -1388,17 +1565,21 @@ export default function CapturedPremium() {
               <span className="text-slate-400 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
+          <p className="text-purple-600 text-xs font-bold mt-2">
+            {isRTL ? 'أو 14,990 ر.س / سنوياً (خصم شهرين)' : 'Or 14,990 SAR / Year (2 Months Off)'}
+          </p>
         </div>
 
         <ul className="space-y-4 mb-10 flex-grow">
           {[
-            { ar: 'فروع غير محدودة', en: 'Unlimited Branches', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
-            { ar: 'مستخدمين غير محدودين', en: 'Unlimited Users', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
-            { ar: 'دعم فني مخصص 24/7', en: 'Dedicated Support 24/7', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
-            { ar: 'وصول كامل للـ API', en: 'Full API Access', icon: <CheckCircle2 size={18} className="text-emerald-500" /> },
+            { ar: 'إدارة كاملة للصلاحيات و Logs', en: 'Full Permissions & Audit Logs' },
+            { ar: 'إعداد نماذج مخصصة لكل فرع', en: 'Custom Branch-wise Templates' },
+            { ar: 'دعم فني سريع + مدير حساب', en: 'Priority Support + Account Manager' },
+            { ar: 'حتى 50 مستخدم و 20 فرع', en: 'Up to 50 Users & 20 Branches' },
+            { ar: 'تخزين 200GB', en: '200GB Storage' },
           ].map((item, i) => (
             <li key={i} className="flex gap-3 items-start text-slate-600 text-sm font-semibold">
-              {item.icon}
+              <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
               <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
@@ -1410,15 +1591,35 @@ export default function CapturedPremium() {
       </motion.div>
     </div>
 
-    {/* ملاحظة إضافية */}
+    {/* إضافات اختيارية (Upsell) */}
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="text-center mt-16"
+      className="mt-20 p-8 bg-slate-50 rounded-[2rem] border border-slate-200"
     >
-      
+      <h4 className="text-center font-black text-slate-900 mb-8">
+        {isRTL ? 'خدمات وإضافات اختيارية' : 'Optional Add-ons'}
+      </h4>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div>
+          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'مستخدم إضافي' : 'Extra User'}</p>
+          <p className="text-lg font-black text-slate-900">25 {isRTL ? 'ر.س' : 'SAR'}</p>
+        </div>
+        <div>
+          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'فرع إضافي' : 'Extra Branch'}</p>
+          <p className="text-lg font-black text-slate-900">80 {isRTL ? 'ر.س' : 'SAR'}</p>
+        </div>
+        <div>
+          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'تخزين 50GB' : '50GB Storage'}</p>
+          <p className="text-lg font-black text-slate-900">120 {isRTL ? 'ر.س' : 'SAR'}</p>
+        </div>
+        <div>
+          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'تقارير Power BI' : 'Power BI Reports'}</p>
+          <p className="text-sm font-black text-slate-900">500 - 1500 {isRTL ? 'ر.س' : 'SAR'}</p>
+        </div>
+      </div>
     </motion.div>
   </div>
 </section>
@@ -1442,35 +1643,43 @@ export default function CapturedPremium() {
           {[
             {
               q: isRTL
-                ? 'هل يتطلب التطبيق اتصالاً دائماً بالإنترنت؟'
-                : 'Does it require constant internet?',
+                ? 'هل يمكن تعديل السجل بعد الإرسال؟'
+                : 'Can logs be edited after submission?',
               a: isRTL
-                ? 'لا، يدعم التطبيق وضع العمل دون إنترنت؛ حيث يتم حفظ الصور والبيانات محلياً على الهاتف ثم يتم رفعها تلقائياً بمجرد توفر اتصال بالشبكة.'
-                : 'No, it supports offline mode; photos and data are saved locally and synced once internet is available.',
+                ? 'لا، بعد رفع السجل لا يمكن تعديله نهائياً لضمان الموثوقية.'
+                : 'No, once a log is uploaded, it cannot be edited to ensure data integrity.',
             },
             {
               q: isRTL
-                ? 'كيف يتم التأكد من أن الصورة حية وليست قديمة؟'
-                : 'How do you ensure photos are live?',
+                ? 'هل يمكن رفع صور من الاستوديو؟'
+                : 'Can photos be uploaded from the gallery?',
               a: isRTL
-                ? 'يعتمد التطبيق على وصول حصري للكاميرا مباشرة عبر واجهته، ويقوم بتعطيل ميزة اختيار الصور من الاستوديو نهائياً لضمان اللحظية.'
-                : 'The app uses exclusive camera access and disables gallery selection to guarantee real-time capture.',
+                ? 'لا، التصوير يكون من كاميرا التطبيق مباشرة فقط.'
+                : 'No, photos must be captured directly through the app camera only.',
             },
             {
               q: isRTL
-                ? 'هل يمكنني ربط النظام مع أنظمة شركتي الحالية؟'
-                : 'Can I integrate it with my current systems?',
+                ? 'هل يدعم العمل بدون إنترنت؟'
+                : 'Does it support offline mode?',
               a: isRTL
-                ? 'نعم، توفر باقة Enterprise وصولاً كاملاً للـ API مما يتيح لك ربط بيانات التوثيق مع أنظمة ERP أو CRM الخاصة بك بسهولة.'
-                : 'Yes, the Enterprise plan provides full API access for seamless integration with your ERP or CRM systems.',
+                ? 'نعم، عند ضعف الشبكة يظهر "جاري الرفع" أو "تم الحفظ محلياً وسيتم الرفع لاحقاً".'
+                : 'Yes, if the connection is weak, it shows "Uploading" or "Saved locally and will sync later".',
             },
             {
               q: isRTL
-                ? 'ما هي اللغات التي يدعمها التطبيق؟'
-                : 'Which languages are supported?',
+                ? 'هل التطبيق يرفض المواقع الوهمية؟'
+                : 'Does the app reject fake locations?',
               a: isRTL
-                ? 'يدعم التطبيق اللغتين العربية والإنجليزية بشكل كامل، سواء في واجهة المستخدم أو في التقارير المستخرجة.'
-                : 'The app fully supports Arabic and English for both the interface and generated reports.',
+                ? 'نعم، يتم كشف برامج المواقع الوهمية ورفض تسجيل العملية.'
+                : 'Yes, mock location apps are detected and the process will be rejected.',
+            },
+            {
+              q: isRTL
+                ? 'هل يمكن التحكم بالميديا المطلوبة؟'
+                : 'Can the required media be customized?',
+              a: isRTL
+                ? 'نعم، مدير النظام يتحكم بالنوع (صور/فيديو) وعدد الملفات المطلوبة والحقول الإلزامية.'
+                : 'Yes, the admin controls the type (photo/video), number of files, and mandatory fields.',
             },
           ].map((item, i) => (
             <div
