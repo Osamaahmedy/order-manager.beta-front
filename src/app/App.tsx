@@ -100,7 +100,7 @@ export default function CapturedPremium() {
 
   // Slider API
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/sliders')
+    fetch('https://captured-sa.com/api/sliders')
       .then(res => res.json())
       .then(data => {
         if (data.status && Array.isArray(data.data)) {
