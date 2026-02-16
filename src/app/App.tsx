@@ -1008,7 +1008,7 @@ export default function CapturedPremium() {
               
               <div className="iphone-screen">
                 <img
-                  src="/public/images/app-1.jpeg"
+                  src="/images/app-1.webp"
                   alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
                   className="w-full h-full object-cover"
                 />
@@ -1123,7 +1123,7 @@ export default function CapturedPremium() {
               
               <div className="iphone-screen">
                 <img
-                  src="/public/images/app-2.jpeg"
+                  src="/images/app-2.webp"
                   alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
                   className="w-full h-full object-cover"
                 />
@@ -1249,7 +1249,7 @@ export default function CapturedPremium() {
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
-                        src="/public/images/dashboard-1.png"
+                        src="/images/dashboard-1.webp"
                         alt={isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
                         className="w-full rounded-[2rem] shadow-xl"
                       />
@@ -1377,7 +1377,7 @@ export default function CapturedPremium() {
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
-  src="/images/dashboard-2.png"
+  src="/images/dashboard-2.webp"
   alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
   className="w-full rounded-[2rem] shadow-xl"
 />
