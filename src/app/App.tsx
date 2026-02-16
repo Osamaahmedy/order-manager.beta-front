@@ -260,26 +260,34 @@ export default function CapturedPremium() {
                 : 'bg-white/40 backdrop-blur-lg border-white/40 shadow-md'
             }`}
           >
-            <div className="flex items-center">
+          <div className="flex items-center gap-3">
   <img
     src="/images/logo.png"
     alt="CapTured Logo"
     className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
   />
+
+  <span className="text-xl md:text-2xl font-extrabold text-primary">
+  CapTured
+</span>
+
 </div>
+
 
 
             {/* Desktop */}
             <div className="hidden md:flex items-center gap-10">
               {navItems.map(item => (
-                <ScrollLink
-                  key={item}
-                  to={item}
-                  smooth
-                  spy
-                  offset={-100}
-                  className="text-sm font-bold text-blue-400 hover:text-blue-800 cursor-pointer transition-colors uppercase tracking-widest"
-                >
+               <ScrollLink
+  key={item}
+  to={item}
+  smooth={true}
+  duration={100}   
+  spy
+  offset={-100}
+  className="text-sm font-bold text-blue-400 hover:text-blue-800 cursor-pointer transition-colors uppercase tracking-widest"
+>
+
                   {item === 'home'
                     ? isRTL ? 'الرئيسية' : 'Home'
                     : item === 'problem'
@@ -390,8 +398,6 @@ export default function CapturedPremium() {
           </AnimatePresence>
         </div>
       </nav>
-
-  
 <section
   id="home"
   className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950"
@@ -402,10 +408,10 @@ export default function CapturedPremium() {
       {hasSlides && (
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0, scale: 1.08 }}
+          initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2 }}
+          transition={{ duration: 1 }}
           className="absolute inset-0"
         >
           <img
@@ -413,34 +419,32 @@ export default function CapturedPremium() {
             className="w-full h-full object-cover"
             alt="Background"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/95" />
         </motion.div>
       )}
     </AnimatePresence>
   </div>
 
   {/* Content */}
-  <div className="relative z-10 container mx-auto px-6 py-24 text-center mt-10">
-    <div className="max-w-5xl mx-auto flex flex-col items-center">
+  <div className="relative z-10 container mx-auto px-6 py-12 text-center">
+    <div className="max-w-4xl mx-auto flex flex-col items-center">
 
-      {/* Badge */}
       <motion.div
-        initial={{ opacity: 0, y: -15 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-semibold mb-10 backdrop-blur-sm"
+        className="inline-flex items-center gap-2 px-4 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-semibold mb-5 backdrop-blur-sm"
       >
-        <Sparkles size={14} />
-        <span >
+        <Sparkles size={12} />
+        <span>
           {isRTL ? 'الحل الأذكى للتوثيق الميداني' : 'Smartest Field Documentation Solution'}
         </span>
       </motion.div>
 
-      {/* Title */}
       <motion.h1
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-8 tracking-tight"
+        className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5 tracking-tight"
       >
         {isRTL ? (
           <>وثّق عملياتك <span className="text-blue-500">بدقة GPS</span> حقيقية</>
@@ -449,59 +453,56 @@ export default function CapturedPremium() {
         )}
       </motion.h1>
 
-      {/* Description */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-14"
+        className="text-sm md:text-base text-slate-400 max-w-xl leading-relaxed mb-8"
       >
         {isRTL
           ? 'منصة متكاملة لتوثيق العمليات الميدانية بالصور الحية والمواقع الدقيقة مع حماية متقدمة ضد التلاعب.'
           : 'Complete platform for documenting field operations with live photos and precise GPS locations with anti-tampering protection.'}
       </motion.p>
 
-      {/* Buttons */}
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="flex flex-col sm:flex-row gap-6 mb-20"
+        className="flex flex-col sm:flex-row gap-4 mb-10"
       >
-        <button className="group px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
+        <button className="group px-7 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold text-sm shadow-lg shadow-blue-600/20 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
           {isRTL ? 'ابدأ الآن مجاناً' : 'Start Free Trial'}
           <ArrowRight
-            size={20}
+            size={16}
             className={`transition-transform duration-300 group-hover:translate-x-1 ${isRTL ? 'rotate-180' : ''}`}
           />
         </button>
 
-        <button className="px-10 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-3 backdrop-blur-sm">
-          <Camera size={20} />
+        <button className="px-7 py-2.5 bg-white/5 border border-white/10 text-white rounded-xl font-semibold text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
+          <Camera size={16} />
           {isRTL ? 'شاهد العرض' : 'Watch Demo'}
         </button>
       </motion.div>
 
-      {/* Features */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="flex flex-wrap justify-center gap-6"
+        className="flex flex-wrap justify-center gap-4"
       >
         {[
-          { icon: <ShieldCheck size={20} />, text: isRTL ? 'حماية متقدمة' : 'Advanced Protection' },
-          { icon: <MapPin size={20} />, text: isRTL ? 'GPS دقيق' : 'Precise GPS' },
-          { icon: <Lock size={20} />, text: isRTL ? 'بيانات مشفّرة' : 'Encrypted Data' },
+          { icon: <ShieldCheck size={16} />, text: isRTL ? 'حماية متقدمة' : 'Advanced Protection' },
+          { icon: <MapPin size={16} />, text: isRTL ? 'GPS دقيق' : 'Precise GPS' },
+          { icon: <Lock size={16} />, text: isRTL ? 'بيانات مشفّرة' : 'Encrypted Data' },
         ].map((item, i) => (
           <div
             key={i}
-            className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all"
+            className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-sm hover:bg-white/10 transition-all"
           >
-            <div className="w-11 h-11 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
+            <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
               {item.icon}
             </div>
-            <span className="font-medium text-slate-200 text-sm">
+            <span className="font-medium text-slate-200 text-xs">
               {item.text}
             </span>
           </div>
@@ -510,39 +511,39 @@ export default function CapturedPremium() {
     </div>
   </div>
 
-  {/* Pagination */}
-  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-white/5 backdrop-blur-sm px-5 py-2 rounded-full border border-white/10">
+  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10">
     {slides.map((_, index) => (
       <button
         key={index}
         onClick={() => goToSlide(index)}
         className={`transition-all duration-300 rounded-full ${
           index === currentSlide
-            ? 'w-10 h-2 bg-blue-500'
-            : 'w-2.5 h-2.5 bg-white/30 hover:bg-white/60'
+            ? 'w-8 h-2 bg-blue-500'
+            : 'w-2 h-2 bg-white/30 hover:bg-white/60'
         }`}
       />
     ))}
   </div>
 </section>
+
 <section
-  id="problem-solution"
-  className="py-40 px-6 relative bg-gradient-to-br from-blue-600/90 via-blue-500/40 to-white"
+  id="problem"
+  className="py-24 px-6 relative bg-gradient-to-br from-blue-600/80 via-blue-500/30 to-white"
 >
-  <div className="max-w-7xl mx-auto">
-    <div className="grid lg:grid-cols-2 gap-10">
+  <div className="max-w-6xl mx-auto">
+    <div className="grid lg:grid-cols-2 gap-8">
 
       {/* The Problem */}
-      <div className="reveal-up p-14 rounded-[3rem] bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl transition-all duration-500 hover:scale-[1.02]">
-        <div className="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mb-10">
-          <XCircle size={30} />
+      <div className="p-10 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/60 shadow-xl transition-all duration-500 hover:scale-[1.01]">
+        <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-6">
+          <XCircle size={22} />
         </div>
 
-        <h2 className="text-4xl font-extrabold mb-8 text-slate-900">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-900">
           {isRTL ? 'المشكلة' : 'The Problem'}
         </h2>
 
-        <ul className="space-y-6">
+        <ul className="space-y-4">
           {[
             {
               ar: 'عدم وجود توثيق رسمي موحّد لكل عملية تسليم.',
@@ -565,8 +566,8 @@ export default function CapturedPremium() {
               en: 'Wasted storage due to disorganized large files.'
             }
           ].map((item, i) => (
-            <li key={i} className="flex gap-4 items-start text-slate-700 font-semibold text-lg">
-              <div className="w-2 h-2 rounded-full bg-red-500 mt-3 shrink-0" />
+            <li key={i} className="flex gap-3 items-start text-slate-700 font-medium text-sm md:text-base">
+              <div className="w-2 h-2 rounded-full bg-red-500 mt-2 shrink-0" />
               <span className="leading-relaxed">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
@@ -574,18 +575,18 @@ export default function CapturedPremium() {
       </div>
 
       {/* The Solution */}
-      <div className="reveal-up p-14 rounded-[3rem] bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-2xl shadow-blue-600/30 relative overflow-hidden transition-all duration-500 hover:scale-[1.02]">
-        <div className="absolute -right-10 -bottom-10 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
+      <div className="p-10 rounded-3xl bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-xl shadow-blue-600/20 relative overflow-hidden transition-all duration-500 hover:scale-[1.01]">
+        <div className="absolute -right-12 -bottom-12 w-60 h-60 bg-white/10 rounded-full blur-3xl" />
 
-        <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-10 border border-white/20">
-          <CheckCircle2 size={30} />
+        <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-6 border border-white/20">
+          <CheckCircle2 size={22} />
         </div>
 
-        <h2 className="text-4xl font-extrabold mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">
           {isRTL ? 'الحل مع CapTured' : 'The CapTured Solution'}
         </h2>
 
-        <ul className="space-y-6 relative z-10">
+        <ul className="space-y-4 relative z-10">
           {[
             {
               ar: 'توثيق إلزامي لكل عملية تسليم ببيانات دقيقة.',
@@ -608,8 +609,8 @@ export default function CapturedPremium() {
               en: 'Smart dashboard for management and exporting.'
             }
           ].map((item, i) => (
-            <li key={i} className="flex gap-4 items-start font-semibold text-lg">
-              <div className="w-2 h-2 rounded-full bg-blue-200 mt-3 shrink-0" />
+            <li key={i} className="flex gap-3 items-start font-medium text-sm md:text-base">
+              <div className="w-2 h-2 rounded-full bg-blue-200 mt-2 shrink-0" />
               <span className="leading-relaxed">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
@@ -618,25 +619,29 @@ export default function CapturedPremium() {
 
     </div>
   </div>
-</section>
-
-
-<section
+</section><section
   id="how-it-works"
-  className="py-32 px-6 bg-gradient-to-b from-white to-blue-50"
+  className="relative py-28 px-6 bg-gradient-to-b from-white via-sky-50/40 to-white overflow-hidden"
 >
-  <div className="max-w-7xl mx-auto">
 
-    <div className="text-center mb-20">
-      <h2 className="text-4xl lg:text-5xl font-extrabold mb-6 text-slate-900">
+  {/* ===== Linear Divider Between Black & Blue ===== */}
+  <div className="absolute top-0 left-0 w-full h-28 -translate-y-full pointer-events-none">
+    <div className="w-full h-full bg-gradient-to-b from-slate-950 via-blue-700 to-white" />
+  </div>
+
+  <div className="max-w-6xl mx-auto">
+
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-slate-900">
         {isRTL ? 'كيف يعمل CapTured؟' : 'How CapTured Works?'}
       </h2>
-      <p className="text-slate-600 font-semibold italic">
+
+      <p className="text-slate-500 text-sm md:text-base font-medium">
         {isRTL ? 'خطوات بسيطة لتوثيق احترافي' : 'Simple steps for professional documentation'}
       </p>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       {[
         {
           step: "01",
@@ -644,7 +649,8 @@ export default function CapturedPremium() {
           en: "Login",
           desc_ar: "الدخول بحساب المستخدم المرتبط بفرعه",
           desc_en: "Log in with the account linked to your branch",
-          icon: <UserCheck className="text-blue-600" />
+          icon: <UserCheck />,
+          color: "blue"
         },
         {
           step: "02",
@@ -652,7 +658,8 @@ export default function CapturedPremium() {
           en: "Enter Order",
           desc_ar: "إدخال رقم الطلب أو مسحه بالباركود",
           desc_en: "Enter order number or scan barcode",
-          icon: <Barcode className="text-blue-600" />
+          icon: <Barcode />,
+          color: "indigo"
         },
         {
           step: "03",
@@ -660,7 +667,8 @@ export default function CapturedPremium() {
           en: "Smart Capture",
           desc_ar: "النظام يحدد الموقع، الوقت، والتصوير المباشر",
           desc_en: "System auto-detects GPS, Time, and captures photo/video",
-          icon: <Camera className="text-blue-600" />
+          icon: <Camera />,
+          color: "cyan"
         },
         {
           step: "04",
@@ -668,29 +676,46 @@ export default function CapturedPremium() {
           en: "Submit & Sync",
           desc_ar: "مراجعة سريعة ثم رفع السجل بشكل رسمي",
           desc_en: "Quick review then official upload to cloud",
-          icon: <CloudUpload className="text-blue-600" />
+          icon: <CloudUpload />,
+          color: "emerald"
         }
       ].map((item, idx) => (
-        <div
+        <motion.div
           key={idx}
-          className="relative p-10 bg-white/90 backdrop-blur-xl rounded-[2.5rem] border border-white/70 shadow-lg hover:shadow-2xl transition-all group hover:-translate-y-2"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: idx * 0.15, duration: 0.6 }}
+          viewport={{ once: true }}
+          className="group relative p-8 rounded-3xl bg-white border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
         >
-          <span className="text-6xl font-black text-blue-600/10 absolute top-4 right-6 group-hover:text-blue-600/20 transition-colors">
+
+          <span className="text-5xl font-black text-slate-100 absolute top-4 right-5">
             {item.step}
           </span>
 
-          <div className="w-14 h-14 bg-blue-50 rounded-2xl shadow-sm flex items-center justify-center mb-6 relative z-10">
+          <div
+            className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 
+            bg-${item.color}-50 text-${item.color}-600 
+            group-hover:scale-110 transition-transform duration-300`}
+          >
             {item.icon}
           </div>
 
-          <h4 className="text-xl font-extrabold mb-3 text-slate-900">
+          <h4 className="text-lg font-bold mb-3 text-slate-900">
             {isRTL ? item.ar : item.en}
           </h4>
 
-          <p className="text-slate-600 text-sm font-semibold leading-relaxed">
+          <p className="text-slate-500 text-sm leading-relaxed">
             {isRTL ? item.desc_ar : item.desc_en}
           </p>
-        </div>
+
+          <div
+            className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 
+            transition-opacity duration-500 
+            bg-gradient-to-br from-${item.color}-500/5 to-${item.color}-500/0`}
+          />
+
+        </motion.div>
       ))}
     </div>
 
@@ -754,39 +779,57 @@ export default function CapturedPremium() {
     </div>
   </div>
 </section>
+<section
+  id="sectors"
+  className="relative py-28 px-6 overflow-hidden 
+  bg-gradient-to-b from-blue-100/60 via-white to-white"
+>
 
+  {/* Blue Fog Effect */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute -top-32 left-1/2 -translate-x-1/2 
+    w-[700px] h-[500px] bg-blue-400/20 rounded-full blur-3xl" />
+  </div>
 
+  <div className="max-w-6xl mx-auto text-center relative z-10">
 
-<section id="sectors" className="py-32 px-6 bg-slate-50">
-  <div className="max-w-7xl mx-auto text-center">
-
-    <h2 className="text-4xl font-extrabold mb-16 text-slate-900">
+    <h2 className="text-3xl md:text-4xl font-extrabold mb-14 text-slate-900">
       {isRTL ? 'القطاعات المناسبة' : 'Ideal Sectors'}
     </h2>
 
     <div className="flex flex-wrap justify-center gap-6">
       {[
-        { ar: 'الخدمات اللوجستية', en: 'Logistics Services', icon: <Truck size={20} /> },
-        { ar: 'المطاعم والكافيهات', en: 'Restaurants & Cafes', icon: <Utensils size={20} /> },
-        { ar: 'السوبرماركت والمتاجر', en: 'Retail & Supermarkets', icon: <ShoppingBag size={20} /> },
-        { ar: 'شركات التوزيع', en: 'Distribution Companies', icon: <Package size={20} /> },
-        { ar: 'خدمات التوريد', en: 'Supply Chain', icon: <Boxes size={20} /> }
+        { ar: 'الخدمات اللوجستية', en: 'Logistics Services', icon: <Truck size={18} /> },
+        { ar: 'المطاعم والكافيهات', en: 'Restaurants & Cafes', icon: <Utensils size={18} /> },
+        { ar: 'السوبرماركت والمتاجر', en: 'Retail & Supermarkets', icon: <ShoppingBag size={18} /> },
+        { ar: 'شركات التوزيع', en: 'Distribution Companies', icon: <Package size={18} /> },
+        { ar: 'خدمات التوريد', en: 'Supply Chain', icon: <Boxes size={18} /> }
       ].map((sector, i) => (
-        <div
+        <motion.div
           key={i}
-          className="flex items-center gap-4 px-8 py-5 bg-white border border-slate-200 rounded-full hover:border-blue-400 hover:shadow-md transition-all cursor-default group"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.1 }}
+          viewport={{ once: true }}
+          className="group flex items-center gap-3 px-7 py-4 
+          bg-white/90 backdrop-blur-md 
+          border border-blue-100 
+          rounded-full shadow-sm 
+          hover:shadow-md hover:-translate-y-1 
+          transition-all duration-300"
         >
-          <div className="text-blue-600 group-hover:scale-110 transition-transform">
+          <div className="text-blue-600 group-hover:scale-110 transition-transform duration-300">
             {sector.icon}
           </div>
-          <span className="font-semibold text-slate-700">
+
+          <span className="font-medium text-slate-700 text-sm md:text-base">
             {isRTL ? sector.ar : sector.en}
           </span>
-        </div>
+        </motion.div>
       ))}
     </div>
 
-    <p className="mt-12 text-slate-500 font-semibold max-w-2xl mx-auto">
+    <p className="mt-12 text-slate-600 font-medium max-w-2xl mx-auto text-sm md:text-base">
       {isRTL
         ? 'CapTured مصمم ليناسب أي نشاط يحتاج إثبات تسليم رسمي ومؤرشف.'
         : 'CapTured is designed to fit any business requiring official delivery proof and archiving.'}
@@ -794,109 +837,117 @@ export default function CapturedPremium() {
 
   </div>
 </section>
+<section
+  id="features"
+  className="relative py-28 px-6 overflow-hidden 
+  bg-gradient-to-b from-blue-50/70 via-white to-white"
+>
 
+  {/* Soft Blue Fog */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute -top-32 left-1/2 -translate-x-1/2 
+    w-[700px] h-[450px] bg-blue-400/15 rounded-full blur-3xl" />
+  </div>
 
+  <div className="max-w-6xl mx-auto relative z-10">
 
-<section id="features" className="py-40 px-6 bg-slate-50">
-  <div className="max-w-7xl mx-auto">
-
-    <div className="text-center mb-24">
-      <h2 className="text-5xl font-extrabold mb-6 text-slate-900">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-slate-900">
         {isRTL ? 'تقارير ذكية لاتخاذ القرار' : 'Smart Reporting for Decision Making'}
       </h2>
-      <p className="text-slate-500 font-semibold uppercase tracking-[0.25em] text-sm">
+
+      <p className="text-slate-500 font-medium uppercase tracking-[0.2em] text-xs">
         {isRTL ? 'بيانات دقيقة لمتابعة أداء فريقك' : 'Accurate Data to Track Team Performance'}
       </p>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 auto-rows-[300px]">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[260px]">
 
       {/* Dashboard */}
-      <div className="md:col-span-2 bg-white border border-slate-200 rounded-[3rem] p-12 relative overflow-hidden group hover:shadow-lg transition-all">
+      <div className="md:col-span-2 bg-white border border-blue-100 rounded-3xl p-8 relative overflow-hidden group hover:shadow-md transition-all">
         <div className="relative z-10">
-          <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6">
-            <LayoutDashboard size={24} />
+
+          <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-5">
+            <LayoutDashboard size={20} />
           </div>
 
-          <h4 className="text-3xl font-extrabold mb-4">
-            {isRTL ? 'لوحة تحكم تفاعلية (Dashboard)' : 'Interactive Dashboard'}
+          <h4 className="text-xl md:text-2xl font-bold mb-3">
+            {isRTL ? 'لوحة تحكم تفاعلية' : 'Interactive Dashboard'}
           </h4>
 
-          <ul className="text-slate-600 font-semibold space-y-2 leading-relaxed">
+          <ul className="text-slate-600 font-medium space-y-1.5 text-sm leading-relaxed">
             <li className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-              {isRTL ? 'متابعة عدد الطلبات الموثقة يومياً' : 'Track daily documented orders'}
+              {isRTL ? 'متابعة عدد الطلبات يومياً' : 'Track daily documented orders'}
             </li>
             <li className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-              {isRTL ? 'تحليل النشاط حسب كل فرع' : 'Analyze activity per branch'}
+              {isRTL ? 'تحليل النشاط حسب الفرع' : 'Analyze activity per branch'}
             </li>
           </ul>
         </div>
       </div>
 
       {/* Integrity */}
-      <div className="bg-slate-900 rounded-[3rem] p-10 text-white flex flex-col justify-center items-center text-center shadow-xl">
-        <div className="mb-8 p-6 bg-white/10 rounded-[2rem] border border-white/10">
-          <Lock size={48} className="text-blue-400" />
+      <div className="bg-gradient-to-br from-blue-800 to-blue-700 rounded-3xl p-8 text-white flex flex-col justify-center items-center text-center shadow-lg">
+        <div className="mb-6 p-4 bg-white/10 rounded-2xl border border-white/10">
+          <Lock size={36} className="text-blue-200" />
         </div>
 
-        <h4 className="text-2xl font-bold mb-4">
+        <h4 className="text-lg font-semibold mb-3">
           {isRTL ? 'موثوقية النتيجة' : 'Verification Integrity'}
         </h4>
 
-        <p className="text-slate-400 text-sm leading-relaxed">
+        <p className="text-blue-100 text-xs leading-relaxed">
           {isRTL
-            ? 'تشمل النتائج: صورة الطلب، خريطة الموقع، والوقت بدقة متناهية.'
-            : 'Results include: Order photo, GPS map, and precise timestamp.'}
+            ? 'تشمل النتائج: صورة الطلب، خريطة الموقع، والوقت بدقة عالية.'
+            : 'Includes order photo, GPS map, and precise timestamp.'}
         </p>
       </div>
 
       {/* Filtering */}
-      <div className="bg-white border border-slate-200 rounded-[3rem] p-10 hover:border-blue-400 transition-all">
-        <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white mb-8 shadow-md">
-          <Search size={28} />
+      <div className="bg-white border border-blue-100 rounded-3xl p-8 hover:border-blue-400 transition-all">
+        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6 shadow-sm">
+          <Search size={22} />
         </div>
 
-        <h4 className="text-2xl font-bold mb-4">
+        <h4 className="text-lg font-semibold mb-3">
           {isRTL ? 'فلترة متقدمة' : 'Advanced Filtering'}
         </h4>
 
-        <p className="text-slate-600 font-semibold text-sm leading-relaxed">
+        <p className="text-slate-600 font-medium text-xs leading-relaxed">
           {isRTL
-            ? 'ابحث في السجلات حسب التاريخ، الفرع، أو المستخدم بلمحة بصر.'
-            : 'Filter records by date, branch, or user instantly.'}
+            ? 'ابحث حسب التاريخ، الفرع، أو المستخدم بسهولة.'
+            : 'Filter by date, branch, or user instantly.'}
         </p>
       </div>
 
       {/* Export */}
-      <div className="md:col-span-2 bg-gradient-to-r from-blue-700 to-blue-800 rounded-[3rem] p-12 text-white flex items-center justify-between relative shadow-xl">
+      <div className="md:col-span-2 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-8 text-white flex items-center justify-between relative shadow-lg">
         <div className="max-w-md">
-          <h4 className="text-3xl font-extrabold mb-6">
+          <h4 className="text-xl md:text-2xl font-bold mb-4">
             {isRTL ? 'تصدير التقارير الذكي' : 'Smart Report Export'}
           </h4>
 
-          <p className="text-blue-100 font-semibold text-lg leading-relaxed mb-4">
+          <p className="text-blue-100 font-medium text-sm leading-relaxed mb-3">
             {isRTL
               ? 'استخرج تقاريرك بصيغ متعددة جاهزة للاعتماد.'
-              : 'Export your reports in multiple ready-to-use formats.'}
+              : 'Export reports in multiple ready-to-use formats.'}
           </p>
 
-          <div className="flex gap-3">
-            <span className="px-4 py-1 bg-white/20 rounded-lg text-sm font-bold">EXCEL</span>
-            <span className="px-4 py-1 bg-white/20 rounded-lg text-sm font-bold">WORD</span>
-                        <span className="px-4 py-1 bg-white/20 rounded-lg text-sm font-bold">PDF</span>
-
+          <div className="flex gap-2">
+            <span className="px-3 py-1 bg-white/20 rounded-md text-xs font-semibold">EXCEL</span>
+            <span className="px-3 py-1 bg-white/20 rounded-md text-xs font-semibold">WORD</span>
+            <span className="px-3 py-1 bg-white/20 rounded-md text-xs font-semibold">PDF</span>
           </div>
         </div>
 
-        <FileDown size={160} className="opacity-10" />
+        <FileDown size={120} className="opacity-10" />
       </div>
 
     </div>
   </div>
 </section>
-
 
       {/* --- سكشن صور التطبيق مع إطار iPhone - إصلاح الظهور المتقطع --- */}
       {/* --- App Section - محسّن --- */}
@@ -911,27 +962,32 @@ export default function CapturedPremium() {
   <div className="max-w-7xl mx-auto relative z-10">
     {/* العنوان الرئيسي */}
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="text-center mb-24"
-    >
-      <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 text-blue-700 text-xs font-black uppercase tracking-wider mb-8 shadow-sm">
-        <Smartphone size={18} className="animate-pulse" />
-        {isRTL ? 'تطبيق الموبايل' : 'Mobile Application'}
-      </div>
-      <h2 className="text-5xl md:text-7xl font-black mb-6 text-slate-900 tracking-tight">
-        {isRTL ? 'تجربة تطبيق ميدانية' : 'Smooth Field App'}
-        <br />
-        <span className="text-gradient">{isRTL ? 'سلسة وذكية' : 'Experience'}</span>
-      </h2>
-      <p className="text-slate-500 text-xl font-medium max-w-3xl mx-auto leading-relaxed">
-        {isRTL
-          ? 'واجهة تطبيق بسيطة وسريعة لموظفي الميدان لرفع التوثيق في ثوانٍ معدودة'
-          : 'A simple, fast mobile app for field teams to capture proof in seconds'}
-      </p>
-    </motion.div>
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5 }}
+  className="text-center mb-16"
+>
+  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 text-blue-700 text-[11px] font-bold uppercase tracking-wider mb-6 shadow-sm">
+    <Smartphone size={14} />
+    {isRTL ? 'تطبيق الموبايل' : 'Mobile Application'}
+  </div>
+
+  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-slate-900 tracking-tight leading-tight">
+    {isRTL ? 'تجربة تطبيق ميدانية' : 'Smooth Field App'}
+    <br />
+    <span className="text-gradient">
+      {isRTL ? 'سلسة وذكية' : 'Experience'}
+    </span>
+  </h2>
+
+  <p className="text-slate-500 text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+    {isRTL
+      ? 'واجهة تطبيق بسيطة وسريعة لموظفي الميدان لرفع التوثيق في ثوانٍ معدودة'
+      : 'A simple, fast mobile app for field teams to capture proof in seconds'}
+  </p>
+</motion.div>
+
 
     <div className="space-y-40">
       {/* الميزة الأولى */}
@@ -943,111 +999,142 @@ export default function CapturedPremium() {
           transition={{ duration: 0.7 }}
           className={`${isRTL ? 'lg:order-2' : ''} space-y-8`}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-sm font-bold shadow-sm">
-            <PackageCheck size={18} />
-            {isRTL ? 'الميزة #1' : 'Feature #1'}
-          </div>
-          
-          <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1]">
-            {isRTL ? 'عرض وإنشاء الطلبات' : 'View & Create Orders'}
-            <br />
-            <span className="text-emerald-600">{isRTL ? 'بسهولة تامة' : 'Easily'}</span>
-          </h3>
-          
-          <p className="text-lg text-slate-600 leading-relaxed font-medium">
-            {isRTL
-              ? 'يمكن للموظفين الميدانيين عرض جميع الطلبات المخصصة لهم وإنشاء طلبات جديدة بكل سهولة. واجهة بديهية تعرض تفاصيل كل طلب من حالة، موقع، ووقت التسليم المتوقع.'
-              : 'Field employees can view all assigned orders and create new ones with ease. An intuitive interface displays each order\'s status, location, and expected delivery time.'}
-          </p>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-semibold">
+  <PackageCheck size={14} />
+  {isRTL ? 'الميزة #1' : 'Feature #1'}
+</div>
 
-          <ul className="space-y-5">
-            {[
-              {
-                icon: <CheckCircle2 size={22} className="text-emerald-600" />,
-                text: isRTL ? 'عرض قائمة الطلبات المخصصة' : 'View assigned order list',
-                badge: isRTL ? 'فوري' : 'Instant'
-              },
-              {
-                icon: <CheckCircle2 size={22} className="text-emerald-600" />,
-                text: isRTL ? 'إنشاء طلب جديد بنقرة واحدة' : 'Create new order with one tap',
-                badge: isRTL ? 'سريع' : 'Fast'
-              },
-              {
-                icon: <CheckCircle2 size={22} className="text-emerald-600" />,
-                text: isRTL ? 'تفاصيل شاملة لكل طلب' : 'Comprehensive details for each order',
-                badge: isRTL ? 'كامل' : 'Complete'
-              },
-            ].map((item, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-4 text-slate-700 font-bold bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-slate-100 hover:border-emerald-200 transition-all group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors flex-shrink-0">
-                  {item.icon}
-                </div>
-                <span className="flex-1">{item.text}</span>
-                <span className="text-xs font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">
-                  {item.badge}
-                </span>
-              </motion.li>
-            ))}
-          </ul>
+<h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-snug">
+  {isRTL ? 'عرض وإنشاء الطلبات' : 'View & Create Orders'}
+  <br />
+  <span className="text-emerald-600">
+    {isRTL ? 'بسهولة تامة' : 'Easily'}
+  </span>
+</h3>
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl font-black text-lg hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-xl shadow-emerald-600/30 hover:shadow-2xl hover:shadow-emerald-600/40"
-          >
-            {isRTL ? 'اكتشف المزيد' : 'Discover More'}
-            <ArrowRight size={22} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
-          </motion.button>
+<p className="text-sm md:text-base text-slate-600 leading-relaxed">
+  {isRTL
+    ? 'يمكن للموظفين عرض الطلبات وإنشاء طلب جديد بسهولة مع تفاصيل واضحة لكل عملية.'
+    : 'Employees can view assigned orders and create new ones easily with clear details for each operation.'}
+</p>
+
+        <ul className="space-y-3">
+  {[
+    {
+      icon: <CheckCircle2 size={16} className="text-emerald-600" />,
+      text: isRTL ? 'عرض قائمة الطلبات' : 'View assigned orders',
+      badge: isRTL ? 'فوري' : 'Instant'
+    },
+    {
+      icon: <CheckCircle2 size={16} className="text-emerald-600" />,
+      text: isRTL ? 'إنشاء طلب بنقرة واحدة' : 'Create order in one tap',
+      badge: isRTL ? 'سريع' : 'Fast'
+    },
+    {
+      icon: <CheckCircle2 size={16} className="text-emerald-600" />,
+      text: isRTL ? 'تفاصيل شاملة' : 'Full details',
+      badge: isRTL ? 'كامل' : 'Complete'
+    },
+  ].map((item, i) => (
+    <motion.li
+      key={i}
+      initial={{ opacity: 0, x: -15 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.08 }}
+      className="flex items-center gap-3 text-slate-700 font-medium 
+      bg-white/70 p-3 rounded-xl border border-slate-100"
+    >
+      <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+        {item.icon}
+      </div>
+
+      <span className="flex-1 text-sm">{item.text}</span>
+
+      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700">
+        {item.badge}
+      </span>
+    </motion.li>
+  ))}
+</ul>
+
+<motion.button
+  whileHover={{ scale: 1.03 }}
+  whileTap={{ scale: 0.97 }}
+  className="inline-flex items-center gap-2 px-6 py-2.5 
+  bg-emerald-600 text-white rounded-lg 
+  font-semibold text-sm hover:bg-emerald-700 transition"
+>
+  {isRTL ? 'اكتشف المزيد' : 'Discover More'}
+  <ArrowRight
+    size={16}
+    className={`${isRTL ? 'rotate-180' : ''}`}
+  />
+</motion.button>
+
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className={`${isRTL ? 'lg:order-1' : ''}`}
-        >
-          <div className="relative">
-            {/* إطار iPhone محسّن */}
-            <div className="iphone-frame mx-auto hover:scale-105 transition-transform duration-500">
-              <div className="power-button" />
-              <div className="volume-button" />
-              <div className="volume-button down" />
-              
-              <div className="iphone-screen">
-                <img
-                  src="/images/orders1.jpeg"
-                  alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            
-            {/* بادج ديكور محسّن */}
-            <motion.div
-              initial={{ scale: 0, rotate: -10 }}
-              whileInView={{ scale: 1, rotate: -3 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, type: 'spring' }}
-              className={`absolute -top-8 ${isRTL ? '-left-8' : '-right-8'} bg-white rounded-2xl shadow-2xl px-6 py-4 border border-slate-100 backdrop-blur-sm`}
-            >
-              <div className="flex items-center gap-3 text-sm font-black text-slate-900">
-                <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/50" />
-                {isRTL ? 'نشط الآن' : 'Live Now'}
-              </div>
-            </motion.div>
+  initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+  className={`${isRTL ? 'lg:order-1' : ''}`}
+>
+  <div className="relative">
 
-            {/* دوائر ديكورية */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-emerald-100/30 to-blue-100/30 rounded-full blur-3xl" />
-          </div>
-        </motion.div>
+    {/* iPhone Frame */}
+    <motion.div
+      initial={{ scale: 0.96, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="iphone-frame mx-auto hover:scale-[1.02] transition-transform duration-300"
+    >
+      <div className="power-button" />
+      <div className="volume-button" />
+      <div className="volume-button down" />
+      
+      <div className="iphone-screen">
+        <img
+          src="/images/orders1.jpeg"
+          alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </motion.div>
+
+    {/* Badge - أقرب + أنميشن أنعم */}
+    <motion.div
+      initial={{ opacity: 0, y: -8, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      animate={{ y: [0, -4, 0] }}
+      transition={{
+        delay: 1,
+        duration: 3,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "easeInOut"
+      }}
+      className={`absolute -top-4 ${isRTL ? '-left-4' : '-right-4'} 
+      bg-white rounded-lg shadow-md px-3 py-1.5 
+      border border-slate-100`}
+    >
+      <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-800">
+        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        {isRTL ? 'نشط الآن' : 'Live Now'}
+      </div>
+    </motion.div>
+
+    {/* Softer Glow */}
+    <div className="absolute -z-10 top-1/2 left-1/2 
+    -translate-x-1/2 -translate-y-1/2 
+    w-[100%] h-[100%] 
+    bg-blue-100/40 rounded-full blur-2xl" />
+  </div>
+</motion.div>
+
       </div>
 
       {/* الميزة الثانية */}
@@ -1059,177 +1146,199 @@ export default function CapturedPremium() {
           transition={{ duration: 0.7 }}
           className="space-y-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 border border-purple-200/70 text-purple-700 text-sm font-bold shadow-sm">
-            <Activity size={18} />
-            {isRTL ? 'الميزة #2' : 'Feature #2'}
-          </div>
-          
-          <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1]">
-            {isRTL ? 'متابعة وتتبع الطلبات' : 'Real-Time Order'}
-            <br />
-            <span className="text-purple-600">{isRTL ? 'لحظياً' : 'Tracking'}</span>
-          </h3>
-          
-          <p className="text-lg text-slate-600 leading-relaxed font-medium">
-            {isRTL
-              ? 'تتبع حالة كل طلب من البداية حتى التسليم. يتم تحديث الحالة تلقائياً مع كل خطوة، مع إمكانية إضافة ملاحظات وصور التوثيق المباشرة من موقع العمل.'
-              : 'Track each order status from start to delivery. Status updates automatically with every step, with the ability to add notes and live documentation photos from the work site.'}
-          </p>
+         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-[11px] font-semibold">
+  <Activity size={14} />
+  {isRTL ? 'الميزة #2' : 'Feature #2'}
+</div>
 
-          <ul className="space-y-5">
-            {[
-              {
-                icon: <CheckCircle2 size={22} className="text-purple-600" />,
-                text: isRTL ? 'تحديثات فورية لحالة الطلب' : 'Instant order status updates',
-                badge: isRTL ? 'تلقائي' : 'Auto'
-              },
-              {
-                icon: <CheckCircle2 size={22} className="text-purple-600" />,
-                text: isRTL ? 'إضافة صور توثيقية مباشرة' : 'Add live documentation photos',
-                badge: isRTL ? 'مباشر' : 'Live'
-              },
-              {
-                icon: <CheckCircle2 size={22} className="text-purple-600" />,
-                text: isRTL ? 'ختم الموقع الجغرافي تلقائياً' : 'Auto GPS location stamp',
-                badge: isRTL ? 'دقيق' : 'Precise'
-              },
-            ].map((item, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-4 text-slate-700 font-bold bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-slate-100 hover:border-purple-200 transition-all group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center group-hover:bg-purple-100 transition-colors flex-shrink-0">
-                  {item.icon}
-                </div>
-                <span className="flex-1">{item.text}</span>
-                <span className="text-xs font-black px-3 py-1 rounded-full bg-purple-100 text-purple-700">
-                  {item.badge}
-                </span>
-              </motion.li>
-            ))}
-          </ul>
+<h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-snug">
+  {isRTL ? 'متابعة وتتبع الطلبات' : 'Real-Time Order'}
+  <br />
+  <span className="text-purple-600">
+    {isRTL ? 'لحظياً' : 'Tracking'}
+  </span>
+</h3>
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-2xl font-black text-lg hover:from-purple-700 hover:to-purple-800 transition-all shadow-xl shadow-purple-600/30 hover:shadow-2xl hover:shadow-purple-600/40"
-          >
-            {isRTL ? 'جرّب الآن' : 'Try Now'}
-            <ArrowRight size={22} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
-          </motion.button>
+<p className="text-sm md:text-base text-slate-600 leading-relaxed">
+  {isRTL
+    ? 'تتبع حالة الطلب حتى التسليم مع تحديث تلقائي وإضافة صور وملاحظات مباشرة.'
+    : 'Track order status until delivery with automatic updates and live notes/photos.'}
+</p>
+
+        <ul className="space-y-3">
+  {[
+    {
+      icon: <CheckCircle2 size={16} className="text-purple-600" />,
+      text: isRTL ? 'تحديثات فورية' : 'Instant updates',
+      badge: isRTL ? 'تلقائي' : 'Auto'
+    },
+    {
+      icon: <CheckCircle2 size={16} className="text-purple-600" />,
+      text: isRTL ? 'صور توثيق مباشرة' : 'Live documentation photos',
+      badge: isRTL ? 'مباشر' : 'Live'
+    },
+    {
+      icon: <CheckCircle2 size={16} className="text-purple-600" />,
+      text: isRTL ? 'ختم GPS تلقائي' : 'Auto GPS stamp',
+      badge: isRTL ? 'دقيق' : 'Precise'
+    },
+  ].map((item, i) => (
+    <motion.li
+      key={i}
+      initial={{ opacity: 0, x: -15 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.08 }}
+      className="flex items-center gap-3 text-slate-700 font-medium 
+      bg-white/70 p-3 rounded-xl border border-slate-100"
+    >
+      <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0">
+        {item.icon}
+      </div>
+
+      <span className="flex-1 text-sm">{item.text}</span>
+
+      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-purple-100 text-purple-700">
+        {item.badge}
+      </span>
+    </motion.li>
+  ))}
+</ul>
+
+
+        <motion.button
+  whileHover={{ scale: 1.04 }}
+  whileTap={{ scale: 0.97 }}
+  className="group inline-flex items-center gap-2 
+  px-6 py-2.5 
+  bg-purple-600 text-white 
+  rounded-lg 
+  font-semibold text-sm 
+  hover:bg-purple-700 
+  transition-all"
+>
+  {isRTL ? 'جرّب الآن' : 'Try Now'}
+  <ArrowRight
+    size={16}
+    className={`transition-transform duration-200 group-hover:translate-x-1 ${isRTL ? 'rotate-180' : ''}`}
+  />
+</motion.button>
+
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="relative">
-            {/* إطار iPhone محسّن */}
-            <div className="iphone-frame mx-auto hover:scale-105 transition-transform duration-500">
-              <div className="power-button" />
-              <div className="volume-button" />
-              <div className="volume-button down" />
-              
-              <div className="iphone-screen">
-                <img
-                  src="/images/orders2.jpeg"
-                  alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            
-            {/* بادج ديكور محسّن */}
-            <motion.div
-              initial={{ scale: 0, rotate: 10 }}
-              whileInView={{ scale: 1, rotate: 3 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, type: 'spring' }}
-              className={`absolute -bottom-8 ${isRTL ? '-right-8' : '-left-8'} bg-white rounded-2xl shadow-2xl px-6 py-4 border border-slate-100 backdrop-blur-sm`}
-            >
-              <div className="flex items-center gap-3 text-sm font-black text-slate-900">
-                <MapPin size={18} className="text-purple-600" />
-                {isRTL ? 'موقع دقيق' : 'Precise Location'}
-              </div>
-            </motion.div>
+       <motion.div
+  initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6, ease: "easeOut" }}
+>
+  <div className="relative">
 
-            {/* دوائر ديكورية */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-purple-100/30 to-pink-100/30 rounded-full blur-3xl" />
-          </div>
-        </motion.div>
+    {/* iPhone Frame - Smaller */}
+    <motion.div
+      initial={{ scale: 0.96, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="iphone-frame mx-auto scale-95 hover:scale-[1.02] transition-transform duration-300"
+    >
+      <div className="power-button" />
+      <div className="volume-button" />
+      <div className="volume-button down" />
+      
+      <div className="iphone-screen">
+        <img
+          src="/images/orders2.jpeg"
+          alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </motion.div>
+    
+    {/* Smaller & Closer Badge */}
+    <motion.div
+      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+      animate={{ y: [0, 3, 0] }}
+      className={`absolute -bottom-4 ${isRTL ? '-right-4' : '-left-4'} 
+      bg-white rounded-lg shadow-md px-4 py-2 
+      border border-slate-100`}
+    >
+      <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-800">
+        <MapPin size={14} className="text-purple-600" />
+        {isRTL ? 'موقع دقيق' : 'Precise Location'}
+      </div>
+    </motion.div>
+
+    {/* Softer Glow */}
+    <div className="absolute -z-10 top-1/2 left-1/2 
+    -translate-x-1/2 -translate-y-1/2 
+    w-[105%] h-[105%] 
+    bg-purple-100/40 rounded-full blur-2xl" />
+  </div>
+</motion.div>
+
       </div>
     </div>
 
    {/* CTA Section - بسيط ونظيف */}
+{/* CTA Section - Compact */}
 <motion.div
-  initial={{ opacity: 0, y: 30 }}
+  initial={{ opacity: 0, y: 20 }}
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
-  transition={{ duration: 0.6 }}
-  className="mt-32 relative"
+  transition={{ duration: 0.5 }}
+  className="mt-20"
 >
-  <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[3rem] p-12 md:p-16 overflow-hidden">
-    {/* خلفية بسيطة */}
-    <div className="absolute inset-0 opacity-5">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
-    </div>
-    
-    <div className="relative z-10 text-center max-w-4xl mx-auto">
-      {/* الأيقونة */}
-      <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-8">
-        <Smartphone size={32} className="text-white" />
+  <div className="relative bg-slate-900 rounded-2xl p-6 md:p-8 overflow-hidden">
+
+    <div className="relative z-10 text-center max-w-2xl mx-auto">
+
+      {/* Icon */}
+      <div className="inline-flex items-center justify-center 
+      w-10 h-10 bg-blue-600 rounded-lg mb-4">
+        <Smartphone size={18} className="text-white" />
       </div>
 
-      {/* العنوان */}
-      <h3 className="text-4xl md:text-5xl font-black text-white mb-6">
+      {/* Title */}
+      <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">
         {isRTL ? 'جاهز للبدء؟' : 'Ready to Get Started?'}
       </h3>
-      
-      {/* الوصف */}
-      <p className="text-slate-300 text-lg font-medium mb-10 leading-relaxed">
+
+      {/* Description */}
+      <p className="text-slate-400 text-sm mb-6">
         {isRTL
-          ? 'حمّل التطبيق الآن وابدأ في توثيق عملياتك الميدانية بدقة GPS حقيقية'
-          : 'Download the app now and start documenting your field operations with real GPS accuracy'}
+          ? 'حمّل التطبيق وابدأ التوثيق بدقة GPS'
+          : 'Download the app and start documenting with real GPS'}
       </p>
 
-      {/* أزرار التحميل */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-        <button className="inline-flex items-center gap-4 px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold text-base hover:bg-slate-100 transition-all shadow-lg w-full sm:w-auto">
-          <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+      {/* Store Buttons */}
+      <div className="flex flex-col sm:flex-row justify-center gap-2">
+        <button className="inline-flex items-center gap-2 px-4 py-2 
+        bg-white text-slate-900 rounded-md 
+        text-xs font-semibold hover:bg-slate-100 transition">
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09z"/>
           </svg>
-          <div className="text-left">
-            <div className="text-[10px] font-medium text-slate-500 uppercase">
-              {isRTL ? 'حمّل من' : 'Download on'}
-            </div>
-            <div className="text-base font-black">App Store</div>
-          </div>
+          App Store
         </button>
 
-        <button className="inline-flex items-center gap-4 px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold text-base hover:bg-slate-100 transition-all shadow-lg w-full sm:w-auto">
-          <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
+        <button className="inline-flex items-center gap-2 px-4 py-2 
+        bg-white text-slate-900 rounded-md 
+        text-xs font-semibold hover:bg-slate-100 transition">
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92z"/>
           </svg>
-          <div className="text-left">
-            <div className="text-[10px] font-medium text-slate-500 uppercase">
-              {isRTL ? 'متوفر على' : 'Get it on'}
-            </div>
-            <div className="text-base font-black">Google Play</div>
-          </div>
+          Google Play
         </button>
       </div>
 
-    
     </div>
   </div>
 </motion.div>
+
 
   </div>
 </section>
@@ -1241,173 +1350,228 @@ export default function CapturedPremium() {
         <div className="absolute bottom-10 left-[-8%] w-[400px] h-[400px] bg-emerald-100 rounded-full blur-[110px] opacity-30" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="reveal-up text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-black uppercase tracking-wider mb-6">
-              <LayoutDashboard size={16} />
-              {isRTL ? 'لوحة التحكم' : 'Admin Dashboard'}
-            </div>
-            <h2 className="text-5xl md:text-6xl font-black mb-6 text-slate-900">
-              {isRTL ? 'لوحة تحكم غنية بالبيانات' : 'Data-Rich Admin Dashboard'}
-            </h2>
-            <p className="text-slate-600 text-xl font-medium max-w-3xl mx-auto leading-relaxed">
-              {isRTL
-                ? 'راقب الأداء، تتبع العمليات، واستخرج التقارير من لوحة واحدة قوية'
-                : 'Monitor performance, track operations, and export reports from one powerful dashboard'}
-            </p>
-          </div>
+          <div className="reveal-up text-center mb-12">
+  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full 
+  bg-slate-900 text-white text-[11px] font-semibold uppercase tracking-wide mb-4">
+    <LayoutDashboard size={14} />
+    {isRTL ? 'لوحة التحكم' : 'Admin Dashboard'}
+  </div>
+
+  <h2 className="text-2xl md:text-3xl font-bold mb-4 text-slate-900">
+    {isRTL ? 'لوحة تحكم غنية بالبيانات' : 'Data-Rich Admin Dashboard'}
+  </h2>
+
+  <p className="text-slate-600 text-sm md:text-base 
+  max-w-2xl mx-auto leading-relaxed">
+    {isRTL
+      ? 'راقب الأداء وتتبع العمليات واستخرج التقارير من لوحة واحدة.'
+      : 'Monitor performance, track operations, and export reports from one dashboard.'}
+  </p>
+</div>
+
 
           <div className="space-y-32">
             {/* صورة اللوحة الأولى */}
             <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="relative group">
-                  <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
-                    <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
-                      <img
-                        src="/images/dashboard-1.webp"
-                        alt={isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
-                        className="w-full rounded-[2rem] shadow-xl"
-                      />
-                    </div>
-                  </div>
+              
 
-                  <div className="absolute -top-6 -right-6 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl shadow-2xl px-6 py-3 text-white">
-                    <div className="flex items-center gap-2 text-sm font-black">
-                      <TrendingUp size={18} />
-                      {isRTL ? '+24.5%' : '+24.5%'}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div className="space-y-5">
 
-              <div className="space-y-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-bold">
-                  <BarChart3 size={18} />
-                  {isRTL ? 'تحليلات #1' : 'Analytics #1'}
-                </div>
-                
-                <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                  {isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
-                </h3>
-                
-                <p className="text-lg text-slate-600 leading-relaxed font-medium">
-                  {isRTL
-                    ? 'احصل على نظرة شاملة لأداء جميع فروعك من لوحة واحدة. قارن معدلات الإنجاز، عدد الطلبات المكتملة، والوقت المستغرق لكل فرع بمخططات بيانية تفاعلية.'
-                    : 'Get a comprehensive view of all branches performance from one dashboard. Compare completion rates, number of completed orders, and time taken for each branch with interactive charts.'}
-                </p>
+  <div className="inline-flex items-center gap-2 px-3 py-1.5 
+  rounded-full bg-blue-50 border border-blue-200 
+  text-blue-700 text-[11px] font-semibold">
+    <BarChart3 size={14} />
+    {isRTL ? 'تحليلات #1' : 'Analytics #1'}
+  </div>
+  
+  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-snug">
+    {isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
+  </h3>
+  
+  <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+    {isRTL
+      ? 'نظرة شاملة لأداء الفروع مع مقارنة الإنجاز والوقت عبر مخططات تفاعلية.'
+      : 'Overview of branch performance with completion and time comparison via interactive charts.'}
+  </p>
 
-                <ul className="space-y-5">
-                  {[
-                    {
-                      icon: <BarChart3 size={20} className="text-blue-600" />,
-                      text: isRTL ? 'مخططات بيانية تفاعلية متقدمة' : 'Advanced interactive data charts',
-                    },
-                    {
-                      icon: <TrendingUp size={20} className="text-blue-600" />,
-                      text: isRTL ? 'مقارنة الأداء بين الفروع' : 'Compare performance across branches',
-                    },
-                    {
-                      icon: <Activity size={20} className="text-blue-600" />,
-                      text: isRTL ? 'تحليل معدلات الإنجاز بالوقت الفعلي' : 'Real-time completion rate analysis',
-                    },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-slate-700 font-bold">
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
-                        {item.icon}
-                      </div>
-                      <span>{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
+  <ul className="space-y-3">
+    {[
+      {
+        icon: <BarChart3 size={16} className="text-blue-600" />,
+        text: isRTL ? 'مخططات تفاعلية متقدمة' : 'Advanced interactive charts',
+      },
+      {
+        icon: <TrendingUp size={16} className="text-blue-600" />,
+        text: isRTL ? 'مقارنة الأداء بين الفروع' : 'Compare branch performance',
+      },
+      {
+        icon: <Activity size={16} className="text-blue-600" />,
+        text: isRTL ? 'تحليل لحظي للإنجاز' : 'Real-time completion analysis',
+      },
+    ].map((item, i) => (
+      <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
+        <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+          {item.icon}
+        </div>
+        <span className="text-sm">{item.text}</span>
+      </li>
+    ))}
+  </ul>
 
-                <div className="flex flex-wrap gap-4">
-                  <button className="group inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-2xl font-black text-lg hover:bg-slate-900 transition-all shadow-lg shadow-blue-600/20 hover:-translate-y-1">
-                    {isRTL ? 'شاهد الديمو' : 'View Demo'}
-                    <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
-                  <button className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 rounded-2xl font-black text-lg hover:border-blue-600 transition-all">
-                    <FileDown size={20} />
-                    {isRTL ? 'تحميل تقرير' : 'Download Report'}
-                  </button>
-                </div>
-              </div>
+  <div className="flex flex-wrap gap-3">
+    <button className="inline-flex items-center gap-2 px-5 py-2.5 
+    bg-blue-600 text-white rounded-lg 
+    font-semibold text-sm hover:bg-blue-700 transition">
+      {isRTL ? 'شاهد الديمو' : 'View Demo'}
+      <ArrowUpRight size={16} />
+    </button>
+
+    <button className="inline-flex items-center gap-2 px-5 py-2.5 
+    bg-white border border-slate-200 text-slate-900 
+    rounded-lg font-semibold text-sm hover:border-blue-500 transition">
+      <FileDown size={16} />
+      {isRTL ? 'تحميل تقرير' : 'Download Report'}
+    </button>
+  </div>
+
+</div>
+<div>
+  <div className="relative group">
+    
+    <div className="rounded-2xl bg-slate-900 
+    border border-slate-800 
+    p-3 md:p-4 overflow-hidden">
+      
+      <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700">
+        <img
+          src="/images/dashboard-1.webp"
+          alt={isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
+          className="w-full rounded-lg"
+        />
+      </div>
+
+    </div>
+
+    {/* Smaller Badge */}
+    <div className="absolute -top-3 -right-3 
+    bg-blue-600 
+    rounded-lg 
+    shadow-md 
+    px-3 py-1.5 
+    text-white">
+      
+      <div className="flex items-center gap-1.5 
+      text-[11px] font-semibold">
+        <TrendingUp size={14} />
+        +24.5%
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
             </div>
 
             {/* صورة اللوحة الثانية */}
             <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
-              <div className={`${isRTL ? 'lg:order-2' : ''} space-y-8`}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-bold">
-                  <PieChart size={18} />
-                  {isRTL ? 'تحليلات #2' : 'Analytics #2'}
-                </div>
-                
-                <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-                  {isRTL ? 'نسب الطلبات والإحصائيات' : 'Orders Statistics & Ratios'}
-                </h3>
-                
-                <p className="text-lg text-slate-600 leading-relaxed font-medium">
-                  {isRTL
-                    ? 'تتبع نسب الطلبات المكتملة، قيد التنفيذ، والمؤجلة بمخططات دائرية ورسوم بيانية واضحة. احصل على رؤى دقيقة حول توزيع الطلبات عبر الفترات الزمنية المختلفة.'
-                    : 'Track ratios of completed, in-progress, and postponed orders with clear pie charts and graphs. Get accurate insights into order distribution across different time periods.'}
-                </p>
+              <div className={`${isRTL ? 'lg:order-2' : ''} space-y-5`}>
 
-                <ul className="space-y-5">
-                  {[
-                    {
-                      icon: <PieChart size={20} className="text-emerald-600" />,
-                      text: isRTL ? 'مخططات دائرية لتوزيع الطلبات' : 'Pie charts for order distribution',
-                    },
-                    {
-                      icon: <Database size={20} className="text-emerald-600" />,
-                      text: isRTL ? 'إحصائيات شاملة لكل حالة' : 'Comprehensive statistics for each status',
-                    },
-                    {
-                      icon: <TrendingUp size={20} className="text-emerald-600" />,
-                      text: isRTL ? 'تحليل الاتجاهات عبر الزمن' : 'Trend analysis over time',
-                    },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-slate-700 font-bold">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
-                        {item.icon}
-                      </div>
-                      <span>{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
+  <div className="inline-flex items-center gap-2 px-3 py-1.5 
+  rounded-full bg-emerald-50 border border-emerald-200 
+  text-emerald-700 text-[11px] font-semibold">
+    <PieChart size={14} />
+    {isRTL ? 'تحليلات #2' : 'Analytics #2'}
+  </div>
+  
+  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-snug">
+    {isRTL ? 'نسب الطلبات والإحصائيات' : 'Orders Statistics & Ratios'}
+  </h3>
+  
+  <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+    {isRTL
+      ? 'تتبع نسب الطلبات المكتملة وقيد التنفيذ بمخططات واضحة وتحليل زمني.'
+      : 'Track completed and in-progress orders with clear charts and time analysis.'}
+  </p>
 
-                <div className="flex flex-wrap gap-4">
-                  <button className="group inline-flex items-center gap-3 px-8 py-4 bg-emerald-600 text-white rounded-2xl font-black text-lg hover:bg-slate-900 transition-all shadow-lg shadow-emerald-600/20 hover:-translate-y-1">
-                    {isRTL ? 'اكتشف التحليلات' : 'Explore Analytics'}
-                    <ArrowRight size={20} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
-                  </button>
-                  <button className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 rounded-2xl font-black text-lg hover:border-emerald-600 transition-all">
-                    <Users size={20} />
-                    {isRTL ? 'إدارة الفريق' : 'Team Management'}
-                  </button>
-                </div>
-              </div>
+  <ul className="space-y-3">
+    {[
+      {
+        icon: <PieChart size={16} className="text-emerald-600" />,
+        text: isRTL ? 'مخططات دائرية لتوزيع الطلبات' : 'Pie charts for distribution',
+      },
+      {
+        icon: <Database size={16} className="text-emerald-600" />,
+        text: isRTL ? 'إحصائيات شاملة لكل حالة' : 'Status-based statistics',
+      },
+      {
+        icon: <TrendingUp size={16} className="text-emerald-600" />,
+        text: isRTL ? 'تحليل الاتجاهات عبر الزمن' : 'Trend analysis over time',
+      },
+    ].map((item, i) => (
+      <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
+        <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+          {item.icon}
+        </div>
+        <span className="text-sm">{item.text}</span>
+      </li>
+    ))}
+  </ul>
 
-              <div className={`${isRTL ? 'lg:order-1' : ''}`}>
-                <div className="relative group">
-                  <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
-                    <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
-                      <img
-  src="/images/dashboard-2.webp"
-  alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
-  className="w-full rounded-[2rem] shadow-xl"
-/>
+  <div className="flex flex-wrap gap-3">
+    <button className="inline-flex items-center gap-2 px-5 py-2.5 
+    bg-emerald-600 text-white rounded-lg 
+    font-semibold text-sm hover:bg-emerald-700 transition">
+      {isRTL ? 'اكتشف التحليلات' : 'Explore Analytics'}
+      <ArrowRight
+        size={16}
+        className={`${isRTL ? 'rotate-180' : ''}`}
+      />
+    </button>
 
-                    </div>
-                  </div>
+    <button className="inline-flex items-center gap-2 px-5 py-2.5 
+    bg-white border border-slate-200 text-slate-900 
+    rounded-lg font-semibold text-sm hover:border-emerald-500 transition">
+      <Users size={16} />
+      {isRTL ? 'إدارة الفريق' : 'Team Management'}
+    </button>
+  </div>
 
-                  <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl shadow-2xl px-6 py-3 text-white">
-                    <div className="flex items-center gap-2 text-sm font-black">
-                      <CheckCircle2 size={18} />
-                      {isRTL ? '89% إنجاز' : '89% Complete'}
-                    </div>
-                  </div>
-                </div>
-              </div>
+</div>
+
+
+             <div className={`${isRTL ? 'lg:order-1' : ''}`}>
+  <div className="relative group">
+
+    <div className="rounded-2xl bg-slate-900 shadow-lg 
+    border border-slate-800 p-3 md:p-4 overflow-hidden">
+
+      <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700">
+        <img
+          src="/images/dashboard-2.webp"
+          alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
+          className="w-full rounded-lg shadow-md"
+        />
+      </div>
+
+    </div>
+
+    {/* Smaller Badge */}
+    <div className="absolute -bottom-4 -left-4 
+    bg-emerald-600 rounded-lg shadow-md 
+    px-3 py-1.5 text-white">
+      
+      <div className="flex items-center gap-1.5 text-[11px] font-semibold">
+        <CheckCircle2 size={14} />
+        {isRTL ? '89% إنجاز' : '89% Complete'}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
             </div>
           </div>
         </div>
@@ -1425,13 +1589,13 @@ export default function CapturedPremium() {
 
   <div className="max-w-7xl mx-auto relative z-10">
     {/* العنوان */}
-    <div className="text-center mb-20">
+     <div className="text-center mb-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-xs font-black uppercase tracking-wider mb-6"
+        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-[10px] font-black uppercase tracking-wider mb-6"
       >
         <Sparkles size={14} />
         {isRTL ? 'باقات مرنة' : 'Flexible Plans'}
@@ -1442,7 +1606,7 @@ export default function CapturedPremium() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900"
+        className="text-3xl lg:text-5xl font-black mb-4 tracking-tight text-slate-900"
       >
         {isRTL ? 'خطط بسيطة وشفافة' : 'Simple, Transparent Pricing'}
       </motion.h2>
@@ -1452,7 +1616,7 @@ export default function CapturedPremium() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-slate-500 font-medium text-lg"
+        className="text-slate-500 font-medium text-base"
       >
         {isRTL ? 'اختر الباقة التي تناسب حجم أعمالك مع خصومات على الدفع السنوي' : 'Choose the plan that fits your business with annual payment discounts'}
       </motion.p>
@@ -1471,17 +1635,17 @@ export default function CapturedPremium() {
           <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors">
             <Layers size={24} className="text-slate-600 group-hover:text-blue-600 transition-colors" />
           </div>
-          <h3 className="text-xl font-black text-slate-900 mb-4">
+          <h3 className="text-lg font-black text-slate-900 mb-4">
             {isRTL ? 'الأساسية (Starter)' : 'Starter'}
           </h3>
           <div className="flex items-baseline gap-2">
-            <span className="text-5xl font-black text-slate-900">299</span>
+            <span className="text-4xl font-black text-slate-900">299</span>
             <div className="flex flex-col">
-              <span className="text-slate-400 font-bold text-sm">{isRTL ? 'ر.س' : 'SAR'}</span>
-              <span className="text-slate-400 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
+              <span className="text-slate-400 font-bold text-xs">{isRTL ? 'ر.س' : 'SAR'}</span>
+              <span className="text-slate-400 font-medium text-[10px]">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
-          <p className="text-emerald-600 text-xs font-bold mt-2">
+          <p className="text-emerald-600 text-[11px] font-bold mt-2">
             {isRTL ? 'أو 2,990 ر.س / سنوياً (خصم شهرين)' : 'Or 2,990 SAR / Year (2 Months Off)'}
           </p>
         </div>
@@ -1495,19 +1659,19 @@ export default function CapturedPremium() {
             { ar: 'فرع واحد فقط', en: '1 Branch' },
             { ar: 'تخزين 10GB', en: '10GB Storage' },
           ].map((item, i) => (
-            <li key={i} className="flex gap-3 items-start text-slate-600 text-sm font-semibold">
+            <li key={i} className="flex gap-3 items-start text-slate-600 text-xs font-semibold">
               <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
               <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
         </ul>
         
-        <button className="w-full py-4 rounded-2xl font-black text-base border-2 border-slate-200 bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm hover:shadow-lg">
+        <button className="w-full py-4 rounded-2xl font-black text-sm border-2 border-slate-200 bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm hover:shadow-lg">
           {isRTL ? 'ابدأ الآن' : 'Get Started'}
         </button>
       </motion.div>
 
-      {/* Business Plan - الأكثر مبيعاً */}
+      {/* Business Plan */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -1515,7 +1679,7 @@ export default function CapturedPremium() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-10 rounded-[3rem] shadow-2xl shadow-blue-900/30 relative scale-105 border-2 border-blue-500/20 flex flex-col"
       >
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
           {isRTL ? '⭐ الأكثر طلباً' : '⭐ Most Popular'}
         </div>
         
@@ -1523,17 +1687,17 @@ export default function CapturedPremium() {
           <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-4 border border-blue-500/30">
             <Zap size={24} className="text-blue-400" />
           </div>
-          <h3 className="text-xl font-black text-blue-400 mb-4">
+          <h3 className="text-lg font-black text-blue-400 mb-4">
             {isRTL ? 'الأعمال (Business)' : 'Business'}
           </h3>
           <div className="flex items-baseline gap-2">
-            <span className="text-5xl font-black text-white">699</span>
+            <span className="text-4xl font-black text-white">699</span>
             <div className="flex flex-col">
-              <span className="text-slate-500 font-bold text-sm">{isRTL ? 'ر.س' : 'SAR'}</span>
-              <span className="text-slate-500 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
+              <span className="text-slate-500 font-bold text-xs">{isRTL ? 'ر.س' : 'SAR'}</span>
+              <span className="text-slate-500 font-medium text-[10px]">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
-          <p className="text-blue-400 text-xs font-bold mt-2">
+          <p className="text-blue-400 text-[11px] font-bold mt-2">
             {isRTL ? 'أو 6,990 ر.س / سنوياً (خصم شهرين)' : 'Or 6,990 SAR / Year (2 Months Off)'}
           </p>
         </div>
@@ -1547,14 +1711,14 @@ export default function CapturedPremium() {
             { ar: 'حتى 15 مستخدم و 5 فروع', en: 'Up to 15 Users & 5 Branches' },
             { ar: 'تخزين 50GB', en: '50GB Storage' },
           ].map((item, i) => (
-            <li key={i} className="flex gap-3 items-start text-slate-300 text-sm font-semibold">
+            <li key={i} className="flex gap-3 items-start text-slate-300 text-xs font-semibold">
               <CheckCircle2 size={18} className="text-blue-400 shrink-0" />
               <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
         </ul>
 
-        <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-base hover:from-blue-500 hover:to-indigo-500 transition-all shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 relative z-10">
+        <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-sm hover:from-blue-500 hover:to-indigo-500 transition-all shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 relative z-10">
           {isRTL ? 'ابدأ تجربة مجانية' : 'Start Free Trial'}
         </button>
       </motion.div>
@@ -1571,17 +1735,17 @@ export default function CapturedPremium() {
           <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-50 transition-colors">
             <Database size={24} className="text-slate-600 group-hover:text-purple-600 transition-colors" />
           </div>
-          <h3 className="text-xl font-black text-slate-900 mb-4">
+          <h3 className="text-lg font-black text-slate-900 mb-4">
             {isRTL ? 'المؤسسات (Enterprise)' : 'Enterprise'}
           </h3>
           <div className="flex items-baseline gap-2">
-            <span className="text-5xl font-black text-slate-900">1499</span>
+            <span className="text-4xl font-black text-slate-900">1499</span>
             <div className="flex flex-col">
-              <span className="text-slate-400 font-bold text-sm">{isRTL ? 'ر.س' : 'SAR'}</span>
-              <span className="text-slate-400 font-medium text-xs">{isRTL ? '/شهرياً' : '/month'}</span>
+              <span className="text-slate-400 font-bold text-xs">{isRTL ? 'ر.س' : 'SAR'}</span>
+              <span className="text-slate-400 font-medium text-[10px]">{isRTL ? '/شهرياً' : '/month'}</span>
             </div>
           </div>
-          <p className="text-purple-600 text-xs font-bold mt-2">
+          <p className="text-purple-600 text-[11px] font-bold mt-2">
             {isRTL ? 'أو 14,990 ر.س / سنوياً (خصم شهرين)' : 'Or 14,990 SAR / Year (2 Months Off)'}
           </p>
         </div>
@@ -1594,20 +1758,20 @@ export default function CapturedPremium() {
             { ar: 'حتى 50 مستخدم و 20 فرع', en: 'Up to 50 Users & 20 Branches' },
             { ar: 'تخزين 200GB', en: '200GB Storage' },
           ].map((item, i) => (
-            <li key={i} className="flex gap-3 items-start text-slate-600 text-sm font-semibold">
+            <li key={i} className="flex gap-3 items-start text-slate-600 text-xs font-semibold">
               <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
               <span className="leading-tight">{isRTL ? item.ar : item.en}</span>
             </li>
           ))}
         </ul>
 
-        <button className="w-full py-4 rounded-2xl font-black text-base border-2 border-slate-200 bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm hover:shadow-lg">
+        <button className="w-full py-4 rounded-2xl font-black text-sm border-2 border-slate-200 bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all shadow-sm hover:shadow-lg">
           {isRTL ? 'تواصل معنا' : 'Contact Sales'}
         </button>
       </motion.div>
     </div>
 
-    {/* إضافات اختيارية (Upsell) */}
+    {/* Upsell */}
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -1615,24 +1779,24 @@ export default function CapturedPremium() {
       transition={{ duration: 0.6, delay: 0.4 }}
       className="mt-20 p-8 bg-slate-50 rounded-[2rem] border border-slate-200"
     >
-      <h4 className="text-center font-black text-slate-900 mb-8">
+      <h4 className="text-center font-black text-slate-900 mb-8 text-base">
         {isRTL ? 'خدمات وإضافات اختيارية' : 'Optional Add-ons'}
       </h4>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
         <div>
-          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'مستخدم إضافي' : 'Extra User'}</p>
-          <p className="text-lg font-black text-slate-900">25 {isRTL ? 'ر.س' : 'SAR'}</p>
+          <p className="text-[11px] text-slate-500 uppercase font-bold">{isRTL ? 'مستخدم إضافي' : 'Extra User'}</p>
+          <p className="text-base font-black text-slate-900">25 {isRTL ? 'ر.س' : 'SAR'}</p>
         </div>
         <div>
-          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'فرع إضافي' : 'Extra Branch'}</p>
-          <p className="text-lg font-black text-slate-900">80 {isRTL ? 'ر.س' : 'SAR'}</p>
+          <p className="text-[11px] text-slate-500 uppercase font-bold">{isRTL ? 'فرع إضافي' : 'Extra Branch'}</p>
+          <p className="text-base font-black text-slate-900">80 {isRTL ? 'ر.س' : 'SAR'}</p>
         </div>
         <div>
-          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'تخزين 50GB' : '50GB Storage'}</p>
-          <p className="text-lg font-black text-slate-900">120 {isRTL ? 'ر.س' : 'SAR'}</p>
+          <p className="text-[11px] text-slate-500 uppercase font-bold">{isRTL ? 'تخزين 50GB' : '50GB Storage'}</p>
+          <p className="text-base font-black text-slate-900">120 {isRTL ? 'ر.س' : 'SAR'}</p>
         </div>
         <div>
-          <p className="text-xs text-slate-500 uppercase font-bold">{isRTL ? 'تقارير Power BI' : 'Power BI Reports'}</p>
+          <p className="text-[11px] text-slate-500 uppercase font-bold">{isRTL ? 'تقارير Power BI' : 'Power BI Reports'}</p>
           <p className="text-sm font-black text-slate-900">500 - 1500 {isRTL ? 'ر.س' : 'SAR'}</p>
         </div>
       </div>
@@ -1643,110 +1807,108 @@ export default function CapturedPremium() {
 
 
       {/* --- FAQ --- */}
-      <section className="py-40 px-6 max-w-4xl mx-auto">
-        <div className="reveal-up text-center mb-20">
-          <h2 className="text-5xl font-black mb-6">
-            {isRTL ? 'الأسئلة الشائعة' : 'Common Questions'}
-          </h2>
-          <p className="text-slate-400 font-bold">
-            {isRTL
-              ? 'كل ما تريد معرفته عن نظام CapTured'
-              : 'Everything you need to know about CapTured'}
-          </p>
-        </div>
+     <section className="py-40 px-6 max-w-4xl mx-auto">
+  <div className="reveal-up text-center mb-20">
+    <h2 className="text-4xl font-black mb-6">
+      {isRTL ? 'الأسئلة الشائعة' : 'Common Questions'}
+    </h2>
+    <p className="text-slate-400 font-bold text-sm">
+      {isRTL
+        ? 'كل ما تريد معرفته عن نظام CapTured'
+        : 'Everything you need to know about CapTured'}
+    </p>
+  </div>
 
-        <div className="space-y-4">
-          {[
-            {
-              q: isRTL
-                ? 'هل يمكن تعديل السجل بعد الإرسال؟'
-                : 'Can logs be edited after submission?',
-              a: isRTL
-                ? 'لا، بعد رفع السجل لا يمكن تعديله نهائياً لضمان الموثوقية.'
-                : 'No, once a log is uploaded, it cannot be edited to ensure data integrity.',
-            },
-            {
-              q: isRTL
-                ? 'هل يمكن رفع صور من الاستوديو؟'
-                : 'Can photos be uploaded from the gallery?',
-              a: isRTL
-                ? 'لا، التصوير يكون من كاميرا التطبيق مباشرة فقط.'
-                : 'No, photos must be captured directly through the app camera only.',
-            },
-            {
-              q: isRTL
-                ? 'هل يدعم العمل بدون إنترنت؟'
-                : 'Does it support offline mode?',
-              a: isRTL
-                ? 'نعم، عند ضعف الشبكة يظهر "جاري الرفع" أو "تم الحفظ محلياً وسيتم الرفع لاحقاً".'
-                : 'Yes, if the connection is weak, it shows "Uploading" or "Saved locally and will sync later".',
-            },
-            {
-              q: isRTL
-                ? 'هل التطبيق يرفض المواقع الوهمية؟'
-                : 'Does the app reject fake locations?',
-              a: isRTL
-                ? 'نعم، يتم كشف برامج المواقع الوهمية ورفض تسجيل العملية.'
-                : 'Yes, mock location apps are detected and the process will be rejected.',
-            },
-            {
-              q: isRTL
-                ? 'هل يمكن التحكم بالميديا المطلوبة؟'
-                : 'Can the required media be customized?',
-              a: isRTL
-                ? 'نعم، مدير النظام يتحكم بالنوع (صور/فيديو) وعدد الملفات المطلوبة والحقول الإلزامية.'
-                : 'Yes, the admin controls the type (photo/video), number of files, and mandatory fields.',
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="reveal-up bg-white rounded-3xl border border-slate-100 shadow-sm transition-all hover:border-blue-200"
+  <div className="space-y-4">
+    {[
+      {
+        q: isRTL
+          ? 'هل يمكن تعديل السجل بعد الإرسال؟'
+          : 'Can logs be edited after submission?',
+        a: isRTL
+          ? 'لا، بعد رفع السجل لا يمكن تعديله نهائياً لضمان الموثوقية.'
+          : 'No, once a log is uploaded, it cannot be edited to ensure data integrity.',
+      },
+      {
+        q: isRTL
+          ? 'هل يمكن رفع صور من الاستوديو؟'
+          : 'Can photos be uploaded from the gallery?',
+        a: isRTL
+          ? 'لا، التصوير يكون من كاميرا التطبيق مباشرة فقط.'
+          : 'No, photos must be captured directly through the app camera only.',
+      },
+      {
+        q: isRTL
+          ? 'هل يدعم العمل بدون إنترنت؟'
+          : 'Does it support offline mode?',
+        a: isRTL
+          ? 'نعم، عند ضعف الشبكة يظهر "جاري الرفع" أو "تم الحفظ محلياً وسيتم الرفع لاحقاً".'
+          : 'Yes, if the connection is weak, it shows "Uploading" or "Saved locally and will sync later".',
+      },
+      {
+        q: isRTL
+          ? 'هل التطبيق يرفض المواقع الوهمية؟'
+          : 'Does the app reject fake locations?',
+        a: isRTL
+          ? 'نعم، يتم كشف برامج المواقع الوهمية ورفض تسجيل العملية.'
+          : 'Yes, mock location apps are detected and the process will be rejected.',
+      },
+      {
+        q: isRTL
+          ? 'هل يمكن التحكم بالميديا المطلوبة؟'
+          : 'Can the required media be customized?',
+        a: isRTL
+          ? 'نعم، مدير النظام يتحكم بالنوع (صور/فيديو) وعدد الملفات المطلوبة والحقول الإلزامية.'
+          : 'Yes, the admin controls the type (photo/video), number of files, and mandatory fields.',
+      },
+    ].map((item, i) => (
+      <div
+        key={i}
+        className="reveal-up bg-white rounded-3xl border border-slate-100 shadow-sm transition-all hover:border-blue-200"
+      >
+        <button
+          onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+          className="w-full p-8 text-right flex justify-between items-center font-bold text-lg group"
+        >
+          <span className={`${isRTL ? '' : 'text-left'} leading-snug`}>
+            {item.q}
+          </span>
+          <div
+            className={`p-2 rounded-full transition-all duration-300 ${
+              activeFaq === i
+                ? 'bg-blue-600 text-white'
+                : 'bg-slate-100 text-slate-400'
+            }`}
+          >
+            <Plus
+              size={18}
+              className={`transition-transform duration-500 ${
+                activeFaq === i ? 'rotate-[135deg]' : ''
+              }`}
+            />
+          </div>
+        </button>
+        <AnimatePresence>
+          {activeFaq === i && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
             >
-              <button
-                onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                className="w-full p-8 text-right flex justify-between items-center font-bold text-xl group"
-              >
-                <span className={`${isRTL ? '' : 'text-left'} leading-snug`}>
-                  {item.q}
-                </span>
-                <div
-                  className={`p-2 rounded-full transition-all duration-300 ${
-                    activeFaq === i
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-slate-100 text-slate-400'
-                  }`}
-                >
-                  <Plus
-                    size={20}
-                    className={`transition-transform duration-500 ${
-                      activeFaq === i ? 'rotate-[135deg]' : ''
-                    }`}
-                  />
-                </div>
-              </button>
-              <AnimatePresence>
-                {activeFaq === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-8 pb-8 text-slate-500 font-bold leading-relaxed border-t border-slate-50 pt-6">
-                      {item.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
-      </section>
-      
+              <div className="px-8 pb-8 text-slate-500 font-bold text-sm leading-relaxed border-t border-slate-50 pt-6">
+                {item.a}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* --- Footer - خط أكبر --- */}
-   
- <footer
+  <footer
   id="contact"
   className="relative bg-slate-950 text-white py-24 px-6 overflow-hidden"
 >
@@ -1767,19 +1929,19 @@ export default function CapturedPremium() {
 
       {/* القسم الأيسر */}
       <div>
-        <h2 className="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
+        <h2 className="text-3xl lg:text-4xl font-extrabold mb-6 leading-tight">
           {isRTL ? 'ابدأ التحول الرقمي اليوم' : 'Start Your Digital Journey Today'}
         </h2>
 
-        <p className="text-slate-400 text-lg font-medium mb-8 leading-relaxed max-w-lg">
+        <p className="text-slate-400 text-base font-medium mb-8 leading-relaxed max-w-lg">
           {isRTL
             ? 'انضم إلى الشركات التي تثق في CapTured لتوثيق عملياتها الميدانية باحترافية.'
             : 'Join companies trusting CapTured for professional field documentation.'}
         </p>
 
-        <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-semibold shadow-lg shadow-blue-600/30 hover:-translate-y-1 transition-all flex items-center gap-3">
+        <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-medium text-sm shadow-lg shadow-blue-600/30 hover:-translate-y-1 transition-all flex items-center gap-3">
           {isRTL ? 'احجز عرضاً تجريبياً' : 'Book a Demo'}
-          <ArrowRight size={18} className={isRTL ? 'rotate-180' : ''} />
+          <ArrowRight size={16} className={isRTL ? 'rotate-180' : ''} />
         </button>
       </div>
 
@@ -1791,9 +1953,9 @@ export default function CapturedPremium() {
           <img
             src="/images/logo.png"
             alt="CapTured Logo"
-            className="h-12 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
-          <span className="text-2xl font-extrabold tracking-wide">CapTured</span>
+          <span className="text-xl font-extrabold tracking-wide">CapTured</span>
         </div>
 
         {/* معلومات الاتصال */}
@@ -1805,14 +1967,14 @@ export default function CapturedPremium() {
               isRTL ? 'hover:-translate-x-2' : 'hover:translate-x-2'
             } transition-transform`}
           >
-            <div className="w-11 h-11 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
-              <Mail size={18} />
+            <div className="w-10 h-10 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+              <Mail size={16} />
             </div>
             <div>
-              <div className="text-xs uppercase text-slate-500 font-semibold mb-1">
+              <div className="text-[10px] uppercase text-slate-500 font-semibold mb-1">
                 {isRTL ? 'البريد الإلكتروني' : 'Email'}
               </div>
-              <div className="text-sm font-semibold group-hover:text-blue-400 transition-colors">
+              <div className="text-xs font-semibold group-hover:text-blue-400 transition-colors">
                 info@ilogic.com.sa
               </div>
             </div>
@@ -1824,28 +1986,28 @@ export default function CapturedPremium() {
               isRTL ? 'hover:-translate-x-2' : 'hover:translate-x-2'
             } transition-transform`}
           >
-            <div className="w-11 h-11 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-              <Phone size={18} />
+            <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+              <Phone size={16} />
             </div>
             <div>
-              <div className="text-xs uppercase text-slate-500 font-semibold mb-1">
+              <div className="text-[10px] uppercase text-slate-500 font-semibold mb-1">
                 {isRTL ? 'الهاتف' : 'Phone'}
               </div>
-              <div className="text-sm font-semibold" dir="ltr">
+              <div className="text-xs font-semibold" dir="ltr">
                 +966 55 898 6036
               </div>
             </div>
           </a>
 
           <div className="flex items-center gap-4">
-            <div className="w-11 h-11 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
-              <MapPin size={18} />
+            <div className="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
+              <MapPin size={16} />
             </div>
             <div>
-              <div className="text-xs uppercase text-slate-500 font-semibold mb-1">
+              <div className="text-[10px] uppercase text-slate-500 font-semibold mb-1">
                 {isRTL ? 'الموقع' : 'Location'}
               </div>
-              <div className="text-sm font-semibold">
+              <div className="text-xs font-semibold">
                 {isRTL ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia'}
               </div>
             </div>
@@ -1856,7 +2018,7 @@ export default function CapturedPremium() {
         {/* السوشيال والحقوق */}
         <div className="pt-6 border-t border-white/10 flex justify-between items-center flex-wrap gap-4">
 
-          <span className="text-xs text-slate-500 font-medium">
+          <span className="text-[10px] text-slate-500 font-medium">
             © 2026 CapTured. All rights reserved.
           </span>
 
@@ -1864,23 +2026,23 @@ export default function CapturedPremium() {
 
             <a
               href="#"
-              className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all"
+              className="w-9 h-9 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all"
             >
-              <Twitter size={16} />
+              <Twitter size={14} />
             </a>
 
             <a
               href="#"
-              className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all"
+              className="w-9 h-9 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all"
             >
-              <Linkedin size={16} />
+              <Linkedin size={14} />
             </a>
 
             <a
               href="#"
-              className="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all"
+              className="w-9 h-9 bg-white/10 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all"
             >
-              <Facebook size={16} />
+              <Facebook size={14} />
             </a>
 
           </div>
@@ -1891,7 +2053,6 @@ export default function CapturedPremium() {
     </div>
   </div>
 </footer>
-
 
     </div>
   );
