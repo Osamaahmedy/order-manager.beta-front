@@ -420,7 +420,7 @@ export default function CapturedPremium() {
   </div>
 
   {/* Content */}
-  <div className="relative z-10 container mx-auto px-6 py-24 text-center">
+  <div className="relative z-10 container mx-auto px-6 py-24 text-center mt-10">
     <div className="max-w-5xl mx-auto flex flex-col items-center">
 
       {/* Badge */}
@@ -430,7 +430,7 @@ export default function CapturedPremium() {
         className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-semibold mb-10 backdrop-blur-sm"
       >
         <Sparkles size={14} />
-        <span>
+        <span >
           {isRTL ? 'الحل الأذكى للتوثيق الميداني' : 'Smartest Field Documentation Solution'}
         </span>
       </motion.div>
