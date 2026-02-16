@@ -257,12 +257,14 @@ export default function CapturedPremium() {
                 : 'bg-white/40 backdrop-blur-lg border-white/40 shadow-md'
             }`}
           >
-            <div className="text-2xl font-black text-slate-900 flex items-center gap-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
-                <Zap fill="white" className="text-white" size={22} />
-              </div>
-              <span className="tracking-tighter">CapTured</span>
-            </div>
+            <div className="flex items-center">
+  <img
+    src="/images/logo.png"
+    alt="CapTured Logo"
+    className="h-9 md:h-10 w-auto object-contain transition-transform duration-300 hover:scale-105"
+  />
+</div>
+
 
             {/* Desktop */}
             <div className="hidden md:flex items-center gap-10">
@@ -385,186 +387,142 @@ export default function CapturedPremium() {
           </AnimatePresence>
         </div>
       </nav>
-      <div className="py-5" />
 
-      {/* --- HERO SLIDER - خط أكبر --- */}
-      <section
-        id="home"
-        className="relative min-h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-white"
-      >
-        {/* خلفية السلايدر المحسّنة */}
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="wait">
-            {hasSlides && (
-              <motion.div
-                key={currentImage}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 0.7, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 1.2, ease: 'easeInOut' }}
-                className="w-full h-full"
-              >
-                <img
-                  src={currentImage}
-                  className="w-full h-full object-cover"
-                  alt="Captured Pro"
-                  loading="eager"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          
-          {/* تدرج خلفية محسّن */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/30 to-[#F8FAFC]/50" />
-          
-          {/* دوائر خلفية */}
-          <div className="absolute top-20 right-[-10%] w-[500px] h-[500px] bg-blue-100 rounded-full blur-[120px] opacity-30" />
-          <div className="absolute bottom-20 left-[-10%] w-[400px] h-[400px] bg-purple-100 rounded-full blur-[100px] opacity-25" />
-        </div>
+  
+<section
+  id="home"
+  className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950"
+>
+  {/* Background Slider */}
+  <div className="absolute inset-0 z-0">
+    <AnimatePresence mode="wait">
+      {hasSlides && (
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.08 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={slides[currentSlide].image}
+            className="w-full h-full object-cover"
+            alt="Background"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950/95" />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
 
-        {/* محتوى Hero - خط أكبر */}
-       <div className="relative z-10 container mx-auto px-6 py-24">
-  <div className="grid lg:grid-cols-2 gap-16 items-center">
-    {/* النص - خط مصغر */}
-    <div className="hero-content space-y-10">
+  {/* Content */}
+  <div className="relative z-10 container mx-auto px-6 py-24 text-center">
+    <div className="max-w-5xl mx-auto flex flex-col items-center">
+
+      {/* Badge */}
       <motion.div
+        initial={{ opacity: 0, y: -15 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-semibold mb-10 backdrop-blur-sm"
+      >
+        <Sparkles size={14} />
+        <span>
+          {isRTL ? 'الحل الأذكى للتوثيق الميداني' : 'Smartest Field Documentation Solution'}
+        </span>
+      </motion.div>
+
+      {/* Title */}
+      <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="inline-flex items-center gap-3 px-6 py-3 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-sm font-bold"
+        className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-8 tracking-tight"
       >
-        <Sparkles size={18} />
-        {isRTL ? 'الحل الأذكى للتوثيق الميداني' : 'Smartest Field Documentation Solution'}
-      </motion.div>
-
-      <h1 className="text-4xl lg:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight">
         {isRTL ? (
-          <>
-            وثّق عملياتك
-            <br />
-            <span className="text-gradient">بدقة GPS حقيقية</span>
-          </>
+          <>وثّق عملياتك <span className="text-blue-500">بدقة GPS</span> حقيقية</>
         ) : (
-          <>
-            Document Operations
-            <br />
-            <span className="text-gradient">With Real GPS Accuracy</span>
-          </>
+          <>Document Operations With <span className="text-blue-500">Real GPS</span> Accuracy</>
         )}
-      </h1>
+      </motion.h1>
 
-      <p className="text-lg text-slate-600 leading-relaxed font-medium max-w-xl">
+      {/* Description */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-14"
+      >
         {isRTL
-          ? 'منصة متكاملة لتوثيق العمليات الميدانية بالصور الحية والمواقع الجغرافية الدقيقة مع حماية متقدمة ضد التلاعب والتزييف.'
-          : 'Complete platform for documenting field operations with live photos and precise GPS locations with advanced anti-tampering protection.'}
-      </p>
+          ? 'منصة متكاملة لتوثيق العمليات الميدانية بالصور الحية والمواقع الدقيقة مع حماية متقدمة ضد التلاعب.'
+          : 'Complete platform for documenting field operations with live photos and precise GPS locations with anti-tampering protection.'}
+      </motion.p>
 
-      <div className="flex flex-col sm:flex-row gap-6">
-        <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-base hover:shadow-2xl hover:shadow-blue-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
+      {/* Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="flex flex-col sm:flex-row gap-6 mb-20"
+      >
+        <button className="group px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-semibold text-lg shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-3">
           {isRTL ? 'ابدأ الآن مجاناً' : 'Start Free Trial'}
-          <ArrowRight size={20} className={`group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
+          <ArrowRight
+            size={20}
+            className={`transition-transform duration-300 group-hover:translate-x-1 ${isRTL ? 'rotate-180' : ''}`}
+          />
         </button>
-        <button className="px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 rounded-2xl font-black text-base hover:border-blue-600 hover:text-blue-600 transition-all flex items-center justify-center gap-3">
+
+        <button className="px-10 py-4 bg-white/5 border border-white/10 text-white rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-3 backdrop-blur-sm">
           <Camera size={20} />
           {isRTL ? 'شاهد العرض' : 'Watch Demo'}
         </button>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-wrap items-center gap-10 pt-8">
+      {/* Features */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="flex flex-wrap justify-center gap-6"
+      >
         {[
-          { icon: <ShieldCheck size={24} />, text: isRTL ? 'حماية متقدمة' : 'Advanced Protection' },
-          { icon: <MapPin size={24} />, text: isRTL ? 'GPS دقيق' : 'Precise GPS' },
-          { icon: <Lock size={24} />, text: isRTL ? 'بيانات مشفّرة' : 'Encrypted Data' },
+          { icon: <ShieldCheck size={20} />, text: isRTL ? 'حماية متقدمة' : 'Advanced Protection' },
+          { icon: <MapPin size={20} />, text: isRTL ? 'GPS دقيق' : 'Precise GPS' },
+          { icon: <Lock size={20} />, text: isRTL ? 'بيانات مشفّرة' : 'Encrypted Data' },
         ].map((item, i) => (
-          <div key={i} className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-blue-600">
+          <div
+            key={i}
+            className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all"
+          >
+            <div className="w-11 h-11 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
               {item.icon}
             </div>
-            <span className="font-bold text-slate-700 text-base">{item.text}</span>
+            <span className="font-medium text-slate-200 text-sm">
+              {item.text}
+            </span>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
-
-    {/* صورة السلايدر */}
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.4, duration: 0.8 }}
-      className="relative"
-    >
-      {hasSlides && (
-        <div className="relative">
-          {/* السلايدر */}
-          <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-slate-100 to-slate-200 p-8 shadow-2xl">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentSlide}
-                src={slides[currentSlide].image}
-                alt={`Slide ${currentSlide + 1}`}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="w-full rounded-[2rem] shadow-xl"
-              />
-            </AnimatePresence>
-
-            {/* أزرار التنقل */}
-            {slides.length > 1 && (
-              <>
-                <button
-                  onClick={prevSlide}
-                  className={`absolute ${isRTL ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all hover:scale-110`}
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft size={24} />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className={`absolute ${isRTL ? 'left-4' : 'right-4'} top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all hover:scale-110`}
-                  aria-label="Next slide"
-                >
-                  <ChevronRight size={24} />
-                </button>
-              </>
-            )}
-          </div>
-
-          {/* نقاط التنقل */}
-          {slides.length > 1 && (
-            <div className="flex justify-center gap-3 mt-8">
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentSlide 
-                      ? 'w-10 h-3 bg-blue-600' 
-                      : 'w-3 h-3 bg-slate-300 hover:bg-slate-400'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* بادج ديكور */}
-          <motion.div
-            initial={{ scale: 0, rotate: -20 }}
-            animate={{ scale: 1, rotate: -5 }}
-            transition={{ delay: 0.8, type: 'spring' }}
-            className="absolute -top-6 -right-6 bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl font-black text-xs"
-          >
-            {isRTL ? '✨ تحديث جديد' : '✨ New Update'}
-          </motion.div>
-        </div>
-      )}
-    </motion.div>
   </div>
-</div>
 
-      </section>
+  {/* Pagination */}
+  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 bg-white/5 backdrop-blur-sm px-5 py-2 rounded-full border border-white/10">
+    {slides.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => goToSlide(index)}
+        className={`transition-all duration-300 rounded-full ${
+          index === currentSlide
+            ? 'w-10 h-2 bg-blue-500'
+            : 'w-2.5 h-2.5 bg-white/30 hover:bg-white/60'
+        }`}
+      />
+    ))}
+  </div>
+</section>
+
 
       {/* --- Problem & Solution --- */}
      <section id="problem-solution" className="py-40 px-6 relative bg-white">
