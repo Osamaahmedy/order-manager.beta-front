@@ -1377,10 +1377,11 @@ export default function CapturedPremium() {
                   <div className="rounded-[3rem] bg-slate-900 shadow-2xl border border-slate-800 p-4 md:p-6 overflow-hidden">
                     <div className="bg-slate-800/50 rounded-[2.5rem] p-4 border border-slate-700">
                       <img
-                        src="/public/images/dashboard-2.png"
-                        alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
-                        className="w-full rounded-[2rem] shadow-xl"
-                      />
+  src="/images/dashboard-2.png"
+  alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
+  className="w-full rounded-[2rem] shadow-xl"
+/>
+
                     </div>
                   </div>
 
