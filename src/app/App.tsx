@@ -262,7 +262,7 @@ export default function CapturedPremium() {
           >
           <div className="flex items-center gap-3">
   <img
-    src="/images/logo.png"
+    src="/images/logo.avif"
     alt="CapTured Logo"
     className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
   />
@@ -659,7 +659,7 @@ export default function CapturedPremium() {
   <div className="relative">
     <div className="absolute -inset-4 bg-sky-100/50 blur-2xl rounded-full" />
     <img
-      src="/images/logo.png"
+      src="/images/logo.avif"
       alt="CapTured Logo"
       className="relative w-[150px] md:w-[180px] object-contain drop-shadow-md"
     />
@@ -1138,7 +1138,7 @@ export default function CapturedPremium() {
       
       <div className="iphone-screen">
         <img
-          src="/images/orders1.jpeg"
+          src="/images/orders1.avif"
           alt={isRTL ? 'عرض وإنشاء الطلبات' : 'View and Create Orders'}
           className="w-full h-full object-cover"
         />
@@ -1289,7 +1289,7 @@ export default function CapturedPremium() {
       
       <div className="iphone-screen">
         <img
-          src="/images/orders2.jpeg"
+          src="/images/orders2.avif"
           alt={isRTL ? 'متابعة وتتبع الطلبات' : 'Order Tracking'}
           className="w-full h-full object-cover"
         />
@@ -1485,7 +1485,7 @@ export default function CapturedPremium() {
       
       <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700">
         <img
-          src="/images/dashboard-1.webp"
+          src="/images/web.avif"
           alt={isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
           className="w-full rounded-lg"
         />
@@ -1590,7 +1590,7 @@ export default function CapturedPremium() {
 
       <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700">
         <img
-          src="/images/dashboard-2.webp"
+          src="/images/web1.avif"
           alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
           className="w-full rounded-lg shadow-md"
         />
@@ -1992,7 +1992,7 @@ export default function CapturedPremium() {
         {/* اللوجو */}
         <div className="flex items-center gap-4 mb-8 pb-6 border-b border-white/10">
           <img
-            src="/images/logo.png"
+            src="/images/logo.avif"
             alt="CapTured Logo"
             className="h-10 w-auto object-contain"
           />
