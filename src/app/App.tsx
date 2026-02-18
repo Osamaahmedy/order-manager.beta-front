@@ -525,200 +525,123 @@ export default function CapturedPremium() {
     ))}
   </div>
 </section>
-
 <section
   id="problem"
   className="relative py-16 md:py-24 px-6 overflow-hidden bg-white"
 >
-  {/* الطبقة المسؤولة عن التلاشي (Fade Out) من الأعلى والأسفل */}
-  <div className="absolute inset-0 pointer-events-none z-10">
-    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/90 to-transparent" />
-    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/90 to-transparent" />
+  {/* Subtle background blobs */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute left-[5%] top-[20%] w-72 h-72 bg-red-50 blur-[120px] rounded-full opacity-60" />
+    <div className="absolute right-[5%] bottom-[20%] w-72 h-72 bg-sky-50 blur-[120px] rounded-full opacity-60" />
   </div>
 
-  {/* أشكال خلفية جمالية بحجم أصغر */}
-  <div className="absolute inset-0 pointer-events-none opacity-40">
-    <div className="absolute left-[5%] top-[20%] w-64 h-64 bg-red-100 blur-[100px] rounded-full" />
-    <div className="absolute right-[5%] bottom-[20%] w-64 h-64 bg-blue-100 blur-[100px] rounded-full" />
-  </div>
+  <div className="relative max-w-5xl mx-auto">
 
-  <div className="relative max-w-5xl mx-auto z-20">
-    <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
+    {/* Badge + Title */}
+    <div className="text-center mb-12">
+      <span className="inline-block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3 bg-slate-50 px-3 py-1 rounded-full border border-slate-100">
+        {isRTL ? 'المشكلة والحل' : 'Problem & Solution'}
+      </span>
+      <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+        {isRTL ? 'لماذا CapTured؟' : 'Why CapTured?'}
+      </h2>
+    </div>
 
-      {/* كرت المشكلة - تصميم نحيف (Slim) وزوايا ناعمة */}
-      <div className="relative group">
-        <div className="absolute -inset-0.5 bg-gradient-to-br from-red-100 to-transparent rounded-[32px] opacity-0 group-hover:opacity-100 transition duration-500" />
-        <div className="relative h-full bg-slate-50/50 backdrop-blur-sm rounded-[32px] rounded-tr-none border border-slate-100 p-7 md:p-8 transition-all duration-500">
-          
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-10 h-10 bg-white shadow-sm border border-red-50 text-red-500 rounded-xl flex items-center justify-center shrink-0">
-              <XCircle size={20} />
-            </div>
-            <h2 className="text-lg md:text-xl font-bold text-slate-800">
+    <div className="grid lg:grid-cols-2 gap-5 items-stretch">
+
+      {/* Problem Card */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="group relative bg-white border border-slate-100 rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-md transition-all duration-300"
+      >
+        {/* Top accent */}
+        <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-red-200 to-transparent rounded-full" />
+
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-9 h-9 bg-red-50 text-red-400 rounded-xl flex items-center justify-center shrink-0">
+            <XCircle size={18} />
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-slate-800">
               {isRTL ? 'تحديات العمل الحالي' : 'Current Challenges'}
-            </h2>
+            </h3>
+            <p className="text-xs text-slate-400">
+              {isRTL ? 'مشاكل شائعة في التوثيق التقليدي' : 'Common issues with traditional methods'}
+            </p>
+          </div>
+        </div>
+
+        <ul className="space-y-3">
+          {[
+            { ar: 'عدم وجود توثيق رسمي موحّد.', en: 'Lack of unified documentation.' },
+            { ar: 'إرسال صور قديمة بدل التصوير المباشر.', en: 'Using old photos instead of live capture.' },
+            { ar: 'اختلاف البيانات بين الفروع والإدارة.', en: 'Data discrepancy between branches.' },
+            { ar: 'صعوبة البحث اليدوي في السجلات.', en: 'Difficulty searching manual records.' },
+            { ar: 'استهلاك مساحة التخزين بملفات مبعثرة.', en: 'Wasted storage with disorganized files.' }
+          ].map((item, i) => (
+            <li key={i} className="flex gap-3 items-start">
+              <div className="mt-1.5 w-5 h-5 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+              </div>
+              <p className="text-slate-500 text-sm leading-snug">
+                {isRTL ? item.ar : item.en}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* Solution Card */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="group relative bg-slate-900 rounded-2xl p-7 md:p-8 shadow-lg overflow-hidden"
+      >
+        {/* Top accent */}
+        <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-sky-500/60 to-transparent rounded-full" />
+        {/* Glow */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-sky-500/10 blur-[60px] rounded-full pointer-events-none" />
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-9 h-9 bg-sky-500 text-white rounded-xl flex items-center justify-center shadow-lg shadow-sky-900/40 shrink-0">
+              <CheckCircle2 size={18} />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-white">
+                {isRTL ? 'الحل مع CapTured' : 'The Smart Solution'}
+              </h3>
+              <p className="text-xs text-slate-400">
+                {isRTL ? 'توثيق ذكي وموثوق بالكامل' : 'Fully smart & reliable documentation'}
+              </p>
+            </div>
           </div>
 
-          <ul className="space-y-3">
+          <ul className="space-y-2.5">
             {[
-              { ar: 'عدم وجود توثيق رسمي موحّد.', en: 'Lack of unified documentation.' },
-              { ar: 'إرسال صور قديمة بدل التصوير المباشر.', en: 'Using old photos instead of live capture.' },
-              { ar: 'اختلاف البيانات بين الفروع والإدارة.', en: 'Data discrepancy between branches.' },
-              { ar: 'صعوبة البحث اليدوي في السجلات.', en: 'Difficulty searching manual records.' },
-              { ar: 'استهلاك مساحة التخزين بملفات مبعثرة.', en: 'Wasted storage with disorganized files.' }
+              { ar: 'توثيق إلزامي ببيانات دقيقة ولحظية.', en: 'Mandatory documentation with real-time data.' },
+              { ar: 'دعم رفع وسائط متعددة بجودة عالية.', en: 'High-quality multi-media support.' },
+              { ar: 'علامة مائية تلقائية بالوقت و GPS.', en: 'Auto-watermark with Time and GPS.' },
+              { ar: 'سجلات محمية وغير قابلة للتلاعب.', en: 'Tamper-proof and secured records.' },
+              { ar: 'لوحة تحكم ذكية للبحث والتقارير.', en: 'Smart dashboard for search and reports.' }
             ].map((item, i) => (
-              <li key={i} className="flex gap-3 items-start group/item">
-                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-red-400 group-hover/item:scale-125 transition-transform" />
-                <p className="text-slate-600 text-sm md:text-[15px] leading-snug">
+              <li key={i} className="flex gap-3 items-center bg-white/5 border border-white/5 rounded-xl px-4 py-2.5 hover:bg-white/10 hover:border-sky-500/20 transition-all duration-200">
+                <CheckCircle2 size={14} className="text-sky-400 shrink-0" />
+                <span className="text-slate-200 text-sm font-medium">
                   {isRTL ? item.ar : item.en}
-                </p>
+                </span>
               </li>
             ))}
           </ul>
         </div>
-      </div>
-
-      {/* كرت الحل - تصميم احترافي مركز (Focused) */}
-      <div className="relative group">
-        <div className="absolute -inset-0.5 bg-blue-600/20 rounded-[32px] blur-md opacity-0 group-hover:opacity-100 transition duration-500" />
-        <div className="relative h-full bg-slate-900 text-white rounded-[32px] rounded-bl-none p-7 md:p-8 overflow-hidden transition-all duration-500">
-          
-          {/* لمسة إضاءة خافتة جداً */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[50px]" />
-
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/40 shrink-0">
-                <CheckCircle2 size={20} />
-              </div>
-              <h2 className="text-lg md:text-xl font-bold tracking-tight">
-                {isRTL ? 'الحل مع CapTured' : 'The Smart Solution'}
-              </h2>
-            </div>
-
-            <ul className="space-y-3">
-              {[
-                { ar: 'توثيق إلزامي ببيانات دقيقة ولحظية.', en: 'Mandatory documentation with real-time data.' },
-                { ar: 'دعم رفع وسائط متعددة بجودة عالية.', en: 'High-quality multi-media support.' },
-                { ar: 'علامة مائية تلقائية بالوقت و GPS.', en: 'Auto-watermark with Time and GPS.' },
-                { ar: 'سجلات محمية وغير قابلة للتلاعب.', en: 'Tamper-proof and secured records.' },
-                { ar: 'لوحة تحكم ذكية للبحث والتقارير.', en: 'Smart dashboard for search and reports.' }
-              ].map((item, i) => (
-                <li key={i} className="flex gap-3 items-center bg-white/5 border border-white/5 rounded-xl px-4 py-2.5 hover:bg-white/10 transition-colors">
-                  <CheckCircle2 size={14} className="text-blue-400 shrink-0" />
-                  <span className="text-blue-50 text-sm md:text-[15px] font-medium">
-                    {isRTL ? item.ar : item.en}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+      </motion.div>
 
     </div>
-  </div>
-</section>
-<section
-  id="how-it-works"
-  className="relative py-28 px-6 bg-gradient-to-b from-white via-sky-50/40 to-white overflow-hidden"
->
-
-  {/* ===== Linear Divider Between Black & Blue ===== */}
-  <div className="absolute top-0 left-0 w-full h-28 -translate-y-full pointer-events-none">
-    <div className="w-full h-full bg-gradient-to-b from-slate-950 via-blue-700 to-white" />
-  </div>
-
-  <div className="max-w-6xl mx-auto">
-
-    <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-slate-900">
-        {isRTL ? 'كيف يعمل CapTured؟' : 'How CapTured Works?'}
-      </h2>
-
-      <p className="text-slate-500 text-sm md:text-base font-medium">
-        {isRTL ? 'خطوات بسيطة لتوثيق احترافي' : 'Simple steps for professional documentation'}
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-      {[
-        {
-          step: "01",
-          ar: "تسجيل الدخول",
-          en: "Login",
-          desc_ar: "الدخول بحساب المستخدم المرتبط بفرعه",
-          desc_en: "Log in with the account linked to your branch",
-          icon: <UserCheck />,
-          color: "blue"
-        },
-        {
-          step: "02",
-          ar: "إدخال الطلب",
-          en: "Enter Order",
-          desc_ar: "إدخال رقم الطلب أو مسحه بالباركود",
-          desc_en: "Enter order number or scan barcode",
-          icon: <Barcode />,
-          color: "indigo"
-        },
-        {
-          step: "03",
-          ar: "التوثيق الذكي",
-          en: "Smart Capture",
-          desc_ar: "النظام يحدد الموقع، الوقت، والتصوير المباشر",
-          desc_en: "System auto-detects GPS, Time, and captures photo/video",
-          icon: <Camera />,
-          color: "cyan"
-        },
-        {
-          step: "04",
-          ar: "الاعتماد والرفع",
-          en: "Submit & Sync",
-          desc_ar: "مراجعة سريعة ثم رفع السجل بشكل رسمي",
-          desc_en: "Quick review then official upload to cloud",
-          icon: <CloudUpload />,
-          color: "emerald"
-        }
-      ].map((item, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: idx * 0.15, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="group relative p-8 rounded-3xl bg-white border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
-        >
-
-          <span className="text-5xl font-black text-slate-100 absolute top-4 right-5">
-            {item.step}
-          </span>
-
-          <div
-            className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 
-            bg-${item.color}-50 text-${item.color}-600 
-            group-hover:scale-110 transition-transform duration-300`}
-          >
-            {item.icon}
-          </div>
-
-          <h4 className="text-lg font-bold mb-3 text-slate-900">
-            {isRTL ? item.ar : item.en}
-          </h4>
-
-          <p className="text-slate-500 text-sm leading-relaxed">
-            {isRTL ? item.desc_ar : item.desc_en}
-          </p>
-
-          <div
-            className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 
-            transition-opacity duration-500 
-            bg-gradient-to-br from-${item.color}-500/5 to-${item.color}-500/0`}
-          />
-
-        </motion.div>
-      ))}
-    </div>
-
   </div>
 </section>
 
