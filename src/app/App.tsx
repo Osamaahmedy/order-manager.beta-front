@@ -528,98 +528,98 @@ export default function CapturedPremium() {
 
 <section
   id="problem"
-  className="py-24 px-6 relative bg-gradient-to-br from-blue-600/80 via-blue-500/30 to-white"
+  className="relative py-16 md:py-24 px-6 overflow-hidden bg-white"
 >
-  <div className="max-w-6xl mx-auto">
-    <div className="grid lg:grid-cols-2 gap-8">
+  {/* الطبقة المسؤولة عن التلاشي (Fade Out) من الأعلى والأسفل */}
+  <div className="absolute inset-0 pointer-events-none z-10">
+    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/90 to-transparent" />
+    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/90 to-transparent" />
+  </div>
 
-      {/* The Problem */}
-      <div className="p-10 rounded-3xl bg-white/95 backdrop-blur-lg border border-white/60 shadow-xl transition-all duration-500 hover:scale-[1.01]">
-        <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-6">
-          <XCircle size={22} />
+  {/* أشكال خلفية جمالية بحجم أصغر */}
+  <div className="absolute inset-0 pointer-events-none opacity-40">
+    <div className="absolute left-[5%] top-[20%] w-64 h-64 bg-red-100 blur-[100px] rounded-full" />
+    <div className="absolute right-[5%] bottom-[20%] w-64 h-64 bg-blue-100 blur-[100px] rounded-full" />
+  </div>
+
+  <div className="relative max-w-5xl mx-auto z-20">
+    <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
+
+      {/* كرت المشكلة - تصميم نحيف (Slim) وزوايا ناعمة */}
+      <div className="relative group">
+        <div className="absolute -inset-0.5 bg-gradient-to-br from-red-100 to-transparent rounded-[32px] opacity-0 group-hover:opacity-100 transition duration-500" />
+        <div className="relative h-full bg-slate-50/50 backdrop-blur-sm rounded-[32px] rounded-tr-none border border-slate-100 p-7 md:p-8 transition-all duration-500">
+          
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-10 h-10 bg-white shadow-sm border border-red-50 text-red-500 rounded-xl flex items-center justify-center shrink-0">
+              <XCircle size={20} />
+            </div>
+            <h2 className="text-lg md:text-xl font-bold text-slate-800">
+              {isRTL ? 'تحديات العمل الحالي' : 'Current Challenges'}
+            </h2>
+          </div>
+
+          <ul className="space-y-3">
+            {[
+              { ar: 'عدم وجود توثيق رسمي موحّد.', en: 'Lack of unified documentation.' },
+              { ar: 'إرسال صور قديمة بدل التصوير المباشر.', en: 'Using old photos instead of live capture.' },
+              { ar: 'اختلاف البيانات بين الفروع والإدارة.', en: 'Data discrepancy between branches.' },
+              { ar: 'صعوبة البحث اليدوي في السجلات.', en: 'Difficulty searching manual records.' },
+              { ar: 'استهلاك مساحة التخزين بملفات مبعثرة.', en: 'Wasted storage with disorganized files.' }
+            ].map((item, i) => (
+              <li key={i} className="flex gap-3 items-start group/item">
+                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-red-400 group-hover/item:scale-125 transition-transform" />
+                <p className="text-slate-600 text-sm md:text-[15px] leading-snug">
+                  {isRTL ? item.ar : item.en}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-900">
-          {isRTL ? 'المشكلة' : 'The Problem'}
-        </h2>
-
-        <ul className="space-y-4">
-          {[
-            {
-              ar: 'عدم وجود توثيق رسمي موحّد لكل عملية تسليم.',
-              en: 'Lack of unified official documentation for deliveries.'
-            },
-            {
-              ar: 'إمكانية إرسال صور قديمة بدل التصوير المباشر.',
-              en: 'Risk of using old photos instead of live capture.'
-            },
-            {
-              ar: 'اختلاف البيانات بين الفروع والإدارة الرئيسية.',
-              en: 'Data discrepancy between branches and management.'
-            },
-            {
-              ar: 'صعوبة البحث اليدوي عند كثرة العمليات.',
-              en: 'Difficulty searching records as operations scale.'
-            },
-            {
-              ar: 'استهلاك مساحة التخزين بملفات غير منظمة.',
-              en: 'Wasted storage due to disorganized large files.'
-            }
-          ].map((item, i) => (
-            <li key={i} className="flex gap-3 items-start text-slate-700 font-medium text-sm md:text-base">
-              <div className="w-2 h-2 rounded-full bg-red-500 mt-2 shrink-0" />
-              <span className="leading-relaxed">{isRTL ? item.ar : item.en}</span>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      {/* The Solution */}
-      <div className="p-10 rounded-3xl bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-xl shadow-blue-600/20 relative overflow-hidden transition-all duration-500 hover:scale-[1.01]">
-        <div className="absolute -right-12 -bottom-12 w-60 h-60 bg-white/10 rounded-full blur-3xl" />
+      {/* كرت الحل - تصميم احترافي مركز (Focused) */}
+      <div className="relative group">
+        <div className="absolute -inset-0.5 bg-blue-600/20 rounded-[32px] blur-md opacity-0 group-hover:opacity-100 transition duration-500" />
+        <div className="relative h-full bg-slate-900 text-white rounded-[32px] rounded-bl-none p-7 md:p-8 overflow-hidden transition-all duration-500">
+          
+          {/* لمسة إضاءة خافتة جداً */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-[50px]" />
 
-        <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-6 border border-white/20">
-          <CheckCircle2 size={22} />
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/40 shrink-0">
+                <CheckCircle2 size={20} />
+              </div>
+              <h2 className="text-lg md:text-xl font-bold tracking-tight">
+                {isRTL ? 'الحل مع CapTured' : 'The Smart Solution'}
+              </h2>
+            </div>
+
+            <ul className="space-y-3">
+              {[
+                { ar: 'توثيق إلزامي ببيانات دقيقة ولحظية.', en: 'Mandatory documentation with real-time data.' },
+                { ar: 'دعم رفع وسائط متعددة بجودة عالية.', en: 'High-quality multi-media support.' },
+                { ar: 'علامة مائية تلقائية بالوقت و GPS.', en: 'Auto-watermark with Time and GPS.' },
+                { ar: 'سجلات محمية وغير قابلة للتلاعب.', en: 'Tamper-proof and secured records.' },
+                { ar: 'لوحة تحكم ذكية للبحث والتقارير.', en: 'Smart dashboard for search and reports.' }
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3 items-center bg-white/5 border border-white/5 rounded-xl px-4 py-2.5 hover:bg-white/10 transition-colors">
+                  <CheckCircle2 size={14} className="text-blue-400 shrink-0" />
+                  <span className="text-blue-50 text-sm md:text-[15px] font-medium">
+                    {isRTL ? item.ar : item.en}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        <h2 className="text-2xl md:text-3xl font-bold mb-6">
-          {isRTL ? 'الحل مع CapTured' : 'The CapTured Solution'}
-        </h2>
-
-        <ul className="space-y-4 relative z-10">
-          {[
-            {
-              ar: 'توثيق إلزامي لكل عملية تسليم ببيانات دقيقة.',
-              en: 'Mandatory documentation with precise data.'
-            },
-            {
-              ar: 'دعم رفع صور وفيديوهات متعددة بجودة عالية.',
-              en: 'High-quality multi-photo and video support.'
-            },
-            {
-              ar: 'علامة مائية تلقائية تشمل الوقت والموقع GPS.',
-              en: 'Auto-watermark including time and GPS location.'
-            },
-            {
-              ar: 'سجلات غير قابلة للتعديل لضمان النزاهة.',
-              en: 'Tamper-proof records ensuring integrity.'
-            },
-            {
-              ar: 'لوحة تحكم ذكية للإدارة والبحث والتصدير.',
-              en: 'Smart dashboard for management and exporting.'
-            }
-          ].map((item, i) => (
-            <li key={i} className="flex gap-3 items-start font-medium text-sm md:text-base">
-              <div className="w-2 h-2 rounded-full bg-blue-200 mt-2 shrink-0" />
-              <span className="leading-relaxed">{isRTL ? item.ar : item.en}</span>
-            </li>
-          ))}
-        </ul>
       </div>
 
     </div>
   </div>
-</section><section
+</section>
+<section
   id="how-it-works"
   className="relative py-28 px-6 bg-gradient-to-b from-white via-sky-50/40 to-white overflow-hidden"
 >
@@ -723,6 +723,121 @@ export default function CapturedPremium() {
 </section>
 
 <section
+  id="how-it-works"
+  className="relative py-16 px-6 bg-white overflow-hidden"
+>
+  <div className="max-w-5xl mx-auto">
+
+    {/* Logo + Header */}
+    <div className="text-center mb-12">
+
+      {/* شعار الموقع */}
+     <div className="flex justify-center mb-5">
+  <div className="relative">
+    <div className="absolute -inset-4 bg-sky-100/50 blur-2xl rounded-full" />
+    <img
+      src="/images/logo.png"
+      alt="CapTured Logo"
+      className="relative w-[150px] md:w-[180px] object-contain drop-shadow-md"
+    />
+  </div>
+</div>
+
+
+      {/* Badge */}
+      <span className="inline-block text-xs font-semibold text-sky-500 uppercase tracking-widest mb-3 bg-sky-50 px-3 py-1 rounded-full">
+        {isRTL ? 'كيف يعمل' : 'How it works'}
+      </span>
+
+      {/* Title */}
+      <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+        {isRTL ? 'كيف يعمل CapTured؟' : 'How CapTured Works?'}
+      </h2>
+
+      {/* Subtitle */}
+      <p className="text-slate-400 text-sm mt-2">
+        {isRTL ? 'خطوات بسيطة لتوثيق احترافي' : 'Simple steps for professional documentation'}
+      </p>
+    </div>
+
+    {/* Steps */}
+    <div className="relative">
+
+      {/* Connector line */}
+      <div className="hidden md:block absolute top-10 left-[12.5%] w-[75%] h-0.5 bg-gradient-to-r from-sky-200 via-sky-400 to-sky-200" />
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {[
+          {
+            step: "01",
+            ar: "تسجيل الدخول",
+            en: "Login",
+            desc_ar: "الدخول بحساب المستخدم المرتبط بفرعه",
+            desc_en: "Log in with your branch account",
+            icon: <UserCheck size={22} />
+          },
+          {
+            step: "02",
+            ar: "إدخال الطلب",
+            en: "Enter Order",
+            desc_ar: "إدخال رقم الطلب أو مسحه بالباركود",
+            desc_en: "Enter order number or scan barcode",
+            icon: <Barcode size={22} />
+          },
+          {
+            step: "03",
+            ar: "التوثيق الذكي",
+            en: "Smart Capture",
+            desc_ar: "تحديد الموقع، الوقت، والتصوير المباشر",
+            desc_en: "Auto-detects GPS, time & captures media",
+            icon: <Camera size={22} />
+          },
+          {
+            step: "04",
+            ar: "الاعتماد والرفع",
+            en: "Submit & Sync",
+            desc_ar: "مراجعة سريعة ثم رفع السجل رسمياً",
+            desc_en: "Quick review then upload to cloud",
+            icon: <CloudUpload size={22} />
+          }
+        ].map((item, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.12, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center group"
+          >
+            {/* Step circle */}
+            <div className="relative mb-4 z-10">
+              <div className="w-20 h-20 rounded-full bg-white border-2 border-sky-200 shadow-md flex items-center justify-center group-hover:border-sky-400 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center text-sky-500 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                  {item.icon}
+                </div>
+              </div>
+              <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-sky-500 text-white text-[11px] font-bold flex items-center justify-center shadow">
+                {item.step}
+              </div>
+            </div>
+
+            <h4 className="text-sm font-bold text-slate-800 mb-1">
+              {isRTL ? item.ar : item.en}
+            </h4>
+
+            <p className="text-slate-400 text-xs leading-relaxed max-w-[170px]">
+              {isRTL ? item.desc_ar : item.desc_en}
+            </p>
+
+          </motion.div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section
   id="full-features"
   className="py-32 px-6 bg-gradient-to-b from-slate-900 via-slate-900 to-blue-950 text-white overflow-hidden"
 >
@@ -778,26 +893,29 @@ export default function CapturedPremium() {
 
     </div>
   </div>
-</section>
-<section
+</section><section
   id="sectors"
-  className="relative py-28 px-6 overflow-hidden 
-  bg-gradient-to-b from-blue-100/60 via-white to-white"
+  className="relative py-16 px-6 overflow-hidden bg-white"
 >
 
-  {/* Blue Fog Effect */}
+  {/* Subtle decorative blur - خفيف جداً */}
   <div className="absolute inset-0 pointer-events-none">
-    <div className="absolute -top-32 left-1/2 -translate-x-1/2 
-    w-[700px] h-[500px] bg-blue-400/20 rounded-full blur-3xl" />
+    <div className="absolute -top-16 left-1/2 -translate-x-1/2 
+    w-[500px] h-[300px] bg-sky-100/30 rounded-full blur-3xl" />
   </div>
 
-  <div className="max-w-6xl mx-auto text-center relative z-10">
+  <div className="max-w-5xl mx-auto text-center relative z-10">
 
-    <h2 className="text-3xl md:text-4xl font-extrabold mb-14 text-slate-900">
+    {/* Badge + Title */}
+    <span className="inline-block text-xs font-semibold text-sky-500 uppercase tracking-widest mb-3 bg-sky-50 px-3 py-1 rounded-full">
+      {isRTL ? 'القطاعات' : 'Sectors'}
+    </span>
+
+    <h2 className="text-2xl md:text-3xl font-extrabold mb-10 text-slate-900 tracking-tight">
       {isRTL ? 'القطاعات المناسبة' : 'Ideal Sectors'}
     </h2>
 
-    <div className="flex flex-wrap justify-center gap-6">
+    <div className="flex flex-wrap justify-center gap-4">
       {[
         { ar: 'الخدمات اللوجستية', en: 'Logistics Services', icon: <Truck size={18} /> },
         { ar: 'المطاعم والكافيهات', en: 'Restaurants & Cafes', icon: <Utensils size={18} /> },
@@ -807,29 +925,28 @@ export default function CapturedPremium() {
       ].map((sector, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1 }}
           viewport={{ once: true }}
-          className="group flex items-center gap-3 px-7 py-4 
-          bg-white/90 backdrop-blur-md 
-          border border-blue-100 
-          rounded-full shadow-sm 
-          hover:shadow-md hover:-translate-y-1 
+          className="group flex items-center gap-3 px-6 py-3
+          bg-white border border-slate-100
+          rounded-full shadow-sm
+          hover:shadow-md hover:border-sky-200 hover:-translate-y-1
           transition-all duration-300"
         >
-          <div className="text-blue-600 group-hover:scale-110 transition-transform duration-300">
+          <div className="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-sky-500 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
             {sector.icon}
           </div>
 
-          <span className="font-medium text-slate-700 text-sm md:text-base">
+          <span className="font-medium text-slate-700 text-sm">
             {isRTL ? sector.ar : sector.en}
           </span>
         </motion.div>
       ))}
     </div>
 
-    <p className="mt-12 text-slate-600 font-medium max-w-2xl mx-auto text-sm md:text-base">
+    <p className="mt-10 text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
       {isRTL
         ? 'CapTured مصمم ليناسب أي نشاط يحتاج إثبات تسليم رسمي ومؤرشف.'
         : 'CapTured is designed to fit any business requiring official delivery proof and archiving.'}
@@ -837,6 +954,7 @@ export default function CapturedPremium() {
 
   </div>
 </section>
+
 <section
   id="features"
   className="relative py-28 px-6 overflow-hidden 
