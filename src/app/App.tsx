@@ -1479,11 +1479,10 @@ export default function CapturedPremium() {
 <div>
   <div className="relative group">
     
-    <div className="rounded-2xl bg-slate-900 
-    border border-slate-800 
+    <div className="rounded-2xl 
     p-3 md:p-4 overflow-hidden">
       
-      <div className="bg-slate-800/40 rounded-xl p-3 border border-slate-700">
+      <div className=" rounded-xl p-3 ">
         <img
           src="/images/web.avif"
           alt={isRTL ? 'مراجعة نسب الفروع' : 'Branch Performance Review'}
@@ -1585,10 +1584,9 @@ export default function CapturedPremium() {
              <div className={`${isRTL ? 'lg:order-1' : ''}`}>
   <div className="relative group">
 
-    <div className="rounded-2xl bg-slate-900 shadow-lg 
-    border border-slate-800 p-3 md:p-4 overflow-hidden">
+    <div className="rounded-2xl p-3 md:p-4 overflow-hidden">
 
-      <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700">
+      <div className=" rounded-xl p-3 ">
         <img
           src="/images/web1.avif"
           alt={isRTL ? 'نسب الطلبات' : 'Orders Statistics'}
